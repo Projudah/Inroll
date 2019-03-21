@@ -11,6 +11,12 @@ class App extends Component {
         <NavBar />
         <div className="app">
           <Sidebar />
+          <div class="content">
+            This is where shit goes <br />
+            This is where shit goes <br />
+            This is where shit goes <br />
+            This is where shit goes
+          </div>
         </div>
       </div>
     )
