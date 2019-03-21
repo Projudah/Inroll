@@ -1,10 +1,14 @@
 import React from 'react'
 
-class Patient extends React.Component {
+import './navbar.scss'
+
+class NavBar extends React.Component {
   render(){
     return(
-      <div>This is the NavBar</div>
+      <div className="navbar">
+        <span class="title">InRoll</span>
+      </div>
     )
   }
 }
-export default Patient
+export default NavBar
