@@ -14,7 +14,6 @@ class SearchBar extends React.Component {
   }
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
   }
   render() {
     const { selectedOption } = this.state;
@@ -24,6 +23,7 @@ class SearchBar extends React.Component {
         value={selectedOption}
         onChange={this.handleChange}
         options={options}
+        placeholder="Course code, course name, department"
       />
     )
   }

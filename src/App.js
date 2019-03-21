@@ -3,6 +3,7 @@ import './App.scss';
 
 import NavBar from './components/NavBar'
 import Sidebar from './components/Sidebar'
+import Modal from './components/Modal'
 
 class App extends Component {
   //state to change the vierw change as requred
@@ -42,6 +43,7 @@ class App extends Component {
               view}
           </div>
         </div>
+        <Modal />
       </div>
     )
   }
