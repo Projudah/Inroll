@@ -4,5 +4,54 @@ $lighter_grey: #2B2B2B;
 .sidebar{
   background-color: $lighter_grey;
   color: white;
-  padding: 1em;
+}
+.Collapsible{
+	background-color: $lighter_grey;
+  color: white;
+  display:block;
+  margin: 0;
+
+  span{
+  	display: block;
+  }
+
+  span:first-child{
+  	padding-left: 1em;
+  	padding-bottom: 0.5em;
+  }
+
+	.is-open, .Collapsible, .Collapsible__contentInner{
+		background-color:maroon !important;
+		.Collapsible__contentOuter{
+		margin: 0.5em;
+	}
+	}
+
+
+	.is-closed,.Collapsible__contentOuter{
+		margin:0em;
+	}
+
+	:hover{
+		background-color: pink;
+	}
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  backgroud-color:black;
 }
