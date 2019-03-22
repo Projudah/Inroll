@@ -9,7 +9,7 @@ const ModalConductor = props => {
   var handleModalUnmount = props.handleModalUnmount
   switch (props.currentModal) {
     case 'SEARCH_CLASS':
-      return <SearchClassModal open={true} handleModalUnmount={handleModalUnmount} />;
+      return <SearchClassModal handleModalUnmount={handleModalUnmount} />;
     default:
       return null;
   }
