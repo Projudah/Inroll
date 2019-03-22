@@ -3,25 +3,45 @@ import './App.scss';
 
 import NavBar from './components/NavBar'
 import Sidebar from './components/Sidebar'
-import Modal from './components/Modal'
+import SearchClassModal from './components/Modal/SearchClass'
+
+const ModalConductor = props => {
+  var handleModalUnmount = props.handleModalUnmount
+  switch (props.currentModal) {
+    case 'SEARCH_CLASS':
+      return <SearchClassModal open={true} handleModalUnmount={handleModalUnmount} />;
+    default:
+      return null;
+  }
+}
 
 class App extends Component {
-  //state to change the vierw change as requred
-  state = {
-    view: false
+  constructor(props){
+    super(props)
+    this.state = {
+      view: false,
+      currentModal: null,
+    }
+    this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
+    this.handleModalUnmount = this.handleModalUnmount.bind(this)
   }
 
-  //function to react to button click, change this as required
+  handleModalUnmount(){
+    this.setState({ currentModal: null })
+  }
+
   toggle = () =>{
-    console.log(this.state.view)
     this.setState(
       {
         view: !this.state.view
       });
   }
 
-  render() {
+  toggleSearchClassModal = () => {
+    this.setState({ currentModal: 'SEARCH_CLASS'})
+  }
 
+  render() {
     //this variable should contatin the component
      var view = ""
      //chan ge component depending on state
@@ -31,7 +51,8 @@ class App extends Component {
     //change sidebar toggle, to pass the function changing state to the side bar
     return (
       <div>
-        <NavBar />
+        <ModalConductor currentModal={this.state.currentModal} handleModalUnmount={this.handleModalUnmount} />
+        <NavBar toggleSearchClassModal={this.toggleSearchClassModal} untoggleModal={this.handleModalUnmount} />
         <div className="app">
           <Sidebar toggle={this.toggle}/>
           <div class="content">
@@ -43,7 +64,6 @@ class App extends Component {
               view}
           </div>
         </div>
-        <Modal />
       </div>
     )
   }

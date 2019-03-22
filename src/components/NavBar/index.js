@@ -9,7 +9,9 @@ class NavBar extends React.Component {
       <div className="navbar">
         <div className="title">InRoll</div>
         <div className="search">
-          <SearchBar />
+          <SearchBar
+            toggleSearchClassModal={this.props.toggleSearchClassModal}
+          />
         </div>
       </div>
     )

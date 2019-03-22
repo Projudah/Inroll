@@ -9,11 +9,16 @@ const options = [
 ];
 
 class SearchBar extends React.Component {
-  state = {
-    selectedOption: null,
+  constructor(props){
+    super(props)
+    this.state = {
+      selectedOption: null,
+    }
   }
+
   handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
+    this.setState({ selectedOption })
+    this.props.toggleSearchClassModal()
   }
   render() {
     const { selectedOption } = this.state;
