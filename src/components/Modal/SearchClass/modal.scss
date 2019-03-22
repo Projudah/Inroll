@@ -1,0 +1,40 @@
+$maroon: rgb(110, 17, 33);
+.table{
+  padding: 1em;
+  border-collapse: collapse;
+}
+
+th{
+  text-align: left;
+}
+
+td{
+  padding: 1em;
+  border: 1px black solid;
+}
+
+tr:nth-child(even){
+  background-color: rgb(223, 221, 221);
+}
+
+button{
+  background-color: $maroon;
+  color: white;
+  padding: 0.5em;
+  font-size: 1em;
+  max-width: 7em;
+  max-height: 2.5em;
+  margin: 0 auto;
+  align-self: center;
+}
+
+button:hover{
+  background-color: rgb(153, 22, 44);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  cursor: pointer;
+}
+
+.title-area{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
