@@ -18,17 +18,32 @@ class Sidebar extends React.Component {
 	}
 
 	myFunction() {
-  document.getElementById("myDropdown").toggle("show");
-}
+  document.getElementById("semester").innerHTML = 'Fall 2019'
+	}
+
+	myFunction1() {
+  document.getElementById("semester").innerHTML = 'Winter 2019'
+	}
+
+	myFunction2() {
+  document.getElementById("semester").innerHTML = 'Summer 2019'
+	}
+	myFunction3() {
+  document.getElementById("semester").innerHTML = 'Fall 2020'
+	}
   
   render(){
     return(
       <div>
-      <div><p><label id = "semester"> Fall Semester</label></p>
+      <div><p><label id = "semester" value="Fall 2019">Fall 2019</label></p>
       <div className="dropdown">
-  <span>Mouse over me</span>
+  <span>Change Semester</span>
   <div className="dropdown-content">
-    <p>Hello World!</p>
+    <p id="fall2019" onClick={this.myFunction}>Fall 2019</p>
+    <p id="winter2019" onClick={this.myFunction1}>Winter 2019</p>
+    <p id="summer2019" onClick={this.myFunction2}>Summer 2019</p>
+    <p id="fall2020" onClick={this.myFunction3}>Fall 2020</p>
+
   </div>
 </div>
       </div>
@@ -64,7 +79,9 @@ class Sidebar extends React.Component {
 </Collapsible>
 <button type="button" onClick={this.searchCourse}>Search</button>
       </Collapsible>
-      <label>Delete Class</label>
+      <Collapsible trigger="Delete Class">
+      <div></div>
+      </Collapsible>
         <div className="sidebar">
           Hello im the sidebar
           Hello im the sidebar
