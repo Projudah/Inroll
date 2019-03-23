@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
+import './modal.scss'
  
 export default class ModalWindow extends React.Component {
   onCloseModal = () => {
@@ -10,7 +11,7 @@ export default class ModalWindow extends React.Component {
     return (
       <div>
         <Modal open={true} onClose={this.onCloseModal} center>
-          <h1>CLASS NAME GOES HERE</h1>
+          <h1>AIR6789 - How to make airplanes</h1>
           <ul>
             <li><b>Session:</b> Full Session</li>
             <li><b>Career:</b> Undergraduate</li>
