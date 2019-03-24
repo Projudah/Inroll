@@ -14,7 +14,7 @@ class NavBar extends React.Component {
           />
         </div>
         <div className="help-page">
-          <i class="far fa-question-circle"></i>
+          <i class="far fa-question-circle" onClick={this.props.toggleHelpPage}></i>
         </div>
       </div>
     )

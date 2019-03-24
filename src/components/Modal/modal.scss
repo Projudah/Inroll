@@ -1,4 +1,4 @@
-$maroon: rgb(110, 17, 33);
+$maroon: rgb(153, 22, 44);
 .table {
   padding: 1em;
   border-collapse: collapse;
@@ -39,4 +39,9 @@ tr:nth-child(even) {
       0 17px 50px 0 rgba(0, 0, 0, 0.19);
     cursor: pointer;
   }
+}
+
+button:hover {
+  cursor: pointer;
+  color: $maroon;
 }

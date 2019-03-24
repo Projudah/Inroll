@@ -1,6 +1,6 @@
 import React from 'react'
 import Modal from 'react-responsive-modal'
-import './modal.scss'
+import '../modal.scss'
 
 export default class ModalWindow extends React.Component {
   onCloseModal = () => {

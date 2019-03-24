@@ -1,3 +1,5 @@
+$light_maroon: rgb(153, 22, 44);
+
 .navbar {
   background-color: #191919;
   padding: 0.4em;
@@ -26,4 +28,8 @@
   margin: 0 auto;
   align-content: center;
   font-size: 1.3em;
+}
+
+.fa-question-circle:hover{
+  color: $light_maroon;
 }
