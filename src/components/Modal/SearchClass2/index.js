@@ -7,10 +7,18 @@ export default class ModalWindow extends React.Component {
     this.props.handleModalUnmount()
   }
 
+  back = () => {
+    this.props.handleModalUnmount()
+    this.props.toggleSearchDepartmentModal()
+  }
+
   render() {
     return (
       <div>
         <Modal open={true} onClose={this.onCloseModal} center>
+          <button className="back-button" onClick={this.back}>
+            <i class="far fa-arrow-alt-circle-left" />Back
+          </button>
           <h1>AIR6789 - How to make airplanes</h1>
           <ul>
             <li>

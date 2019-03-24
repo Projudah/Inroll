@@ -118,6 +118,7 @@ $light_maroon: rgb(153, 22, 44);
         border: none;
         font-size: 1em;
         padding: 0.3em;
+        width: 95%;
       }
 
       option {
@@ -126,6 +127,22 @@ $light_maroon: rgb(153, 22, 44);
         border: none;
         font-size: 1em;
         padding: 0.3em;
+      }
+
+      button {
+        width: auto;
+        display: inline !important;
+        padding: 0.5em;
+        color: white;
+        background-color: transparent;
+        font-size: 1em;
+        margin-top: 0.5em;
+        border: 2px solid white;
+      }
+
+      button:hover {
+        color: $maroon;
+        background-color: white;
       }
     }
 

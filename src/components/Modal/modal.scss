@@ -3,6 +3,24 @@ $maroon: rgb(153, 22, 44);
   padding: 1em;
   border-collapse: collapse;
   width: 100%;
+
+  button {
+    background-color: $maroon;
+    color: white;
+    padding: 0.5em;
+    font-size: 1em;
+    max-width: 7em;
+    max-height: 2.5em;
+    margin: 0 auto;
+    align-self: center;
+  }
+
+  button:hover {
+    background-color: rgb(153, 22, 44);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+  }
 }
 
 th {
@@ -42,5 +60,27 @@ tr:nth-child(even) {
 }
 
 button:hover {
+  cursor: pointer;
+}
+
+.back-button {
+  background-color: $maroon;
+  color: white;
+  padding: 0.5em;
+  font-size: 1em;
+  max-width: 7em;
+  max-height: 2.5em;
+  margin: 0 auto;
+  align-self: center;
+
+  .fa-arrow-alt-circle-left {
+    margin-right: 0.5em;
+  }
+}
+
+.back-button:hover {
+  background-color: rgb(153, 22, 44);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
 }

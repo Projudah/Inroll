@@ -170,6 +170,9 @@ class Sidebar extends React.Component {
                       placeholder="Course Code"
                       id="courseCode"
                     />
+                    <button onClick={this.props.toggleSearchClassModal}>
+                      Search for classes
+                    </button>
                   </div>
                 </div>
 
@@ -204,6 +207,9 @@ class Sidebar extends React.Component {
                       placeholder="Course Name"
                       id="courseName"
                     />
+                    <button onClick={this.props.toggleSearchClassModal}>
+                      Search for classes
+                    </button>
                   </div>
                 </div>
 
@@ -261,6 +267,9 @@ class Sidebar extends React.Component {
                         <option value="PHD">PHD</option>
                       </select>
                     </p>
+                    <button onClick={this.props.toggleSearchDepartmentModal}>
+                      Search for classes
+                    </button>
                   </div>
                 </div>
               </div>
