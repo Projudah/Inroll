@@ -4,6 +4,58 @@ $lighter_grey: #2b2b2b;
 .sidebar {
   background-color: $lighter_grey;
   color: white;
+  height: 100vh;
+}
+
+.semester-section{
+  background-color: $lighter_grey;
+  color: white;
+  padding-top: 0.3em;
+  padding-left: 1em;
+
+  .change-semester{
+    background: $maroon;
+    padding: 0.5em;
+  }
+
+  .change-semester:hover{
+    background-color: rgb(153, 22, 44);
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+  }
+
+  .dropdown {
+    position: relative;
+    display: block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin-top: 0.5em;
+    color: black;
+    
+    p{
+      padding: 1em;
+      margin: 0;
+    }
+
+    p:hover{
+      background-color: rgb(196, 196, 196);
+      cursor: pointer;
+    }
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+    backgroud-color: black;
+  }
+  
 }
 
 .Collapsible,
@@ -39,23 +91,4 @@ $lighter_grey: #2b2b2b;
   :hover {
     background-color: pink;
   }
-}
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-  backgroud-color: black;
 }

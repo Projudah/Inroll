@@ -34,14 +34,14 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <p>
+        <div class="semester-section">
+          <h1>
             <label id="semester" value="Fall 2019">
               Fall 2019
             </label>
-          </p>
+          </h1>
           <div className="dropdown">
-            <span>Change Semester</span>
+            <span class="change-semester">Change Semester</span>
             <div className="dropdown-content">
               <p id="fall2019" onClick={this.myFunction}>
                 Fall 2019
