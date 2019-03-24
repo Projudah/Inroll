@@ -9,11 +9,17 @@ class Sidebar extends React.Component {
       add: false,
       delete: false,
       swap: false,
+      search1: false,
+      search2: false,
+      search3: false,
     }
 
     this.addClicked = this.addClicked.bind(this)
     this.deleteClicked = this.deleteClicked.bind(this)
     this.swapClicked = this.swapClicked.bind(this)
+    this.searchClicked1 = this.searchClicked1.bind(this)
+    this.searchClicked2 = this.searchClicked2.bind(this)
+    this.searchClicked3 = this.searchClicked3.bind(this)
   }
   searchCourse() {
     //need to check all the inputs and make sure at least 1 is not empty
@@ -43,27 +49,51 @@ class Sidebar extends React.Component {
   }
 
   addClicked() {
-    this.setState({
-      add: true,
+    this.setState(prevState => ({
+      add: !prevState.add,
       delete: false,
       swap: false,
-    })
+    }))
   }
 
   deleteClicked() {
-    this.setState({
+    this.setState(prevState => ({
       add: false,
-      delete: true,
+      delete: !prevState.delete,
       swap: false,
-    })
+    }))
   }
 
   swapClicked() {
-    this.setState({
+    this.setState(prevState => ({
       add: false,
       delete: false,
-      swap: true,
-    })
+      swap: !prevState.swap,
+    }))
+  }
+
+  searchClicked1() {
+    this.setState(prevState => ({
+      search1: !prevState.search1,
+      search2: false,
+      search3: false,
+    }))
+  }
+
+  searchClicked2() {
+    this.setState(prevState => ({
+      search1: false,
+      search2: !prevState.search2,
+      search3: false,
+    }))
+  }
+
+  searchClicked3() {
+    this.setState(prevState => ({
+      search1: false,
+      search2: false,
+      search3: !prevState.search3,
+    }))
   }
 
   render() {
@@ -103,6 +133,137 @@ class Sidebar extends React.Component {
               >
                 <i className="fas fa-plus" /> Add Class
               </button>
+              <div
+                className={this.state.add ? 'content-active' : 'content-hide'}
+              >
+                <div class="text">
+                  Fill in 1 of the follwing sections to search
+                </div>
+                <div className="search-container">
+                  <button
+                    className={
+                      this.state.search1
+                        ? 'search-function active-search'
+                        : 'search-function'
+                    }
+                    onClick={this.searchClicked1}
+                  >
+                    <i
+                      className={
+                        this.state.search1
+                          ? 'fas fa-chevron-right active-icon'
+                          : 'fas fa-chevron-right'
+                      }
+                    />
+                    Course Code
+                  </button>
+                  <div
+                    className={
+                      this.state.search1
+                        ? 'content-show-inner'
+                        : 'content-hide-inner'
+                    }
+                  >
+                    <label>Enter the Course Code</label>
+                    <input
+                      type="text"
+                      placeholder="Course Code"
+                      id="courseCode"
+                    />
+                  </div>
+                </div>
+
+                <div className="search-container">
+                  <button
+                    className={
+                      this.state.search2
+                        ? 'search-function active-search'
+                        : 'search-function'
+                    }
+                    onClick={this.searchClicked2}
+                  >
+                    <i
+                      className={
+                        this.state.search2
+                          ? 'fas fa-chevron-right active-icon'
+                          : 'fas fa-chevron-right'
+                      }
+                    />
+                    Course Name
+                  </button>
+                  <div
+                    className={
+                      this.state.search2
+                        ? 'content-show-inner'
+                        : 'content-hide-inner'
+                    }
+                  >
+                    <label>Enter the Course Name</label>
+                    <input
+                      type="text"
+                      placeholder="Course Name"
+                      id="courseName"
+                    />
+                  </div>
+                </div>
+
+                <div className="search-container">
+                  <button
+                    className={
+                      this.state.search3
+                        ? 'search-function active-search'
+                        : 'search-function'
+                    }
+                    onClick={this.searchClicked3}
+                  >
+                    <i
+                      className={
+                        this.state.search3
+                          ? 'fas fa-chevron-right active-icon'
+                          : 'fas fa-chevron-right'
+                      }
+                    />
+                    Department
+                  </button>
+                  <div
+                    className={
+                      this.state.search3
+                        ? 'content-show-inner'
+                        : 'content-hide-inner'
+                    }
+                  >
+                    <p>
+                      <label> Department</label>
+                      <select>
+                        <option value="null" />
+                        <option value="Engineering">Engineering</option>
+                        <option value="Telfer">Telfer</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Law">Law</option>
+                      </select>
+                    </p>
+
+                    <p>
+                      <label> Subject</label>
+                      <select>
+                        <option value="AIR">AIR</option>
+                        <option value="SEG">SEG</option>
+                        <option value="HOM">HOM</option>
+                        <option value="FOO">FOO</option>
+                      </select>
+                    </p>
+
+                    <p>
+                      <label> Level</label>
+                      <select>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Graduate">Graduate</option>
+                        <option value="PHD">PHD</option>
+                      </select>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
             <button
               id="drop"
