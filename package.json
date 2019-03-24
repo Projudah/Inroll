@@ -5,7 +5,6 @@
   "dependencies": {
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
-    "react-collapsible": "^2.6.0",
     "react-dom": "^16.8.4",
     "react-responsive-modal": "^3.6.0",
     "react-scripts": "2.1.8",
