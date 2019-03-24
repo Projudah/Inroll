@@ -1,0 +1,30 @@
+.schedule{
+	background: grey;
+
+	table{
+		table-layout: fixed;
+		width: 100%;
+		background-color: #d8d8d8;
+		border-collapse: collapse;
+	}
+	td{
+		height: 20px;
+	}
+	.timeCol{
+		width: 50px;
+	}
+	th{
+		// width: 1000px;
+	}
+	td,th{
+		border: 1px solid black;
+	}
+	.classEntry{
+		background: #800000;
+		color: white;
+		text-align: center;
+		border-radius: 10px;
+		// font-weight: lighter;
+	}
+
+}
