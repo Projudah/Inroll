@@ -4,8 +4,8 @@ import SearchBar from '../SearchBar'
 import './navbar.scss'
 
 class NavBar extends React.Component {
-  render(){
-    return(
+  render() {
+    return (
       <div className="navbar">
         <div className="title">InRoll</div>
         <div className="search">

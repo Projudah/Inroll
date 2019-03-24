@@ -5,6 +5,7 @@
   "dependencies": {
     "node-sass": "^4.11.0",
     "react": "^16.8.4",
+    "react-collapsible": "^2.6.0",
     "react-dom": "^16.8.4",
     "react-responsive-modal": "^3.6.0",
     "react-scripts": "2.1.8",
@@ -14,7 +15,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"src/**/*.{js,json,css,scss,md}\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -24,5 +26,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "prettier": "1.16.4"
+  }
 }
