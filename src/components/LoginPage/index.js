@@ -20,7 +20,7 @@ class LoginPage extends Component{
             <button type="submit">Sign In</button>
           </form>
         </div>
-        <div className="area" >
+        <div className="area">
           <ul className="circles">
               <li></li>
               <li></li>
@@ -33,7 +33,7 @@ class LoginPage extends Component{
               <li></li>
               <li></li>
           </ul>
-        </div >
+        </div>
       </div>
     )
   }
