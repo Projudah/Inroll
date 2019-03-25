@@ -91,7 +91,9 @@ class App extends Component {
      var view = ""
      //change component depending on state
     if(this.state.view){
-      view = <ScheduleView/>
+      view = <ScheduleView
+      toggleSearchClassModal={this.toggleSearchClassModal}
+      />
     }
     if (this.state.loginPage)
       return <LoginPage turnOffLoginPage={this.turnOffLoginPage} />

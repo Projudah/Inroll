@@ -80,8 +80,27 @@ class ScheduleView extends Component {
 									((classes[l].Time) <= time) &&
 									classes[l].Day === i &&
 									classes[l].id !== classes[j].id){
-								flag=true
-								count++
+
+								for(var m=0; m<classes.length; m++){
+
+									if(
+									(((classes[m].Time + classes[m].Length) > classes[l].Time) &&
+										((classes[m].Time) <= classes[l].Time) &&
+										classes[m].Day === i &&
+										classes[m].id !== classes[l].id) ||
+									(((classes[m].Time + classes[m].Length) >= classes[l].Time+classes[l].Length) &&
+										((classes[m].Time) < classes[l].Time+classes[l].Length) &&
+										classes[m].Day === i &&
+										classes[m].id !== classes[l].id)){
+
+										flag=true
+									}
+								}
+
+								if(flag){
+									count++
+									// console.log("day", i, "time", time, "count", count)
+								}
 							}
 						}
 						// if(flag) count++
@@ -99,21 +118,14 @@ class ScheduleView extends Component {
 								classes[k].id !== classes[j].id)
 						}
 						// console.log(time,i, classes[j].Section,classes[j].Name, "range",inrange,"coll",collision)
+						var spaned = 2
 
 						if(collision){
-							if(!(rows[classes[j].Day]==null)){
-								offset++;
-							}
-							// console.log(rows, offset, classes[j].Name)
-							rows[classes[j].Day+offset] = <td rowSpan={classes[j].Length} colSpan="1" className="classEntry">{classes[j].Name}<br/>
-							{classes[j].Section}<br/>
-							{classes[j].Location}</td>
-
-						}else{
-							rows[classes[j].Day+offset] = <td rowSpan={classes[j].Length} colSpan="2"className="classEntry">{classes[j].Name}<br/>
-							{classes[j].Section}<br/>
-							{classes[j].Location}</td>
+							spaned=1
 						}
+						rows[classes[j].Day+offset] = <td onClick={this.props.toggleSearchClassModal} rowSpan={classes[j].Length} colSpan={spaned} className="classEntry">{classes[j].Name}<br/>
+							{classes[j].Section}<br/>
+							{classes[j].Location}</td>
 						found = true
 						if(!collision){
 							break
@@ -121,11 +133,13 @@ class ScheduleView extends Component {
 					}
 				}
 			}
-			console.log(count, collision)
+			
 			if(!(inrange || found)){
 				rows[i+offset] = <td colSpan="2"></td>
-			}else if(count===9){
-				rows[i+offset] = <td colSpan="1"></td>
+			}else if(count===2){
+				offset++
+				// console.log("day", i, "time", time, "count", count)
+				rows.splice(i+offset,0,<td colSpan="1"></td>)
 			}
 
 		}
