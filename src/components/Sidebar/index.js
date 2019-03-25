@@ -164,15 +164,18 @@ class Sidebar extends React.Component {
                         : 'content-hide-inner'
                     }
                   >
+                  <form >
                     <label>Enter the Course Code</label>
                     <input
                       type="text"
                       placeholder="Course Code"
                       id="courseCode"
+                      required
                     />
                     <button onClick={this.props.toggleSearchClassModal}>
                       Search for classes
                     </button>
+                    </form>
                   </div>
                 </div>
 
@@ -252,6 +255,7 @@ class Sidebar extends React.Component {
                     <p>
                       <label> Subject</label>
                       <select>
+                      <option value="null" />
                         <option value="AIR">AIR</option>
                         <option value="SEG">SEG</option>
                         <option value="HOM">HOM</option>
@@ -262,6 +266,7 @@ class Sidebar extends React.Component {
                     <p>
                       <label> Level</label>
                       <select>
+                      <option value="null" />
                         <option value="Undergraduate">Undergraduate</option>
                         <option value="Graduate">Graduate</option>
                         <option value="PHD">PHD</option>
