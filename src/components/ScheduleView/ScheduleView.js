@@ -60,13 +60,14 @@ class ScheduleView extends Component {
 
 		var rows = []
 		var offset = 0
-		var count = 0
 
 
 		for(var i=0; i<7; i++){
 			var inrange = false;
 			var found = false;
-			var collision
+			var collision = false
+			var count = 0
+			var flag = false
 			for(var j=0; j<classes.length; j++){
 				if(classes[j].Day === i){
 
@@ -74,7 +75,16 @@ class ScheduleView extends Component {
 
 					
 					inrange = inrange || (((classes[j].Time + classes[j].Length) > time) && ((classes[j].Time) < time))
-					// console.log(time,i,classes[j].Section,classes[j].Name, inrange, 11)
+						for(var l=0; l<classes.length; l++){
+							if(((classes[l].Time + classes[l].Length) > time) &&
+									((classes[l].Time) <= time) &&
+									classes[l].Day === i &&
+									classes[l].id !== classes[j].id){
+								flag=true
+								count++
+							}
+						}
+						// if(flag) count++
 					if(classes[j].Time === time){
 
 						for(var k=0; k<classes.length; k++){
@@ -98,7 +108,6 @@ class ScheduleView extends Component {
 							rows[classes[j].Day+offset] = <td rowSpan={classes[j].Length} colSpan="1" className="classEntry">{classes[j].Name}<br/>
 							{classes[j].Section}<br/>
 							{classes[j].Location}</td>
-							console.log(count)
 
 						}else{
 							rows[classes[j].Day+offset] = <td rowSpan={classes[j].Length} colSpan="2"className="classEntry">{classes[j].Name}<br/>
@@ -112,10 +121,10 @@ class ScheduleView extends Component {
 					}
 				}
 			}
-			// console.log(count)
+			console.log(count, collision)
 			if(!(inrange || found)){
 				rows[i+offset] = <td colSpan="2"></td>
-			}else if(count===4){
+			}else if(count===9){
 				rows[i+offset] = <td colSpan="1"></td>
 			}
 
