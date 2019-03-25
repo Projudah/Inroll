@@ -7,6 +7,7 @@ import SearchClassModal from './components/Modal/SearchClass'
 import HelpPage from './components/Modal/HelpPage'
 import SearchDepartment from './components/Modal/SearchDepartment'
 import SearchClassModal2 from './components/Modal/SearchClass2'
+import LoginPage from './components/LoginPage'
 
 const ModalConductor = props => {
   var handleModalUnmount = props.handleModalUnmount
@@ -42,14 +43,14 @@ class App extends Component {
     this.state = {
       view: false,
       currentModal: null,
+      loginPage: true
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
     this.toggleHelpPage = this.toggleHelpPage.bind(this)
-    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(
-      this,
-    )
+    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(this)
     this.toggleSearchClassModal2 = this.toggleSearchClassModal2.bind(this)
+    this.turnOffLoginPage = this.turnOffLoginPage.bind(this)
   }
 
   handleModalUnmount() {
@@ -78,6 +79,11 @@ class App extends Component {
     this.setState({currentModal: 'SEARCH_CLASS2'})
   }
 
+  turnOffLoginPage(e){
+    this.setState({ loginPage: false })
+    e.preventDefault()
+  }
+
   render() {
     //this variable should contatin the component
     var view = ''
@@ -85,39 +91,42 @@ class App extends Component {
     if (this.state.view) {
       view = 'CHANGE VIEW!!!!!!!!!!!!!'
     }
-    //change sidebar toggle, to pass the function changing state to the side bar
-    return (
-      <div>
-        <ModalConductor
-          currentModal={this.state.currentModal}
-          handleModalUnmount={this.handleModalUnmount}
-          toggleSearchClassModal2={this.toggleSearchClassModal2}
-          toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
-        />
-        <NavBar
-          toggleSearchClassModal={this.toggleSearchClassModal}
-          untoggleModal={this.handleModalUnmount}
-          toggleHelpPage={this.toggleHelpPage}
-        />
-        <div className="app">
-          <Sidebar
-            toggle={this.toggle}
-            toggleSearchClassModal={this.toggleSearchClassModal}
+    if (this.state.loginPage)
+      return <LoginPage turnOffLoginPage={this.turnOffLoginPage} />
+    else{
+      return (
+        <div>
+          <ModalConductor
+            currentModal={this.state.currentModal}
+            handleModalUnmount={this.handleModalUnmount}
+            toggleSearchClassModal2={this.toggleSearchClassModal2}
             toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
           />
-          <div class="content">
-            This is where shit goes <br />
-            This is where shit goes <br />
-            This is where shit goes <br />
-            This is where shit goes
-            {
-              //the component change is here
-              view
-            }
+          <NavBar
+            toggleSearchClassModal={this.toggleSearchClassModal}
+            untoggleModal={this.handleModalUnmount}
+            toggleHelpPage={this.toggleHelpPage}
+          />
+          <div className="app">
+            <Sidebar
+              toggle={this.toggle}
+              toggleSearchClassModal={this.toggleSearchClassModal}
+              toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+            />
+            <div class="content">
+              This is where shit goes <br />
+              This is where shit goes <br />
+              This is where shit goes <br />
+              This is where shit goes
+              {
+                //the component change is here
+                view
+              }
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 
