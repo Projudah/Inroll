@@ -52,7 +52,7 @@ class App extends Component {
     this.toggleHelpPage = this.toggleHelpPage.bind(this)
     this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(this)
     this.toggleSearchClassModal2 = this.toggleSearchClassModal2.bind(this)
-    this.turnOffLoginPage = this.turnOffLoginPage.bind(this)
+    this.toggleLoginPage = this.toggleLoginPage.bind(this)
   }
 
   handleModalUnmount() {
@@ -81,8 +81,8 @@ class App extends Component {
     this.setState({currentModal: 'SEARCH_CLASS2'})
   }
 
-  turnOffLoginPage(e){
-    this.setState({ loginPage: false })
+  toggleLoginPage(e){
+    this.setState(prevState => ({ loginPage: !prevState.loginPage }))
     e.preventDefault()
   }
 
@@ -96,7 +96,7 @@ class App extends Component {
       />
     }
     if (this.state.loginPage)
-      return <LoginPage turnOffLoginPage={this.turnOffLoginPage} />
+      return <LoginPage toggleLoginPage={this.toggleLoginPage} />
     else{
       return (
         <div>
@@ -112,11 +112,14 @@ class App extends Component {
             toggleHelpPage={this.toggleHelpPage}
           />
           <div className="app">
-            <Sidebar
-              toggle={this.toggle}
-              toggleSearchClassModal={this.toggleSearchClassModal}
-              toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
-            />
+            <div>>
+              <Sidebar
+                toggle={this.toggle}
+                toggleSearchClassModal={this.toggleSearchClassModal}
+                toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+                toggleLoginPage={this.toggleLoginPage}
+              />
+            </div>
             <div className="content">
               {view}
             </div>

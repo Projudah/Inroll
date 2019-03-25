@@ -306,6 +306,18 @@ class Sidebar extends React.Component {
             </button>
           </div>
         </div>
+        <div className="user-info">
+          <div className="user-photo">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div className="content">
+            John Smith (123456789)<br /><br />
+            john@uottawa.ca
+          </div>
+          <div class="sign-out">
+            <button onClick={this.props.toggleLoginPage}>Sign Out</button>
+          </div>
+        </div>
       </div>
     )
   }
