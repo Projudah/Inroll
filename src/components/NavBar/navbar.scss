@@ -9,6 +9,9 @@ $light_maroon: #bb1a35;
   font-size: 1.5em;
   display: grid;
   grid-template-columns: 1fr 1fr 0.1fr;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
 }
 
 .fa-graduation-cap {

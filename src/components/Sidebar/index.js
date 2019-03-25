@@ -20,6 +20,7 @@ class Sidebar extends React.Component {
     this.searchClicked1 = this.searchClicked1.bind(this)
     this.searchClicked2 = this.searchClicked2.bind(this)
     this.searchClicked3 = this.searchClicked3.bind(this)
+    this.toggleModal = this.toggleModal.bind(this)
   }
   searchCourse() {
     //need to check all the inputs and make sure at least 1 is not empty
@@ -46,6 +47,11 @@ class Sidebar extends React.Component {
   }
   myFunction3() {
     document.getElementById('semester').innerHTML = 'Fall 2020'
+  }
+
+  toggleModal(e){
+    this.props.toggleSearchDepartmentModal()
+    e.preventDefault()
   }
 
   addClicked() {
@@ -137,7 +143,7 @@ class Sidebar extends React.Component {
                 className={this.state.add ? 'content-active' : 'content-hide'}
               >
                 <div className="text">
-                  Fill in 1 of the follwing sections to search
+                  Fill in 1 of the following sections to search
                 </div>
                 <div className="search-container">
                   <button
@@ -164,15 +170,15 @@ class Sidebar extends React.Component {
                         : 'content-hide-inner'
                     }
                   >
-                  <form >
-                    <label>Enter the Course Code</label>
+                  <form onSubmit={this.toggleModal}>
+                    <label>Enter the Course Code *</label>
                     <input
                       type="text"
                       placeholder="Course Code"
                       id="courseCode"
                       required
                     />
-                    <button onClick={this.props.toggleSearchClassModal}>
+                    <button>
                       Search for classes
                     </button>
                     </form>
@@ -204,15 +210,18 @@ class Sidebar extends React.Component {
                         : 'content-hide-inner'
                     }
                   >
-                    <label>Enter the Course Name</label>
-                    <input
-                      type="text"
-                      placeholder="Course Name"
-                      id="courseName"
-                    />
-                    <button onClick={this.props.toggleSearchClassModal}>
-                      Search for classes
-                    </button>
+                    <form onSubmit={this.toggleModal}>
+                      <label>Enter the Course Name * </label>
+                      <input
+                        type="text"
+                        placeholder="Course Name"
+                        id="courseName"
+                        required
+                      />
+                      <button>
+                        Search for classes
+                      </button>
+                    </form>
                   </div>
                 </div>
 
@@ -241,10 +250,11 @@ class Sidebar extends React.Component {
                         : 'content-hide-inner'
                     }
                   >
+                    <form onSubmit={this.toggleModal}>
                     <p>
-                      <label> Department</label>
-                      <select>
-                        <option value="null" />
+                      <label>Department *</label>
+                      <select required>
+                        <option value=""></option>
                         <option value="Engineering">Engineering</option>
                         <option value="Telfer">Telfer</option>
                         <option value="Arts">Arts</option>
@@ -253,9 +263,9 @@ class Sidebar extends React.Component {
                     </p>
 
                     <p>
-                      <label> Subject</label>
-                      <select>
-                      <option value="null" />
+                      <label>Subject *</label>
+                      <select required>
+                        <option value=""></option>
                         <option value="AIR">AIR</option>
                         <option value="SEG">SEG</option>
                         <option value="HOM">HOM</option>
@@ -264,17 +274,18 @@ class Sidebar extends React.Component {
                     </p>
 
                     <p>
-                      <label> Level</label>
-                      <select>
-                      <option value="null" />
+                      <label>Level *</label>
+                      <select required>
+                        <option value=""></option>
                         <option value="Undergraduate">Undergraduate</option>
                         <option value="Graduate">Graduate</option>
                         <option value="PHD">PHD</option>
                       </select>
                     </p>
-                    <button onClick={this.props.toggleSearchDepartmentModal}>
+                    <button>
                       Search for classes
                     </button>
+                    </form>
                   </div>
                 </div>
               </div>

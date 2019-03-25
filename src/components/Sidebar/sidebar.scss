@@ -6,6 +6,11 @@ $light_maroon: #bb1a35;
   background-color: $lighter_grey;
   color: white;
   height: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+  position: fixed;
+  margin-top:3em;
+  width: 23em;
 }
 
 .semester-section {
