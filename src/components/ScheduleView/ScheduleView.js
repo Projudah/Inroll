@@ -9,42 +9,48 @@ class ScheduleView extends Component {
 				Name: 'SEG3125',
 				Location: "Mars",
 				Section: "Lecture",
-				Time: 2
+				Time: 2,
+				id: 0
 			},
 			{	Day : 2,
 				Length: 3,
 				Name: 'SEG3125',
 				Location: "Mars",
 				Section: "Lecture",
-				Time: 0
+				Time: 2,
+				id: 1
 			},
 			{	Day : 3,
 				Length: 6,
 				Name: 'SEG3125',
 				Location: "Mars",
 				Section: "Lab",
-				Time: 5
+				Time: 5,
+				id: 2
 			},
 			{	Day : 1,
 				Length: 3,
 				Name: 'HOM1234',
 				Location: "Snip Center",
 				Section: "Lecture",
-				Time: 7
+				Time: 7,
+				id: 3
 			},
 			{	Day : 4,
 				Length: 3,
 				Name: 'HOM1234',
 				Location: "Snip Center",
 				Section: "Lecture",
-				Time: 4
+				Time: 4,
+				id: 4
 			},
 			{	Day : 2,
 				Length: 6,
 				Name: 'HOM1234',
 				Location: "Snip Center",
 				Section: "Lab",
-				Time: 7
+				Time: 7,
+				id: 5
 			}
 		]
 	times =["8:30","9:00","9:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30"
@@ -52,53 +58,90 @@ class ScheduleView extends Component {
 
 	generateRow = (time, classes) =>{
 
-		var rows = [0,0,0,0,0,0,0]
+		var rows = []
+		var offset = 0
+		var count = 0
+
 
 		for(var i=0; i<7; i++){
 			var inrange = false;
 			var found = false;
+			var collision
 			for(var j=0; j<classes.length; j++){
 				if(classes[j].Day === i){
 
+					collision = false
+
+					
+					inrange = inrange || (((classes[j].Time + classes[j].Length) > time) && ((classes[j].Time) < time))
+					// console.log(time,i,classes[j].Section,classes[j].Name, inrange, 11)
 					if(classes[j].Time === time){
-						rows[classes[j].Day] = <td rowSpan={classes[j].Length} className="classEntry">{classes[j].Name}<br/>
-						{classes[j].Section}<br/>
-						{classes[j].Location}</td>
+
+						for(var k=0; k<classes.length; k++){
+							collision = collision || 
+							(((classes[k].Time + classes[k].Length) > time) &&
+								((classes[k].Time) <= time) &&
+								classes[k].Day === i &&
+								classes[k].id !== classes[j].id) ||
+							(((classes[k].Time + classes[k].Length) >= time+classes[j].Length) &&
+								((classes[k].Time) < time+classes[j].Length) &&
+								classes[k].Day === i &&
+								classes[k].id !== classes[j].id)
+						}
+						// console.log(time,i, classes[j].Section,classes[j].Name, "range",inrange,"coll",collision)
+
+						if(collision){
+							if(!(rows[classes[j].Day]==null)){
+								offset++;
+							}
+							// console.log(rows, offset, classes[j].Name)
+							rows[classes[j].Day+offset] = <td rowSpan={classes[j].Length} colSpan="1" className="classEntry">{classes[j].Name}<br/>
+							{classes[j].Section}<br/>
+							{classes[j].Location}</td>
+							console.log(count)
+
+						}else{
+							rows[classes[j].Day+offset] = <td rowSpan={classes[j].Length} colSpan="2"className="classEntry">{classes[j].Name}<br/>
+							{classes[j].Section}<br/>
+							{classes[j].Location}</td>
+						}
 						found = true
-						break
-					}
-					inrange = ((classes[j].Time + classes[j].Length) > time) && ((classes[j].Time) < time)
-					if(inrange){
-						break;
+						if(!collision){
+							break
+						}
 					}
 				}
 			}
+			// console.log(count)
 			if(!(inrange || found)){
-				rows[i] = <td></td>
+				rows[i+offset] = <td colSpan="2"></td>
+			}else if(count===4){
+				rows[i+offset] = <td colSpan="1"></td>
 			}
 
 		}
 
 		rows = rows.filter(function(val) {
-		    return val !== 0;
+		    return val !== null;
 		});
 		return(<tr>
-				<td>{this.times[time]}</td>
+				<td colSpan="2" className ="timeRow">{this.times[time]}</td>
 				{rows}
 			</tr>)
 	}
 
 	generateTable = () =>{
-		const header = <tr>
-			<th className='timeCol'>Time</th>
-			<th>Monday</th>
-			<th>Tuesday</th>
-			<th>Wednesday</th>
-			<th>Thursday</th>
-			<th>Friday</th>
-			<th>Saturday</th>
-			<th>Sunday</th>
-		</tr>
+		const header = <tbody>
+		<tr>
+			<th colSpan="2" className='timeCol'>Time</th>
+			<th colSpan="2">Monday</th>
+			<th colSpan="2">Tuesday</th>
+			<th colSpan="2">Wednesday</th>
+			<th colSpan="2">Thursday</th>
+			<th colSpan="2">Friday</th>
+			<th colSpan="2">Saturday</th>
+			<th colSpan="2">Sunday</th>
+		</tr></tbody>
 
 		var rows = []
 		for(var i=0; i<24; i++){
@@ -110,7 +153,6 @@ class ScheduleView extends Component {
 				{rows}
 				</table>)
 	}
-
 
 	render() {
 		return (

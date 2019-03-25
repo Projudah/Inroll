@@ -1,30 +1,42 @@
+$maroon: #99162c;
+$lighter_grey: #242424;
+$light_maroon: #bb1a35;
+$lightest_grey: #d8d8d8;
+
 .schedule{
-	background: grey;
+	height: 700px;
 
 	table{
 		table-layout: fixed;
 		width: 100%;
-		background-color: #d8d8d8;
+		height: 100%;
+		background-color: white;
 		border-collapse: collapse;
 	}
-	td{
-		height: 20px;
-	}
 	.timeCol{
-		width: 50px;
+		width: 70px;
 	}
-	th{
-		// width: 1000px;
+
+	th, .timeRow{
+		background: $lightest_grey;
 	}
 	td,th{
 		border: 1px solid black;
+		height: 30px;
 	}
 	.classEntry{
-		background: #800000;
+		background: $lighter_grey;
 		color: white;
 		text-align: center;
 		border-radius: 10px;
-		// font-weight: lighter;
 	}
+	.classEntry:hover{
+		cursor: pointer;
+		background: $light_maroon;
+		width: 100px;
+	}
+	tr:nth-child(odd) {
+    background-color: $lightest_grey;
+  }
 
 }
