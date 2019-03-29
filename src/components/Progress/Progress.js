@@ -15,7 +15,7 @@ class Progress extends Component {
 				<PointButton
 				name ="Cancel"
 				direction="left"
-				click={this.props.cancel}/>
+				clicked={this.props.cancel}/>
 			</div>
 
 				<Stepper steps={ [{title: 'Select Classes'}, {title: 'View Selection'}, {title: 'Confirm'}] }
@@ -32,7 +32,7 @@ class Progress extends Component {
 				<PointButton
 				name ="Next"
 				direction="right"
-				click={this.props.next}/>
+				clicked={this.props.next}/>
 			</div>
 			</div>
 		</div>;
