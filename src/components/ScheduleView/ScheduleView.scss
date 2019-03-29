@@ -4,7 +4,7 @@ $light_maroon: #bb1a35;
 $lightest_grey: #d8d8d8;
 
 .schedule{
-	height: 700px;
+	// height: 700px;
 
 	table{
 		table-layout: fixed;
@@ -22,7 +22,7 @@ $lightest_grey: #d8d8d8;
 	}
 	td,th{
 		border: 1px solid black;
-		height: 30px;
+		height: 27px;
 	}
 	.classEntry{
 		background: $lighter_grey;

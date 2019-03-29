@@ -11,6 +11,8 @@ import SearchDepartment from './components/Modal/SearchDepartment'
 import SearchClassModal2 from './components/Modal/SearchClass2'
 import LoginPage from './components/LoginPage'
 
+import Progress from './components/Progress'
+
 const ModalConductor = props => {
   var handleModalUnmount = props.handleModalUnmount
   var toggleSearchClassModal2 = props.toggleSearchClassModal2
@@ -45,7 +47,7 @@ class App extends Component {
     this.state = {
       view: true,
       currentModal: null,
-      loginPage: true
+      loginPage: false
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
@@ -119,6 +121,7 @@ class App extends Component {
             />
             <div className="content">
               {view}
+              <Progress/>
             </div>
           </div>
         </div>

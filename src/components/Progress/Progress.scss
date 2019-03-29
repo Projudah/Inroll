@@ -1,0 +1,32 @@
+$maroon: #99162c;
+$lighter_grey: #242424;
+$light_maroon: #bb1a35;
+$lightest_grey: #d8d8d8;
+
+.progress_div{
+
+	button {
+    
+    background: none;
+    border: none;
+    outline: inherit;
+
+    background-color: $maroon;
+    width: 150px;
+    color: white;
+    padding: 0.5em;
+    font-size: 1em;
+    max-width: 7em;
+    max-height: 2.5em;
+    margin: 0 auto;
+    align-self: center;
+  }
+
+  .right{
+  	float: right;
+  }
+
+  .buttons{
+  	padding: 10px 100px;
+  }
+}
