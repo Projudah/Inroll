@@ -8,7 +8,6 @@ $light_maroon: #bb1a35;
   width: 100%;
 
   button {
-    
     background: none;
     border: none;
     outline: inherit;
@@ -30,7 +29,7 @@ $light_maroon: #bb1a35;
     cursor: pointer;
   }
 }
-.modalDiv{
+.modalDiv {
   th {
     text-align: left;
   }
@@ -50,7 +49,6 @@ $light_maroon: #bb1a35;
   grid-template-columns: 2fr 1fr;
 
   button {
-
     background: none;
     border: none;
     outline: inherit;
@@ -78,11 +76,10 @@ button:hover {
 }
 
 .back-button {
-
   background: none;
   border: none;
   outline: inherit;
-  
+
   background-color: $maroon;
   color: white;
   padding: 0.5em;

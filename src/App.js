@@ -10,6 +10,7 @@ import HelpPage from './components/Modal/HelpPage'
 import SearchDepartment from './components/Modal/SearchDepartment'
 import SearchClassModal2 from './components/Modal/SearchClass2'
 import LoginPage from './components/LoginPage'
+import ClassInfo from './components/Modal/ClassInfo'
 
 import Progress from './components/Progress'
 
@@ -19,7 +20,11 @@ const ModalConductor = props => {
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
   switch (props.currentModal) {
     case 'SEARCH_CLASS':
-      return <div><SearchClassModal handleModalUnmount={handleModalUnmount} /></div>
+      return (
+        <div>
+          <SearchClassModal handleModalUnmount={handleModalUnmount} />
+        </div>
+      )
     case 'HELP_PAGE':
       return <HelpPage handleModalUnmount={handleModalUnmount} />
     case 'SEARCH_RESULTS':
@@ -36,6 +41,8 @@ const ModalConductor = props => {
           toggleSearchDepartmentModal={toggleSearchDepartmentModal}
         />
       )
+    case 'CLASS_INFO':
+      return <ClassInfo handleModalUnmount={handleModalUnmount} />
     default:
       return null
   }
@@ -52,9 +59,12 @@ class App extends Component {
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
     this.toggleHelpPage = this.toggleHelpPage.bind(this)
-    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(this)
+    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(
+      this,
+    )
     this.toggleSearchClassModal2 = this.toggleSearchClassModal2.bind(this)
     this.toggleLoginPage = this.toggleLoginPage.bind(this)
+    this.toggleClassInfoModal = this.toggleClassInfoModal.bind(this)
   }
 
   handleModalUnmount() {
@@ -71,6 +81,10 @@ class App extends Component {
     this.setState({currentModal: 'SEARCH_CLASS'})
   }
 
+  toggleClassInfoModal = () => {
+    this.setState({currentModal: 'CLASS_INFO'})
+  }
+
   toggleHelpPage = () => {
     this.setState({currentModal: 'HELP_PAGE'})
   }
@@ -83,23 +97,21 @@ class App extends Component {
     this.setState({currentModal: 'SEARCH_CLASS2'})
   }
 
-  toggleLoginPage(e){
-    this.setState(prevState => ({ loginPage: !prevState.loginPage }))
+  toggleLoginPage(e) {
+    this.setState(prevState => ({loginPage: !prevState.loginPage}))
     e.preventDefault()
   }
 
   render() {
     //this variable should contatin the component
-     var view = ""
-     //change component depending on state
-    if(this.state.view){
-      view = <ScheduleView
-      toggleSearchClassModal={this.toggleSearchClassModal}
-      />
+    var view = ''
+    //change component depending on state
+    if (this.state.view) {
+      view = <ScheduleView toggleSearchClassModal={this.toggleClassInfoModal} />
     }
     if (this.state.loginPage)
       return <LoginPage toggleLoginPage={this.toggleLoginPage} />
-    else{
+    else {
       return (
         <div>
           <ModalConductor
@@ -114,7 +126,8 @@ class App extends Component {
             toggleHelpPage={this.toggleHelpPage}
           />
           <div className="app">
-            <div>>
+            <div>
+              >
               <Sidebar
                 toggle={this.toggle}
                 toggleSearchClassModal={this.toggleSearchClassModal}
