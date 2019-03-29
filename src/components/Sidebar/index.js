@@ -135,10 +135,10 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div className="side-container">
+        <div className="close-sidebar">
+          <i class="fas fa-times" onClick={this.props.toggleSidebarMenu}></i>
+        </div>
         <div className="sidebar">
-          <div className="close-sidebar">
-            <i class="fas fa-times" onClick={this.props.toggleSidebarMenu}></i>
-          </div>
           <div className="semester-section">
             <h1>
               <label id="semester" value="Fall 2019">
