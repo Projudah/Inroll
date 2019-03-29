@@ -21,6 +21,7 @@ const SidebarConductor = props => {
   var toggleSearchClassModal = props.toggleSearchClassModal
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
   var toggleLoginPage = props.toggleLoginPage
+  var toggleSidebarMenu = props.toggleSidebarMenu
   switch (props.sidebarMenu){
     case true:
       return <Sidebar
@@ -28,6 +29,7 @@ const SidebarConductor = props => {
         toggleSearchClassModal={toggleSearchClassModal}
         toggleSearchDepartmentModal={toggleSearchDepartmentModal}
         toggleLoginPage={toggleLoginPage}
+        toggleSidebarMenu={toggleSidebarMenu}
       />
     case false:
       return null
@@ -149,6 +151,19 @@ class App extends Component {
     else {
       return (
         <div>
+          <div className="container-sidebar">
+            <div className="sidebar-mobile">
+              <SidebarConductor
+                toggle={this.toggle}
+                toggleSearchClassModal={this.toggleSearchClassModal}
+                toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+                toggleLoginPage={this.toggleLoginPage}
+                toggleSidebarMenu={this.toggleSidebarMenu}
+                sidebarMenu={this.state.sidebarMenu}
+              />
+            </div>
+          </div>
+          {this.state.sidebarMenu ? <div className="overlay"></div> : null}
           <ModalConductor
             currentModal={this.state.currentModal}
             handleModalUnmount={this.handleModalUnmount}
@@ -177,17 +192,6 @@ class App extends Component {
                   toggleSearchClassModal={this.toggleSearchClassModal}
                   toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
                   toggleLoginPage={this.toggleLoginPage}
-                />
-              </div>
-
-              <div className="sidebar-mobile">
-                <SidebarConductor
-                  toggle={this.toggle}
-                  toggleSearchClassModal={this.toggleSearchClassModal}
-                  toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
-                  toggleLoginPage={this.toggleLoginPage}
-                  toggleSidebarMenu={this.toggleSidebarMenu}
-                  sidebarMenu={this.state.sidebarMenu}
                 />
               </div>
             </div>

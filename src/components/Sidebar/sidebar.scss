@@ -65,6 +65,10 @@ $light_maroon: #bb1a35;
   margin-top: 5vh;
 }
 
+.close-sidebar{
+  display: none;
+}
+
 .semester-section {
   background-color: $lighter_grey;
   color: white;
@@ -229,11 +233,22 @@ $light_maroon: #bb1a35;
   .side-container{
 		height: 100vh;
 		margin: 0;
-    z-index: 101;
+    z-index: 200;
     grid-template-rows: minmax(80vh, 80vh) minmax(20vh, 20vh);
   }
 
   .sidebar{
     margin-top: 0;
+  }
+
+  .close-sidebar{
+    font-size: 1.8em;
+    display: block;
+    padding-top: 0.3em;
+    padding-left: 0.5em;
+
+    .fa-times:hover{
+      color: $light_maroon;
+    }
   }
 }
