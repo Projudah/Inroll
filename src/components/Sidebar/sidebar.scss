@@ -58,7 +58,6 @@ $light_maroon: #bb1a35;
 .sidebar {
   background-color: $lighter_grey;
   color: white;
-  height: 100%;
   background-size: cover;
   background-attachment: fixed;
   overflow: auto;
@@ -160,6 +159,17 @@ $light_maroon: #bb1a35;
       display: none;
     }
 
+    .cancel-button{
+      width: auto;
+      display: inline !important;
+      padding: 0.5em;
+      color: white;
+      background-color: transparent;
+      font-size: 1em;
+      margin-top: 0.5em;
+      border: 2px solid white;
+    }
+
     .content-active {
       background-color: $maroon;
       padding: 0em 1em 1em 1em;
@@ -191,7 +201,7 @@ $light_maroon: #bb1a35;
         padding: 0.3em;
       }
 
-      button {
+      button{
         width: auto;
         display: inline !important;
         padding: 0.5em;

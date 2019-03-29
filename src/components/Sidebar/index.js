@@ -315,6 +315,7 @@ class Sidebar extends React.Component {
                     </form>
                   </div>
                 </div>
+                <button className="cancel-button" onClick={this.addClicked}>Cancel</button>
               </div>
             </div>
             <button
@@ -475,6 +476,7 @@ class Sidebar extends React.Component {
                     </form>
                   </div>
                 </div>
+                <button className="cancel-button" onClick={this.swapClicked}>Cancel</button>
               </div>
             </div>
           </div>
