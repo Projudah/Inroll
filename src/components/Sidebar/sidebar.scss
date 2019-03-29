@@ -12,6 +12,10 @@ $light_maroon: #bb1a35;
   height: 100vh;
 }
 
+.search-bar{
+  display: none;
+}
+
 .user-info {
   background-color: $darker_grey;
   color: white;
@@ -246,6 +250,11 @@ $light_maroon: #bb1a35;
 		margin: 0;
     z-index: 200;
     grid-template-rows: minmax(7vh, 7vh) minmax(73vh, 73vh) minmax(20vh, 20vh);
+  }
+
+  .search-bar{
+    display: block;
+    padding: 1em;
   }
 
   .sidebar{

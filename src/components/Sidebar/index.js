@@ -1,5 +1,5 @@
 import React from 'react'
-
+import SearchBar from '../SearchBar'
 import './sidebar.scss'
 
 class Sidebar extends React.Component {
@@ -167,6 +167,10 @@ class Sidebar extends React.Component {
                 </p>
               </div>
             </div>
+          </div>
+          <div className="search-bar">
+            <h2>Search for classes</h2>
+            <SearchBar toggleSearchClassModal={this.props.toggleSearchClassModal}/>
           </div>
           <div className="menu">
             <div className="add-class">

@@ -8,6 +8,18 @@ const options = [
   {value: 'AIR', label: 'AIR6789 - How to make airplanes'},
 ]
 
+const customStyles = {
+  option: (base, state) => ({
+    ...base,
+    background: state.isSelected ? "#99162c": "white",
+    color: state.isSelected ? "white" : "black",
+    '&:hover': {
+      backgroundColor: "#bb1a35",
+      color: "white"
+    }
+  })
+};
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props)
@@ -29,6 +41,7 @@ class SearchBar extends React.Component {
         onChange={this.handleChange}
         options={options}
         placeholder="Course code, course name, department"
+        styles={customStyles}
       />
     )
   }
