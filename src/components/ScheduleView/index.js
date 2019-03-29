@@ -1,1 +1,1 @@
-export { default } from './ScheduleView';
+export {default} from './ScheduleView'

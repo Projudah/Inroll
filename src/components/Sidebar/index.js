@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
       search3: false,
       swap1: false,
       swap2: false,
-      swap3: false
+      swap3: false,
     }
 
     this.addClicked = this.addClicked.bind(this)
@@ -55,7 +55,7 @@ class Sidebar extends React.Component {
     document.getElementById('semester').innerHTML = 'Fall 2020'
   }
 
-  toggleModal(e){
+  toggleModal(e) {
     this.props.toggleSearchDepartmentModal()
     e.preventDefault()
   }
@@ -108,27 +108,27 @@ class Sidebar extends React.Component {
     }))
   }
 
-  swapClicked1(){
+  swapClicked1() {
     this.setState(prevState => ({
       swap1: !prevState.swap1,
       swap2: false,
-      swap3: false
+      swap3: false,
     }))
   }
 
-  swapClicked2(){
+  swapClicked2() {
     this.setState(prevState => ({
       swap1: false,
       swap2: !prevState.swap2,
-      swap3: false
+      swap3: false,
     }))
   }
 
-  swapClicked3(){
+  swapClicked3() {
     this.setState(prevState => ({
       swap1: false,
       swap2: false,
-      swap3: !prevState.swap3
+      swap3: !prevState.swap3,
     }))
   }
 
@@ -200,17 +200,15 @@ class Sidebar extends React.Component {
                         : 'content-hide-inner'
                     }
                   >
-                  <form onSubmit={this.toggleModal}>
-                    <label>Enter the Course Code *</label>
-                    <input
-                      type="text"
-                      placeholder="Course Code"
-                      id="courseCode"
-                      required
-                    />
-                    <button>
-                      Search for classes
-                    </button>
+                    <form onSubmit={this.toggleModal}>
+                      <label>Enter the Course Code *</label>
+                      <input
+                        type="text"
+                        placeholder="Course Code"
+                        id="courseCode"
+                        required
+                      />
+                      <button>Search for classes</button>
                     </form>
                   </div>
                 </div>
@@ -248,9 +246,7 @@ class Sidebar extends React.Component {
                         id="courseName"
                         required
                       />
-                      <button>
-                        Search for classes
-                      </button>
+                      <button>Search for classes</button>
                     </form>
                   </div>
                 </div>
@@ -281,40 +277,38 @@ class Sidebar extends React.Component {
                     }
                   >
                     <form onSubmit={this.toggleModal}>
-                    <p>
-                      <label>Department *</label>
-                      <select required>
-                        <option value=""></option>
-                        <option value="Engineering">Engineering</option>
-                        <option value="Telfer">Telfer</option>
-                        <option value="Arts">Arts</option>
-                        <option value="Law">Law</option>
-                      </select>
-                    </p>
+                      <p>
+                        <label>Department *</label>
+                        <select required>
+                          <option value="" />
+                          <option value="Engineering">Engineering</option>
+                          <option value="Telfer">Telfer</option>
+                          <option value="Arts">Arts</option>
+                          <option value="Law">Law</option>
+                        </select>
+                      </p>
 
-                    <p>
-                      <label>Subject *</label>
-                      <select required>
-                        <option value=""></option>
-                        <option value="AIR">AIR</option>
-                        <option value="SEG">SEG</option>
-                        <option value="HOM">HOM</option>
-                        <option value="FOO">FOO</option>
-                      </select>
-                    </p>
+                      <p>
+                        <label>Subject *</label>
+                        <select required>
+                          <option value="" />
+                          <option value="AIR">AIR</option>
+                          <option value="SEG">SEG</option>
+                          <option value="HOM">HOM</option>
+                          <option value="FOO">FOO</option>
+                        </select>
+                      </p>
 
-                    <p>
-                      <label>Level *</label>
-                      <select required>
-                        <option value=""></option>
-                        <option value="Undergraduate">Undergraduate</option>
-                        <option value="Graduate">Graduate</option>
-                        <option value="PHD">PHD</option>
-                      </select>
-                    </p>
-                    <button>
-                      Search for classes
-                    </button>
+                      <p>
+                        <label>Level *</label>
+                        <select required>
+                          <option value="" />
+                          <option value="Undergraduate">Undergraduate</option>
+                          <option value="Graduate">Graduate</option>
+                          <option value="PHD">PHD</option>
+                        </select>
+                      </p>
+                      <button>Search for classes</button>
                     </form>
                   </div>
                 </div>
@@ -366,17 +360,15 @@ class Sidebar extends React.Component {
                         : 'content-hide-inner'
                     }
                   >
-                  <form onSubmit={this.toggleModal}>
-                    <label>Enter the Course Code *</label>
-                    <input
-                      type="text"
-                      placeholder="Course Code"
-                      id="courseCode"
-                      required
-                    />
-                    <button>
-                      Search for classes
-                    </button>
+                    <form onSubmit={this.toggleModal}>
+                      <label>Enter the Course Code *</label>
+                      <input
+                        type="text"
+                        placeholder="Course Code"
+                        id="courseCode"
+                        required
+                      />
+                      <button>Search for classes</button>
                     </form>
                   </div>
                 </div>
@@ -414,9 +406,7 @@ class Sidebar extends React.Component {
                         id="courseName"
                         required
                       />
-                      <button>
-                        Search for classes
-                      </button>
+                      <button>Search for classes</button>
                     </form>
                   </div>
                 </div>
@@ -447,40 +437,38 @@ class Sidebar extends React.Component {
                     }
                   >
                     <form onSubmit={this.toggleModal}>
-                    <p>
-                      <label>Department *</label>
-                      <select required>
-                        <option value=""></option>
-                        <option value="Engineering">Engineering</option>
-                        <option value="Telfer">Telfer</option>
-                        <option value="Arts">Arts</option>
-                        <option value="Law">Law</option>
-                      </select>
-                    </p>
+                      <p>
+                        <label>Department *</label>
+                        <select required>
+                          <option value="" />
+                          <option value="Engineering">Engineering</option>
+                          <option value="Telfer">Telfer</option>
+                          <option value="Arts">Arts</option>
+                          <option value="Law">Law</option>
+                        </select>
+                      </p>
 
-                    <p>
-                      <label>Subject *</label>
-                      <select required>
-                        <option value=""></option>
-                        <option value="AIR">AIR</option>
-                        <option value="SEG">SEG</option>
-                        <option value="HOM">HOM</option>
-                        <option value="FOO">FOO</option>
-                      </select>
-                    </p>
+                      <p>
+                        <label>Subject *</label>
+                        <select required>
+                          <option value="" />
+                          <option value="AIR">AIR</option>
+                          <option value="SEG">SEG</option>
+                          <option value="HOM">HOM</option>
+                          <option value="FOO">FOO</option>
+                        </select>
+                      </p>
 
-                    <p>
-                      <label>Level *</label>
-                      <select required>
-                        <option value=""></option>
-                        <option value="Undergraduate">Undergraduate</option>
-                        <option value="Graduate">Graduate</option>
-                        <option value="PHD">PHD</option>
-                      </select>
-                    </p>
-                    <button>
-                      Search for classes
-                    </button>
+                      <p>
+                        <label>Level *</label>
+                        <select required>
+                          <option value="" />
+                          <option value="Undergraduate">Undergraduate</option>
+                          <option value="Graduate">Graduate</option>
+                          <option value="PHD">PHD</option>
+                        </select>
+                      </p>
+                      <button>Search for classes</button>
                     </form>
                   </div>
                 </div>
@@ -490,10 +478,12 @@ class Sidebar extends React.Component {
         </div>
         <div className="user-info">
           <div className="user-photo">
-            <i class="fas fa-user-circle"></i>
+            <i class="fas fa-user-circle" />
           </div>
           <div className="content">
-            John Smith (123456789)<br /><br />
+            John Smith (123456789)
+            <br />
+            <br />
             john@uottawa.ca
           </div>
           <div class="sign-out">
