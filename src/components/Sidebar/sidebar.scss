@@ -58,11 +58,14 @@ $light_maroon: #bb1a35;
 .sidebar {
   background-color: $lighter_grey;
   color: white;
-  height: 100%;
   background-size: cover;
   background-attachment: fixed;
   overflow: auto;
   margin-top: 5vh;
+}
+
+.close-sidebar{
+  display: none;
 }
 
 .semester-section {
@@ -149,11 +152,23 @@ $light_maroon: #bb1a35;
     background-color: $maroon;
   }
 
+  .delete-class,
   .add-class,
   .swap-class {
     .content-hide,
     .content-hide-inner {
       display: none;
+    }
+
+    .cancel-button{
+      width: auto;
+      display: inline !important;
+      padding: 0.5em;
+      color: white;
+      background-color: transparent;
+      font-size: 1em;
+      margin-top: 0.5em;
+      border: 2px solid white;
     }
 
     .content-active {
@@ -187,7 +202,7 @@ $light_maroon: #bb1a35;
         padding: 0.3em;
       }
 
-      button {
+      button{
         width: auto;
         display: inline !important;
         padding: 0.5em;
@@ -229,11 +244,23 @@ $light_maroon: #bb1a35;
   .side-container{
 		height: 100vh;
 		margin: 0;
-    z-index: 101;
-    grid-template-rows: minmax(80vh, 80vh) minmax(20vh, 20vh);
+    z-index: 200;
+    grid-template-rows: minmax(7vh, 7vh) minmax(73vh, 73vh) minmax(20vh, 20vh);
   }
 
   .sidebar{
     margin-top: 0;
+  }
+
+  .close-sidebar{
+    font-size: 1.8em;
+    display: block;
+    padding: 0.5em;
+    background-color: $lighter_grey;
+    color: white;
+
+    .fa-times:hover{
+      color: $light_maroon;
+    }
   }
 }

@@ -140,6 +140,9 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div className="side-container">
+        <div className="close-sidebar">
+          <i class="fas fa-times" onClick={this.props.toggleSidebarMenu}></i>
+        </div>
         <div className="sidebar">
           <div className="semester-section">
             <h1>
@@ -317,15 +320,23 @@ class Sidebar extends React.Component {
                     </form>
                   </div>
                 </div>
+                <button className="cancel-button" onClick={this.addClicked}>Cancel</button>
               </div>
             </div>
-            <button
-              id="drop"
-              className={this.state.delete ? 'active' : ''}
-              onClick={this.deleteClicked}
-            >
-              <i className="fas fa-trash-alt" /> Drop Class
-            </button>
+            <div className="delete-class">
+              <button
+                id="drop"
+                className={this.state.delete ? 'active' : ''}
+                onClick={this.deleteClicked}
+              >
+                <i className="fas fa-trash-alt" /> Drop Class
+              </button>
+              <div
+                className={this.state.delete ? 'content-active' : 'content-hide'}
+              >
+                <button className="cancel-button" onClick={this.deleteClicked}>Cancel</button>
+              </div>
+            </div>
             <div className="swap-class">
               <button
                 id="swap"
@@ -477,6 +488,7 @@ class Sidebar extends React.Component {
                     </form>
                   </div>
                 </div>
+                <button className="cancel-button" onClick={this.swapClicked}>Cancel</button>
               </div>
             </div>
           </div>

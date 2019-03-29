@@ -47,68 +47,66 @@ export default class ModalWindow extends React.Component {
               <h2>Section A</h2>
               <button onClick={this.addRight}>Add Class</button>
             </div>
+            <p>
+              <ul>
+                <li><b>Instructor:</b> Justin Bieber</li>
+                <li><b>Start &amp; End Date</b> Jan. 7 - Apr. 7, 2019</li>
+                <li><b>Seats Available</b> 30</li>
+              </ul>
+            </p>
             <table class="table">
               <tr>
-                <th>Instructor</th>
                 <th>Type</th>
                 <th>Days &amp; Time</th>
-                <th>Start &amp; End Date</th>
-                <th>Seats Available</th>
+                <th>Location</th>
               </tr>
               <tr>
-                <td>Justin Bieber</td>
                 <td>Lab</td>
                 <td>Mon. 7:00pm-10:00pm</td>
-                <td>Jan. 7 - Apr. 7, 2019</td>
-                <td>30</td>
+                <td>UCU 0101</td>
               </tr>
               <tr>
-                <td />
                 <td>Lecture</td>
                 <td>Thurs. 2:00pm-4:30pm</td>
-                <td>Jan. 7 - Apr. 7, 2019</td>
-                <td> </td>
+                <td>SITE 0101</td>
               </tr>
               <tr>
-                <td />
                 <td>Lecture</td>
                 <td>Fri. 11:30am-1:00pm</td>
-                <td>Jan. 7 - Apr. 7, 2019</td>
-                <td> </td>
+                <td>SITE 0101</td>
               </tr>
             </table>
             <div className="title-area">
               <h2>Section B</h2>
               <button onClick={this.addRight}>Add Class</button>
             </div>
+            <p>
+              <ul>
+                <li><b>Instructor:</b> Barack Obama</li>
+                <li><b>Start &amp; End Date</b> Jan. 7 - Apr. 7, 2019</li>
+                <li><b>Seats Available</b> 30</li>
+              </ul>
+            </p>
             <table class="table">
               <tr>
-                <th>Instructor</th>
                 <th>Type</th>
                 <th>Days &amp; Time</th>
-                <th>Start &amp; End Date</th>
-                <th>Seats Available</th>
+                <th>Location</th>
               </tr>
               <tr>
-                <td>Barack Obama</td>
                 <td>Lab</td>
                 <td>Mon. 7:00pm-10:00pm</td>
-                <td>Jan. 7 - Apr. 7, 2019</td>
-                <td>30</td>
+                <td>UCU 0101</td>
               </tr>
               <tr>
-                <td />
                 <td>Lecture</td>
                 <td>Thurs. 2:00pm-4:30pm</td>
-                <td>Jan. 7 - Apr. 7, 2019</td>
-                <td> </td>
+                <td>SITE 0101</td>
               </tr>
               <tr>
-                <td />
                 <td>Lecture</td>
                 <td>Fri. 11:30am-1:00pm</td>
-                <td>Jan. 7 - Apr. 7, 2019</td>
-                <td> </td>
+                <td>SITE 0101</td>
               </tr>
             </table>
           </div>
