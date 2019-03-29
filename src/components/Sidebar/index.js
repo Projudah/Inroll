@@ -110,17 +110,17 @@ class Sidebar extends React.Component {
 
   swapClicked1(){
     this.setState(prevState => ({
-      swap1: true,
+      swap1: !prevState.swap1,
       swap2: false,
-      swap2: false
+      swap3: false
     }))
   }
 
   swapClicked2(){
     this.setState(prevState => ({
       swap1: false,
-      swap2: true,
-      swap2: false
+      swap2: !prevState.swap2,
+      swap3: false
     }))
   }
 
@@ -128,7 +128,7 @@ class Sidebar extends React.Component {
     this.setState(prevState => ({
       swap1: false,
       swap2: false,
-      swap2: true
+      swap3: !prevState.swap3
     }))
   }
 
@@ -428,7 +428,7 @@ class Sidebar extends React.Component {
                         ? 'search-function active-search'
                         : 'search-function'
                     }
-                    onClick={this.searchClicked3}
+                    onClick={this.swapClicked3}
                   >
                     <i
                       className={

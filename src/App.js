@@ -45,7 +45,7 @@ class App extends Component {
     this.state = {
       view: true,
       currentModal: null,
-      loginPage: false
+      loginPage: true
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
