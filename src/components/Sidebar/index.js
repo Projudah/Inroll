@@ -12,6 +12,9 @@ class Sidebar extends React.Component {
       search1: false,
       search2: false,
       search3: false,
+      swap1: false,
+      swap2: false,
+      swap3: false
     }
 
     this.addClicked = this.addClicked.bind(this)
@@ -20,6 +23,9 @@ class Sidebar extends React.Component {
     this.searchClicked1 = this.searchClicked1.bind(this)
     this.searchClicked2 = this.searchClicked2.bind(this)
     this.searchClicked3 = this.searchClicked3.bind(this)
+    this.swapClicked1 = this.swapClicked1.bind(this)
+    this.swapClicked2 = this.swapClicked2.bind(this)
+    this.swapClicked3 = this.swapClicked3.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
   }
   searchCourse() {
@@ -99,6 +105,30 @@ class Sidebar extends React.Component {
       search1: false,
       search2: false,
       search3: !prevState.search3,
+    }))
+  }
+
+  swapClicked1(){
+    this.setState(prevState => ({
+      swap1: true,
+      swap2: false,
+      swap2: false
+    }))
+  }
+
+  swapClicked2(){
+    this.setState(prevState => ({
+      swap1: false,
+      swap2: true,
+      swap2: false
+    }))
+  }
+
+  swapClicked3(){
+    this.setState(prevState => ({
+      swap1: false,
+      swap2: false,
+      swap2: true
     }))
   }
 
@@ -297,13 +327,165 @@ class Sidebar extends React.Component {
             >
               <i className="fas fa-trash-alt" /> Drop Class
             </button>
-            <button
-              id="swap"
-              className={this.state.swap ? 'active' : ''}
-              onClick={this.swapClicked}
-            >
-              <i className="fas fa-exchange-alt" /> Swap Class
-            </button>
+            <div className="swap-class">
+              <button
+                id="swap"
+                className={this.state.swap ? 'active' : ''}
+                onClick={this.swapClicked}
+              >
+                <i className="fas fa-exchange-alt" /> Swap Class
+              </button>
+              <div
+                className={this.state.swap ? 'content-active' : 'content-hide'}
+              >
+                <div className="text">
+                  Fill in 1 of the following sections to search
+                </div>
+                <div className="search-container">
+                  <button
+                    className={
+                      this.state.swap1
+                        ? 'search-function active-search'
+                        : 'search-function'
+                    }
+                    onClick={this.swapClicked1}
+                  >
+                    <i
+                      className={
+                        this.state.swap1
+                          ? 'fas fa-chevron-right active-icon'
+                          : 'fas fa-chevron-right'
+                      }
+                    />
+                    Course Code
+                  </button>
+                  <div
+                    className={
+                      this.state.swap1
+                        ? 'content-show-inner'
+                        : 'content-hide-inner'
+                    }
+                  >
+                  <form onSubmit={this.toggleModal}>
+                    <label>Enter the Course Code *</label>
+                    <input
+                      type="text"
+                      placeholder="Course Code"
+                      id="courseCode"
+                      required
+                    />
+                    <button>
+                      Search for classes
+                    </button>
+                    </form>
+                  </div>
+                </div>
+
+                <div className="search-container">
+                  <button
+                    className={
+                      this.state.swap2
+                        ? 'search-function active-search'
+                        : 'search-function'
+                    }
+                    onClick={this.swapClicked2}
+                  >
+                    <i
+                      className={
+                        this.state.swap2
+                          ? 'fas fa-chevron-right active-icon'
+                          : 'fas fa-chevron-right'
+                      }
+                    />
+                    Course Name
+                  </button>
+                  <div
+                    className={
+                      this.state.swap2
+                        ? 'content-show-inner'
+                        : 'content-hide-inner'
+                    }
+                  >
+                    <form onSubmit={this.toggleModal}>
+                      <label>Enter the Course Name * </label>
+                      <input
+                        type="text"
+                        placeholder="Course Name"
+                        id="courseName"
+                        required
+                      />
+                      <button>
+                        Search for classes
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+                <div className="search-container">
+                  <button
+                    className={
+                      this.state.swap3
+                        ? 'search-function active-search'
+                        : 'search-function'
+                    }
+                    onClick={this.searchClicked3}
+                  >
+                    <i
+                      className={
+                        this.state.swap3
+                          ? 'fas fa-chevron-right active-icon'
+                          : 'fas fa-chevron-right'
+                      }
+                    />
+                    Department
+                  </button>
+                  <div
+                    className={
+                      this.state.swap3
+                        ? 'content-show-inner'
+                        : 'content-hide-inner'
+                    }
+                  >
+                    <form onSubmit={this.toggleModal}>
+                    <p>
+                      <label>Department *</label>
+                      <select required>
+                        <option value=""></option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Telfer">Telfer</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Law">Law</option>
+                      </select>
+                    </p>
+
+                    <p>
+                      <label>Subject *</label>
+                      <select required>
+                        <option value=""></option>
+                        <option value="AIR">AIR</option>
+                        <option value="SEG">SEG</option>
+                        <option value="HOM">HOM</option>
+                        <option value="FOO">FOO</option>
+                      </select>
+                    </p>
+
+                    <p>
+                      <label>Level *</label>
+                      <select required>
+                        <option value=""></option>
+                        <option value="Undergraduate">Undergraduate</option>
+                        <option value="Graduate">Graduate</option>
+                        <option value="PHD">PHD</option>
+                      </select>
+                    </p>
+                    <button>
+                      Search for classes
+                    </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="user-info">
