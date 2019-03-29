@@ -143,7 +143,6 @@ class App extends Component {
           </div>
           <div className="app">
             <div>
-              >
               <Sidebar
                 toggle={this.toggle}
                 toggleSearchClassModal={this.toggleSearchClassModal}
