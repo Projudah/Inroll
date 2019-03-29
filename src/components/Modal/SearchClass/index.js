@@ -7,6 +7,11 @@ export default class ModalWindow extends React.Component {
     this.props.handleModalUnmount()
   }
 
+  addRight = () => {
+    this.props.toggle(2)
+    this.onCloseModal()
+  }
+
   render() {
     return (
       <div>
@@ -33,7 +38,7 @@ export default class ModalWindow extends React.Component {
             </ul>
             <div className="title-area">
               <h2>Section A</h2>
-              <button onClick={this.onCloseModal}>Add Class</button>
+              <button onClick={this.addRight}>Add Class</button>
             </div>
             <table class="table">
               <tr>
@@ -67,7 +72,7 @@ export default class ModalWindow extends React.Component {
             </table>
             <div className="title-area">
               <h2>Section B</h2>
-              <button onClick={this.onCloseModal}>Add Class</button>
+              <button onClick={this.addRight}>Add Class</button>
             </div>
             <table class="table">
               <tr>

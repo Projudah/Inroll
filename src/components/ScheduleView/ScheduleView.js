@@ -2,62 +2,7 @@ import React, {Component} from 'react'
 import './ScheduleView.scss'
 
 class ScheduleView extends Component {
-  classes = [
-    {
-      Day: 0,
-      Length: 3,
-      Name: 'SEG3125',
-      Location: 'Mars',
-      Section: 'Lecture',
-      Time: 2,
-      id: 0,
-    },
-    {
-      Day: 2,
-      Length: 3,
-      Name: 'SEG3125',
-      Location: 'Mars',
-      Section: 'Lecture',
-      Time: 2,
-      id: 1,
-    },
-    {
-      Day: 3,
-      Length: 6,
-      Name: 'SEG3125',
-      Location: 'Mars',
-      Section: 'Lab',
-      Time: 5,
-      id: 2,
-    },
-    {
-      Day: 1,
-      Length: 3,
-      Name: 'HOM1234',
-      Location: 'Snip Center',
-      Section: 'Lecture',
-      Time: 7,
-      id: 3,
-    },
-    {
-      Day: 4,
-      Length: 3,
-      Name: 'HOM1234',
-      Location: 'Snip Center',
-      Section: 'Lecture',
-      Time: 4,
-      id: 4,
-    },
-    {
-      Day: 2,
-      Length: 6,
-      Name: 'HOM1234',
-      Location: 'Snip Center',
-      Section: 'Lab',
-      Time: 7,
-      id: 5,
-    },
-  ]
+  
   times = [
     '8:30',
     '9:00',
@@ -157,7 +102,23 @@ class ScheduleView extends Component {
             if (collision) {
               spaned = 1
             }
-            rows[classes[j].Day + offset] = (
+            if(classes[j].temp !== undefined){
+              rows[classes[j].Day + offset] = (
+              <td
+                onClick={this.props.toggleSearchClassModal}
+                rowSpan={classes[j].Length}
+                colSpan={spaned}
+                className="classEntry_temp"
+              >
+                {classes[j].Name}
+                <br />
+                {classes[j].Section}
+                <br />
+                {classes[j].Location}
+              </td>
+            )
+            }else{
+              rows[classes[j].Day + offset] = (
               <td
                 onClick={this.props.toggleSearchClassModal}
                 rowSpan={classes[j].Length}
@@ -171,6 +132,8 @@ class ScheduleView extends Component {
                 {classes[j].Location}
               </td>
             )
+            }
+            
             found = true
             if (!collision) {
               break
@@ -220,7 +183,7 @@ class ScheduleView extends Component {
     )
 
     var rows = []
-    for (var i = 0; i < 24; i++) {
+    for (var i = 0; i < 28; i++) {
       rows.push(this.generateRow(i, this.classes))
     }
 
@@ -233,6 +196,135 @@ class ScheduleView extends Component {
   }
 
   render() {
+
+    switch(this.props.scheduleState){
+    case "ADD_WORKS":
+      this.classes = 
+      [{
+        Day: 0,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 9,
+        id: 0,
+      },
+      {
+        Day: 2,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 6,
+        id: 1,
+      },
+      {
+        Day: 4,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lab',
+        Time: 0,
+        id: 2,
+      },
+      {
+        Day: 1,
+        Length: 6,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lecture',
+        Time: 21,
+        id: 3,
+      },
+      {
+        Day: 3,
+        Length: 3,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lab',
+        Time: 8,
+        id: 4,
+      },
+      {
+        Day: 4,
+        Length: 3,
+        Name: 'AIR6789',
+        Location: 'Cloud 9',
+        Section: 'Lecture',
+        Time: 6,
+        id: 5,
+        temp: true
+      },
+      {
+        Day: 3,
+        Length: 3,
+        Name: 'AIR6789',
+        Location: 'Cloud 9',
+        Section: 'Lecture',
+        Time: 11,
+        id: 6,
+        temp: true
+      },
+      {
+        Day: 0,
+        Length: 6,
+        Name: 'AIR6789',
+        Location: 'Cloud 9',
+        Section: 'Lab',
+        Time: 21,
+        id: 7,
+        temp: true
+      }
+      ]
+      break
+    default:
+      this.classes = 
+      [{
+        Day: 0,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 9,
+        id: 0,
+      },
+      {
+        Day: 2,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 6,
+        id: 1,
+      },
+      {
+        Day: 4,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lab',
+        Time: 0,
+        id: 2,
+      },
+      {
+        Day: 1,
+        Length: 6,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lecture',
+        Time: 21,
+        id: 3,
+      },
+      {
+        Day: 3,
+        Length: 3,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lab',
+        Time: 8,
+        id: 4,
+      }]
+  }
     return <div className="schedule">{this.generateTable()}</div>
   }
 }

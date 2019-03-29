@@ -35,6 +35,7 @@ const SidebarConductor = props => {
 }
 
 const ModalConductor = props => {
+  var toggle = props.toggle
   var handleModalUnmount = props.handleModalUnmount
   var toggleSearchClassModal2 = props.toggleSearchClassModal2
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
@@ -42,7 +43,9 @@ const ModalConductor = props => {
     case 'SEARCH_CLASS':
       return (
         <div>
-          <SearchClassModal handleModalUnmount={handleModalUnmount} />
+          <SearchClassModal
+          toggle = {toggle}
+          handleModalUnmount={handleModalUnmount} />
         </div>
       )
     case 'HELP_PAGE':
@@ -57,6 +60,7 @@ const ModalConductor = props => {
     case 'SEARCH_CLASS2':
       return (
         <SearchClassModal2
+          toggle={toggle}
           handleModalUnmount={handleModalUnmount}
           toggleSearchDepartmentModal={toggleSearchDepartmentModal}
         />
@@ -71,8 +75,8 @@ const ModalConductor = props => {
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      view: true,
+    this.state = { //0: home, 1:add class select, 2: correctly add class
+      view: 0,
       currentModal: null,
       loginPage: false,
       progressPhase:0,
@@ -95,9 +99,10 @@ class App extends Component {
     this.setState({currentModal: null})
   }
 
-  toggle = () => {
+  toggle = (view) => {
+    console.log("view", view)
     this.setState({
-      view: !this.state.view,
+      view: view,
     })
   }
 
@@ -127,7 +132,6 @@ class App extends Component {
   }
 
   changeProgressPhase(){
-    console.log('It is here')
     this.setState(prevState =>{
       return {progressPhase: prevState.progressPhase == '2' ? prevState.progressPhase -2 : prevState.progressPhase + 1}
     })
@@ -139,17 +143,36 @@ class App extends Component {
 
   render() {
     //this variable should contatin the component
-    var view = ''
+    var view = []
     //change component depending on state
-    if (this.state.view) {
-      view = <ScheduleView toggleSearchClassModal={this.toggleClassInfoModal} />
+    switch(this.state.view){
+      case 0:
+        view.push(<ScheduleView toggleSearchClassModal={this.toggleClassInfoModal} />)
+        break
+
+      case 1:
+        view.push(<Progress
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}/>)
+        view.push(<ScheduleView toggleSearchClassModal={this.toggleClassInfoModal} />)
+        break
+      case 2:
+        view.push(<Progress
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}/>)
+        view.push(<ScheduleView
+          scheduleState="ADD_WORKS"
+          toggleSearchClassModal={this.toggleClassInfoModal} />)
+        break
     }
+
     if (this.state.loginPage)
       return <LoginPage toggleLoginPage={this.toggleLoginPage} />
     else {
       return (
         <div>
           <ModalConductor
+          toggle = {this.toggle}
             currentModal={this.state.currentModal}
             handleModalUnmount={this.handleModalUnmount}
             toggleSearchClassModal2={this.toggleSearchClassModal2}
@@ -192,9 +215,6 @@ class App extends Component {
               </div>
             </div>
             <div className="content">
-            <Progress
-            step={this.state.progressPhase}
-            next ={this.changeProgressPhase}/>
               {view}
             </div>
           </div>

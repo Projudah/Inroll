@@ -66,6 +66,11 @@ class Sidebar extends React.Component {
       delete: false,
       swap: false,
     }))
+    if(!this.state.add){
+      this.props.toggle(1)
+    }else{
+      this.props.toggle(0)
+    }
   }
 
   deleteClicked() {

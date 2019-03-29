@@ -26,6 +26,12 @@ $lightest_grey: #d8d8d8;
     border: 1px solid black;
     height: 30px;
   }
+  .classEntry_temp{
+    background: $lighter_grey;
+    color: white;
+    text-align: center;
+    opacity: 0.5;
+  }
   .classEntry {
     background: $lighter_grey;
     color: white;
