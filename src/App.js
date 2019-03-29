@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './App.scss'
 
 import NavBar from './components/NavBar'
+import NavBarMobile from './components/NavBarMobile'
 import Sidebar from './components/Sidebar'
 import ScheduleView from './components/ScheduleView'
 
@@ -56,6 +57,7 @@ class App extends Component {
       currentModal: null,
       loginPage: false,
       progressPhase:0,
+      sidebarMenu: false,
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
@@ -67,6 +69,7 @@ class App extends Component {
     this.toggleLoginPage = this.toggleLoginPage.bind(this)
     this.toggleClassInfoModal = this.toggleClassInfoModal.bind(this)
     this.changeProgressPhase = this.changeProgressPhase.bind(this)
+    this.toggleSidebarMenu = this.toggleSidebarMenu.bind(this)
   }
 
   handleModalUnmount() {
@@ -111,6 +114,10 @@ class App extends Component {
     })
   }
 
+  toggleSidebarMenu = () => {
+    this.setState(prevState => ({ sidebarMenu: !prevState.sidebarMenu }))
+  }
+
   render() {
     //this variable should contatin the component
     var view = ''
@@ -129,11 +136,20 @@ class App extends Component {
             toggleSearchClassModal2={this.toggleSearchClassModal2}
             toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
           />
-          <NavBar
-            toggleSearchClassModal={this.toggleSearchClassModal}
-            untoggleModal={this.handleModalUnmount}
-            toggleHelpPage={this.toggleHelpPage}
-          />
+          <div className="web-navbar">
+            <NavBar 
+              toggleSearchClassModal={this.toggleSearchClassModal}
+              untoggleModal={this.handleModalUnmount}
+              toggleHelpPage={this.toggleHelpPage}
+            />
+          </div>
+          <div className="mobile-navbar">
+            <NavBarMobile
+              toggleSearchClassModal={this.toggleSearchClassModal}
+              untoggleModal={this.handleModalUnmount}
+              toggleHelpPage={this.toggleHelpPage}
+            />
+          </div>
           <div className="app">
             <div>
               >
