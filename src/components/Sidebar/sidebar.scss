@@ -175,6 +175,11 @@ $light_maroon: #bb1a35;
       border: 2px solid white;
     }
 
+    .cancel-button:hover {
+      color: $maroon;
+      background-color: white;
+    }
+
     .content-active {
       background-color: $maroon;
       padding: 0em 1em 1em 1em;
