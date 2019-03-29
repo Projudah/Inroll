@@ -15,6 +15,25 @@ import ClassInfo from './components/Modal/ClassInfo'
 
 import Progress from './components/Progress'
 
+const SidebarConductor = props => {
+  var sidebarToggle = props.sidebarMenu
+  var toggle = props.toggle
+  var toggleSearchClassModal = props.toggleSearchClassModal
+  var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
+  var toggleLoginPage = props.toggleLoginPage
+  switch (props.sidebarMenu){
+    case true:
+      return <Sidebar
+        toggle={toggle}
+        toggleSearchClassModal={toggleSearchClassModal}
+        toggleSearchDepartmentModal={toggleSearchDepartmentModal}
+        toggleLoginPage={toggleLoginPage}
+      />
+    case false:
+      return null
+  }
+}
+
 const ModalConductor = props => {
   var handleModalUnmount = props.handleModalUnmount
   var toggleSearchClassModal2 = props.toggleSearchClassModal2
@@ -136,19 +155,32 @@ class App extends Component {
           </div>
           <div className="mobile-navbar">
             <NavBarMobile
-              toggleSearchClassModal={this.toggleSearchClassModal}
               untoggleModal={this.handleModalUnmount}
               toggleHelpPage={this.toggleHelpPage}
+              toggleSidebarMenu={this.toggleSidebarMenu}
             />
           </div>
           <div className="app">
-            <div>
-              <Sidebar
-                toggle={this.toggle}
-                toggleSearchClassModal={this.toggleSearchClassModal}
-                toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
-                toggleLoginPage={this.toggleLoginPage}
-              />
+            <div className="container-sidebar">
+              <div className="sidebar-web">
+                <Sidebar
+                  toggle={this.toggle}
+                  toggleSearchClassModal={this.toggleSearchClassModal}
+                  toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+                  toggleLoginPage={this.toggleLoginPage}
+                />
+              </div>
+
+              <div className="sidebar-mobile">
+                <SidebarConductor
+                  toggle={this.toggle}
+                  toggleSearchClassModal={this.toggleSearchClassModal}
+                  toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+                  toggleLoginPage={this.toggleLoginPage}
+                  toggleSidebarMenu={this.toggleSidebarMenu}
+                  sidebarMenu={this.state.sidebarMenu}
+                />
+              </div>
             </div>
             <div className="content">
             <Progress
