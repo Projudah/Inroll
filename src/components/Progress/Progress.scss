@@ -29,6 +29,15 @@ $lightest_grey: #d8d8d8;
   .buttons{
   	display: grid;
   	grid-gap: 0px;
-  	grid-template-columns: 1fr 3fr 1fr;
+  	grid-template-columns: 1fr 4fr 1fr;
+  }
+
+  .leftContain{
+  	// position: relative;
+  	padding-left: 50px;
+  }
+  .rightContain{
+  	// position: relative;
+  	padding-right: 50px;
   }
 }
