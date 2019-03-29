@@ -18,6 +18,16 @@
   display: none;
 }
 
+.container-sidebar{
+  .sidebar-web{
+    display: block;
+  }
+
+  .sidebar-mobile{
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 1050px) {
   .app{
     grid-template-columns: 1fr;
@@ -29,5 +39,15 @@
 
   .mobile-navbar{
     display: block;
+  }
+
+  .container-sidebar{
+    .sidebar-web{
+      display: none;
+    }
+
+    .sidebar-mobile{
+      display: block;
+    }
   }
 }

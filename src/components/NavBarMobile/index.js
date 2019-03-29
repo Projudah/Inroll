@@ -6,7 +6,7 @@ class NavBarMobile extends React.Component {
     return (
       <div className="navbar-mobile">
         <div className="hamburger-menu">
-          <i class="fas fa-bars"></i>
+          <i class="fas fa-bars" onClick={this.props.toggleSidebarMenu}></i>
         </div>
         <div className="title">
           <i className="fas fa-graduation-cap" />
