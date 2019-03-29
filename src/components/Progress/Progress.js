@@ -4,26 +4,36 @@ import Stepper from 'react-stepper-horizontal';
 import PointButton from '../PointButton'
 
 class Progress extends Component {
+	constructor(props) {
+		super(props)
+	}
 
-  render() {
-    return <div className = "progress_div">
-    <Stepper steps={ [{title: 'Select Classes'}, {title: 'View Selection'}, {title: 'Confirm'}] }
-    activeStep={1}
-    activeColor = "#bb1a35"
-    completeColor = "#242424"
-    circleTop = {10}
-    size = {32}
-    circleFontSize = {15}
-    lineMarginOffset = {24}
-    />
-    <div className = "buttons">
-    
-    <button className = "left"onClick={this.Cancel}>Cancel</button>
-    <button className = "right" onClick={this.NextStep}>Next</button>
-    <PointButton/>
-    </div>
-    </div>;
-  }
+	render() {
+		return <div className = "progress_div">
+		<div className = "buttons">
+
+		<PointButton
+		name ="Cancel"
+		direction="left"
+		click={this.cancel}/>
+
+		<Stepper steps={ [{title: 'Select Classes'}, {title: 'View Selection'}, {title: 'Confirm'}] }
+		activeStep={this.props.step}
+		activeColor = "#bb1a35"
+		completeColor = "#242424"
+		circleTop = {30}
+		size = {32}
+		circleFontSize = {15}
+		/>
+		<PointButton
+		name ="Next"
+		direction="right"
+		click={this.next}/>
+
+
+		</div>
+		</div>;
+	}
 }
 
 export default Progress;

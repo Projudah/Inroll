@@ -123,8 +123,9 @@ class App extends Component {
               />
             </div>
             <div className="content">
+            <Progress
+            step={0}/>
               {view}
-              <Progress/>
             </div>
           </div>
         </div>

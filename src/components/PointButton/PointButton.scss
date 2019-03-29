@@ -1,25 +1,67 @@
-.button{
+$maroon: #99162c;
+$lighter_grey: #242424;
+$light_maroon: #bb1a35;
+$lightest_grey: #d8d8d8;
+
+.right{
 	margin: 2rem auto;
 	text-align: center;
-	width: 13rem;
+	width: 10rem;
 	padding: 0.01rem 0;
-	background: #3797FF;
-	color: #FFFFFF;
+	background: $maroon;
+	color: white;
 	position: relative;
+	height: 50px;
+	float: right;
+	cursor: pointer;
 }
-.button p {
+.right p {
 	vertical-align: middle;
-	font-family: "Lato";
-	font-size: 1.75rem;
 }
-.button::after {
+.right::after {
 	content: "";
 	display: block;
 	position: absolute;
-	border-color: transparent #3797FF;
+	border-color: transparent $maroon;
 	border-style: solid;
 
-	border-width: 45px 0px 45px 45px;
+	border-width: 25px 0px 25px 25px;
 	top: 0;
 	left: 100%;
+}
+.hover:hover{
+	background: $light_maroon;
+}
+.hover:hover:after{
+	content: "";
+	display: block;
+	position: absolute;
+	border-color: transparent $light_maroon;
+	border-style: solid;
+}
+.left{
+	margin: 2rem auto;
+	text-align: center;
+	width: 10rem;
+	padding: 0.01rem 0;
+	background: $maroon;
+	color: white;
+	position: relative;
+	height: 50px;
+	float: left;
+	cursor: pointer;
+}
+.left p {
+	vertical-align: middle;
+}
+.left::after {
+	content: "";
+	display: block;
+	position: absolute;
+	border-color: transparent $maroon;
+	border-style: solid;
+
+	border-width: 25px 25px 25px 0px;
+	top: 0;
+	right: 100%;
 }

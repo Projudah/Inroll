@@ -27,6 +27,8 @@ $lightest_grey: #d8d8d8;
   }
 
   .buttons{
-  	padding: 10px 100px;
+  	display: grid;
+  	grid-gap: 0px;
+  	grid-template-columns: 1fr 3fr 1fr;
   }
 }
