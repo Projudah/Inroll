@@ -54,7 +54,8 @@ class App extends Component {
     this.state = {
       view: true,
       currentModal: null,
-      loginPage: false
+      loginPage: false,
+      progressPhase:0,
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
@@ -65,6 +66,7 @@ class App extends Component {
     this.toggleSearchClassModal2 = this.toggleSearchClassModal2.bind(this)
     this.toggleLoginPage = this.toggleLoginPage.bind(this)
     this.toggleClassInfoModal = this.toggleClassInfoModal.bind(this)
+    this.changeProgressPhase = this.changeProgressPhase.bind(this)
   }
 
   handleModalUnmount() {
@@ -102,6 +104,13 @@ class App extends Component {
     e.preventDefault()
   }
 
+  changeProgressPhase(){
+    console.log('It is here')
+    this.setState(prevState =>{
+      return {progressPhase: prevState.progressPhase == '2' ? prevState.progressPhase -2 : prevState.progressPhase + 1}
+    })
+  }
+
   render() {
     //this variable should contatin the component
     var view = ''
@@ -137,7 +146,8 @@ class App extends Component {
             </div>
             <div className="content">
             <Progress
-            step={0}/>
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}/>
               {view}
             </div>
           </div>
