@@ -10,6 +10,7 @@ import HelpPage from './components/Modal/HelpPage'
 import SearchDepartment from './components/Modal/SearchDepartment'
 import SearchClassModal2 from './components/Modal/SearchClass2'
 import LoginPage from './components/LoginPage'
+import ClassInfo from './components/Modal/ClassInfo'
 
 const ModalConductor = props => {
   var handleModalUnmount = props.handleModalUnmount
@@ -34,6 +35,8 @@ const ModalConductor = props => {
           toggleSearchDepartmentModal={toggleSearchDepartmentModal}
         />
       )
+    case 'CLASS_INFO':
+      return <ClassInfo handleModalUnmount={handleModalUnmount} />
     default:
       return null
   }
@@ -53,6 +56,7 @@ class App extends Component {
     this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(this)
     this.toggleSearchClassModal2 = this.toggleSearchClassModal2.bind(this)
     this.toggleLoginPage = this.toggleLoginPage.bind(this)
+    this.toggleClassInfoModal = this.toggleClassInfoModal.bind(this)
   }
 
   handleModalUnmount() {
@@ -67,6 +71,10 @@ class App extends Component {
 
   toggleSearchClassModal = () => {
     this.setState({currentModal: 'SEARCH_CLASS'})
+  }
+
+  toggleClassInfoModal = () => {
+    this.setState({ currentModal: 'CLASS_INFO' })
   }
 
   toggleHelpPage = () => {
@@ -92,7 +100,7 @@ class App extends Component {
      //change component depending on state
     if(this.state.view){
       view = <ScheduleView
-      toggleSearchClassModal={this.toggleSearchClassModal}
+      toggleSearchClassModal={this.toggleClassInfoModal}
       />
     }
     if (this.state.loginPage)
