@@ -216,11 +216,16 @@ class ScheduleView extends Component {
       })
 
       var html = classList.map((field, index) => (
-        <div className={field.temp ? "class-temp" : "class"} onClick={this.props.toggleSearchClassModal}>
-          <div className="class-title">{field.Name}</div>
-          <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
-          <div className="location">{field.Location}</div>
-          <div className="type">{field.Section}</div>
+        <div className={field.collision ? "class-colli": (field.temp ? "class-temp" : "class")}>
+          <div className="class-info" onClick={this.props.toggleSearchClassModal}>
+            <div className="class-text">
+              <div className="class-title">{field.Name}</div>
+              <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
+              <div className="location">{field.Location}</div>
+              <div className="type">{field.Section}</div>
+            </div>
+          </div>
+          {field.temp ? <div className="class-delete" onClick={this.props.drop}><i class="fas fa-trash-alt"></i></div> : null}
         </div>
       ))
 
@@ -443,7 +448,8 @@ class ScheduleView extends Component {
         Section: 'Lecture',
         Time: 9,
         id: 5,
-        temp: true
+        temp: true,
+        collision: true,
       },
       {
         Day: 2,
@@ -543,7 +549,6 @@ class ScheduleView extends Component {
         <div className="schedule-container">
           <div className="schedule-web">{this.generateTable()}</div>
           <div className="schedule-mobile">
-            <h1>Class schedule</h1>
             <h2>Monday</h2>
             <div id="monday" className="schedule-block">{this.generateDaySchedule(0)}</div>
             <h2>Tuesday</h2>

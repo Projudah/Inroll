@@ -21,17 +21,89 @@ $quite_light_gret: #777777;
     }
 
     .class-temp{
-      background-color: $lightest_grey;
-      padding: 1em;
+      display: grid;
+      grid-template-columns: 5fr 1fr;
       margin: 0.5em;
 
-      .class-title{
-        font-size: 1.2em;
-        font-weight: bold;
+      .class-info{
+        background-color: $lightest_grey;
+        width: 100%;
+        padding: 1em;
+
+        .class-text{
+          .class-title{
+            font-size: 1.2em;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .class-info:hover{
+        background-color: $light_maroon;
+        color: white;
+      }
+
+      .class-delete{
+        background-color: $lighter_grey;
+        color: white;
+        text-align: center;
+
+        .fa-trash-alt{
+          font-size: 2em;
+          position: relative;
+          top: 30%;
+        }
+      }
+
+      .class-delete:hover{
+        background-color: $light_maroon;
+        color: white;
       }
     }
 
-    .class:hover, .class-temp:hover{
+    .class-colli{
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      margin: 0.5em;
+
+      .class-info{
+        background-color: $maroon;
+        color: white;
+        width: 100%;
+        padding: 1em;
+
+        .class-text{
+          .class-title{
+            font-size: 1.2em;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .class-info:hover{
+        background-color: $light_maroon;
+        color: white;
+      }
+
+      .class-delete{
+        background-color: $lighter_grey;
+        color: white;
+        text-align: center;
+
+        .fa-trash-alt{
+          font-size: 2em;
+          position: relative;
+          top: 30%;
+        }
+      }
+
+      .class-delete:hover{
+        background-color: $light_maroon;
+        color: white;
+      }
+    }
+
+    .class:hover, .class-colli:hover{
       background-color: $light_maroon;
       color: white;
     }
