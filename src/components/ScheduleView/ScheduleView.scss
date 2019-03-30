@@ -31,6 +31,18 @@ $quite_light_gret: #777777;
       }
     }
 
+    .class-colli{
+      background-color: $maroon;
+      color: white;
+      padding: 1em;
+      margin: 0.5em;
+
+      .class-title{
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
+
     .class:hover, .class-temp:hover{
       background-color: $light_maroon;
       color: white;
