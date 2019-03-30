@@ -29,6 +29,32 @@ $lightest_grey: #d8d8d8;
 	top: 0;
 	left: 100%;
 }
+.disabled{
+	margin: 2rem auto;
+	text-align: center;
+	width: 10rem;
+	padding: 0.01rem 0;
+	background: $lightest_grey;
+	color: white;
+	position: relative;
+	height: 50px;
+	float: right;
+	cursor: pointer;
+}
+.disabled p {
+	vertical-align: middle;
+}
+.disabled::after {
+	content: "";
+	display: block;
+	position: absolute;
+	border-color: transparent $lightest_grey;
+	border-style: solid;
+
+	border-width: 25px 0px 25px 25px;
+	top: 0;
+	left: 100%;
+}
 .hover:hover{
 	background: $light_maroon;
 	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),

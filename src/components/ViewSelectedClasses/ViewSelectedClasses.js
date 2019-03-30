@@ -4,6 +4,7 @@ import './ViewSelectedClasses.scss'
 class ViewSelectedClasses extends Component {
   render() {
     return <div className="ViewSel">
+            <div className = "Viewtitle">View Selection</div>
             <div className="title-area">
               <h2>AIR6789 - How to make airplanes</h2>
             </div>

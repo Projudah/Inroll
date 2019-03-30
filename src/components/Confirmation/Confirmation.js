@@ -3,7 +3,9 @@ import './Confirmation.scss'
 
 class Confirmation extends Component {
     render() {
+      var style = {}
     return <div className="ViewSel">
+            <div className = "Viewtitle">Confirmation</div>
             <div className="title-area">
               <h2>AIR6789 - How to make airplanes</h2>
             </div>
@@ -15,6 +17,10 @@ class Confirmation extends Component {
                 <li><b>Seats Available</b> 30</li>
               </ul>
             </p>
+            <span className = "check">
+            <b>Registered</b>
+              <i class="fas fa-check-circle"></i>
+            </span>
             <table class="table">
               <tr>
                 <th>Type</th>

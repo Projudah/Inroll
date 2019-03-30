@@ -12,6 +12,11 @@ export default class ModalWindow extends React.Component {
     this.onCloseModal()
   }
 
+  addFail = () =>{
+    this.props.toggle(6)
+    this.onCloseModal()
+  }
+
   render() {
     return (
       <div>
@@ -71,7 +76,7 @@ export default class ModalWindow extends React.Component {
             </table>
             <div className="title-area">
               <h2>Section B</h2>
-              <button onClick={this.addRight}>Add Class</button>
+              <button onClick={this.addFail}>Add Class</button>
             </div>
             <p>
               <ul>

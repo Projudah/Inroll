@@ -96,10 +96,11 @@ class ScheduleView extends Component {
                   classes[k].Day === i &&
                   classes[k].id !== classes[j].id)
             }
-            // console.log(time,i, classes[j].Section,classes[j].Name, "range",inrange,"coll",collision)
+            // console.log(time,i, classes[j].Section,classes[j].Name, "range",inrange,"coll",collision, "count", count)
             var spaned = 2
 
             if (collision) {
+              // offset++
               spaned = 1
             }
             if(classes[j].temp !== undefined){
@@ -108,14 +109,18 @@ class ScheduleView extends Component {
                 onClick={this.props.toggleSearchClassModal}
                 rowSpan={classes[j].Length}
                 colSpan={spaned}
-                className="classEntry_temp"
-              >
+                
+              ><div className = "temp_div">
+              <div className="classEntry_temp">
+              <p>
                 {classes[j].Name}
                 <br />
                 {classes[j].Section}
                 <br />
                 {classes[j].Location}
-              </td>
+                </p>
+                </div>
+              </div></td>
             )
             }else{
               rows[classes[j].Day + offset] = (
@@ -137,6 +142,8 @@ class ScheduleView extends Component {
             found = true
             if (!collision) {
               break
+            }else{
+              offset++
             }
           }
         }
@@ -147,7 +154,7 @@ class ScheduleView extends Component {
       } else if (count === 2) {
         offset++
         // console.log("day", i, "time", time, "count", count)
-        rows.splice(i + offset, 0, <td colSpan="1" />)
+        {/*rows.splice(i + offset, 0, <td colSpan="1" />)*/}
       }
     }
 
@@ -353,6 +360,85 @@ class ScheduleView extends Component {
       }
       ]
       break
+    case "ADD_FAILS":
+      this.classes = 
+      [{
+        Day: 0,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 9,
+        id: 0,
+      },
+      {
+        Day: 2,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 6,
+        id: 1,
+      },
+      {
+        Day: 4,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lab',
+        Time: 0,
+        id: 2,
+      },
+      {
+        Day: 1,
+        Length: 6,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lecture',
+        Time: 21,
+        id: 3,
+      },
+      {
+        Day: 3,
+        Length: 3,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lab',
+        Time: 8,
+        id: 4,
+      },
+      {
+        Day: 0,
+        Length: 3,
+        Name: 'HOM1234',
+        Location: 'Snip Center',
+        Section: 'Lecture',
+        Time: 9,
+        id: 5,
+        temp: true
+      },
+      {
+        Day: 2,
+        Length: 3,
+        Name: 'HOM1234',
+        Location: 'Snip Center',
+        Section: 'Lecture',
+        Time: 12,
+        id: 6,
+        temp: true
+      },
+      {
+        Day: 2,
+        Length: 3,
+        Name: 'HOM1234',
+        Location: 'Snip Center',
+        Section: 'Lab',
+        Time: 15,
+        id: 7,
+        temp: true
+      }
+      ]
+      break
     default:
       this.classes = 
       [{
@@ -403,6 +489,7 @@ class ScheduleView extends Component {
   }
     return(
       <div>
+      <div className = "Viewtitle">{this.props.viewTitle}</div>
         <div className="schedule-container">
           <div className="schedule-web">{this.generateTable()}</div>
           <div className="schedule-mobile">

@@ -12,13 +12,17 @@ import SearchDepartment from './components/Modal/SearchDepartment'
 import SearchClassModal2 from './components/Modal/SearchClass2'
 import LoginPage from './components/LoginPage'
 import ClassInfo from './components/Modal/ClassInfo'
+import PopupInfo from './components/Modal/PopupInfo'
 
 import Progress from './components/Progress'
 import ViewSelectedClasses from './components/ViewSelectedClasses'
 import Confirmation from './components/Confirmation'
 
 const ModalConductor = props => {
+  var fail = props.fail
   var toggle = props.toggle
+  var text = props.text
+  var togglePopup = props.togglePopup
   var handleModalUnmount = props.handleModalUnmount
   var toggleSearchClassModal2 = props.toggleSearchClassModal2
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
@@ -36,6 +40,7 @@ const ModalConductor = props => {
     case 'SEARCH_RESULTS':
       return (
         <SearchDepartment
+        fail = {fail}
           handleModalUnmount={handleModalUnmount}
           toggleSearchClassModal2={toggleSearchClassModal2}
         />
@@ -50,6 +55,11 @@ const ModalConductor = props => {
       )
     case 'CLASS_INFO':
       return <ClassInfo handleModalUnmount={handleModalUnmount} />
+
+    case 'POPUP_INFO':
+      return <PopupInfo
+      text = {text}
+      handleModalUnmount={handleModalUnmount}/>
     default:
       return null
   }
@@ -58,12 +68,14 @@ const ModalConductor = props => {
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { //0: home, 1:add class select, 2: correctly add class 3: view selected classes, 4:add class confirmation
+    this.state = { //0: home, 1:add class select, 2: correctly add class 3: view selected classes, 
+      //4:add class confirmation 5: new class added, 6: collision class view add
       view: 0,
       currentModal: null,
       loginPage: false,
       progressPhase:0,
       sidebarMenu: false,
+      text: 'Intern Season'
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
@@ -114,6 +126,12 @@ class App extends Component {
     e.preventDefault()
   }
 
+  togglePopupInfo = () =>{
+    this.setState({
+      currentModal: 'POPUP_INFO'
+    })
+  }
+
   changeProgressPhase(){
     if(this.state.view == 2){
       this.setState(prevState =>({progressPhase: 1}))
@@ -129,6 +147,16 @@ class App extends Component {
     }
   }
 
+  setText = () =>{
+    if(this.state.view == 6){
+      this.setState({
+        text: "Classes SEG3125 and HOM1234 are Conflicting on Monday"
+      })
+    }
+    
+    this.togglePopupInfo()
+  }
+
   retProgressPhase(){
     if(this.state.view == 3){
       this.setState(prevState =>({progressPhase: 0}))
@@ -140,22 +168,30 @@ class App extends Component {
     this.setState(prevState => ({ sidebarMenu: !prevState.sidebarMenu }))
   }
 
+  fail = () =>{
+
+  }
   render() {
     //this variable should contatin the component
     var view = []
     //change component depending on state
     switch(this.state.view){
       case 0:
-        view.push(<ScheduleView toggleSearchClassModal={this.toggleClassInfoModal} />)
+        view.push(<ScheduleView 
+          viewTitle = "Class Schedule"
+          toggleSearchClassModal={this.toggleClassInfoModal} />)
         break
 
       case 1:
         view.push(<Progress
           right = "Next"
+          disabled = {true}
             step={this.state.progressPhase}
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)
-        view.push(<ScheduleView toggleSearchClassModal={this.toggleClassInfoModal} />)
+        view.push(<ScheduleView
+          viewTitle = "Adding Classes"
+          toggleSearchClassModal={this.toggleClassInfoModal} />)
         break
       case 2:
         view.push(<Progress
@@ -164,6 +200,7 @@ class App extends Component {
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)
         view.push(<ScheduleView
+          viewTitle = "Adding Classes"
           scheduleState="ADD_WORKS"
           toggleSearchClassModal={this.toggleClassInfoModal} />)
         break
@@ -186,7 +223,20 @@ class App extends Component {
         break
       case 5:
         view.push(<ScheduleView
+          viewTitle = "Class Schedule"
           scheduleState="ADD_DONE"
+          toggleSearchClassModal={this.toggleClassInfoModal} />)
+        break
+
+      case 6:
+        view.push(<Progress
+          right = "Next"
+            step={this.state.progressPhase}
+            next ={this.setText}
+            prev={this.retProgressPhase}/>)
+        view.push(<ScheduleView
+          viewTitle = "Adding Classes"
+          scheduleState="ADD_FAILS"
           toggleSearchClassModal={this.toggleClassInfoModal} />)
         break
     }
@@ -196,13 +246,17 @@ class App extends Component {
     else {
       return (
         <div>
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossOrigin="anonymous"/>
           {this.state.sidebarMenu ? <div className="overlay"></div> : null}
           <ModalConductor
+          fail = {this.fail}
           toggle = {this.toggle}
             currentModal={this.state.currentModal}
             handleModalUnmount={this.handleModalUnmount}
             toggleSearchClassModal2={this.toggleSearchClassModal2}
             toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+            togglePopup = {this.togglePopupInfo}
+            text = {this.state.text}
           />
           <div className="web-navbar">
             <NavBar 

@@ -16,7 +16,7 @@ class Progress extends Component {
 		if(this.props.left !== undefined){
 			left = <PointButton
 				name ={this.props.left}
-				direction="left"
+				direction="left hover"
 				clicked={this.props.prev}/>
 		}
 		return <div className = "progress_div">
@@ -38,7 +38,7 @@ class Progress extends Component {
 			<div className = "rightContain">
 				<PointButton
 				name ={this.props.right}
-				direction="right"
+				direction = {(this.props.disabled === undefined) ? "right hover" :"disabled"}
 				clicked={this.props.next}/>
 			</div>
 			</div>

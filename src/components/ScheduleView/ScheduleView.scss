@@ -2,6 +2,7 @@ $maroon: #99162c;
 $lighter_grey: #242424;
 $light_maroon: #bb1a35;
 $lightest_grey: #d8d8d8;
+$quite_light_gret: #777777;
 
 .schedule-mobile{
   display: none;
@@ -17,13 +18,22 @@ $lightest_grey: #d8d8d8;
     background-color: white;
     border-collapse: collapse;
   }
+  td{
+    padding: 0px;
+  }
   .timeCol {
     width: 70px;
   }
-
+  .temp_div{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
   th,
   .timeRow {
     background: $lightest_grey;
+    text-align: center;
+
   }
   td,
   th {
@@ -31,10 +41,27 @@ $lightest_grey: #d8d8d8;
     height: 30px;
   }
   .classEntry_temp{
-    background: $lighter_grey;
+    background: $quite_light_gret;
     color: white;
     text-align: center;
-    opacity: 0.5;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+  }
+  .classEntry_temp:hover{
+    cursor: pointer;
+    background: $lightest_grey;
+  }
+  .classEntry_temp:hover:after{
+    content: 'Click to Remove';
+    position: absolute;
+    background: $maroon;
+    padding: 10px;
+    width: 150px;
+    left: 100%;
+    z-index: 1;
+    opacity: 0.7;
   }
   .classEntry {
     background: $lighter_grey;

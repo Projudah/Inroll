@@ -138,20 +138,15 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    if(this.props.view === 5){
-      this.state = {
-      add: false,
-      delete: false,
-      swap: false,
-      search1: false,
-      search2: false,
-      search3: false,
-      swap1: false,
-      swap2: false,
-      swap3: false,
+    if([5].includes(this.props.view)){
+      this.state.add = false;
     }
+    if([2,6].includes(this.props.view)){
+      if(!this.state.add){
+        this.state.add=true;
+      }
     }
-    console.log("SIDE", this.state.add, this.props.view)
+    // console.log("SIDE", this.state.add, this.props.view)
 
     return (
       <div className="side-container">

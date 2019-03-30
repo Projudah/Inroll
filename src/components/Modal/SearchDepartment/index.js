@@ -35,21 +35,21 @@ export default class ModalWindow extends React.Component {
                 <td>HOM1234</td>
                 <td>Cooking with Scissors</td>
                 <td>
-                  <button>View Class</button>
+                  <button onClick={this.next}>View Class</button>
                 </td>
               </tr>
               <tr>
                 <td>FOO3456</td>
                 <td>Eating Cheese the Expert Way</td>
                 <td>
-                  <button>View Class</button>
+                  <button onClick={this.next}>View Class</button>
                 </td>
               </tr>
               <tr>
                 <td>AIR6789</td>
                 <td>How to Make Airplanes</td>
                 <td>
-                  <button>View Class</button>
+                  <button onClick={this.next}>View Class</button>
                 </td>
               </tr>
             </table>
