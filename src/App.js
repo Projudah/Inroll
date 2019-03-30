@@ -17,9 +17,12 @@ import PopupInfo from './components/Modal/PopupInfo'
 import Progress from './components/Progress'
 import ViewSelectedClasses from './components/ViewSelectedClasses'
 import Confirmation from './components/Confirmation'
+import DropScheduleView from './components/DropScheduleView'
+import ViewDroppedClasses from './components/ViewDroppedClasses'
 
 const ModalConductor = props => {
   var fail = props.fail
+  var proceed = props.proceed
   var toggle = props.toggle
   var text = props.text
   var togglePopup = props.togglePopup
@@ -27,6 +30,7 @@ const ModalConductor = props => {
   var toggleSearchClassModal2 = props.toggleSearchClassModal2
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
   var turnOffSidebar = props.turnOffSidebar
+  var toggleNextState = props.toggleNextState
   switch (props.currentModal) {
     case 'SEARCH_CLASS':
       return (
@@ -61,6 +65,9 @@ const ModalConductor = props => {
     case 'POPUP_INFO':
       return <PopupInfo
       text = {text}
+      right = {proceed}
+      left = "Cancel"
+      next = {toggleNextState}
       handleModalUnmount={handleModalUnmount}/>
     default:
       return null
@@ -77,7 +84,9 @@ class App extends Component {
       loginPage: false,
       progressPhase:0,
       sidebarMenu: false,
-      text: 'Intern Season'
+      text: 'Intern Season',
+      proceed: undefined,
+      nextState: 0
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
@@ -146,22 +155,55 @@ class App extends Component {
       this.setState(prevState =>({progressPhase: 0}))
       this.toggle(5)
     }
+    if(this.state.view == 8){
+      this.setState(prevState =>({progressPhase: 1}))
+      this.toggle(9)
+    }
+    if(this.state.view == 9){
+      this.setText()
+    }
+    if(this.state.view == 10){
+      this.setState(prevState =>({progressPhase: 0}))
+      this.toggle(11)
+    }
   }
 
   setText = () =>{
     if(this.state.view == 6){
       this.setState({
-        text: "Classes SEG3125 and HOM1234 are Conflicting on Monday"
+        text: "Classes SEG3125 and HOM1234 are Conflicting on Monday",
+        proceed: undefined
       })
+      this.togglePopupInfo()
+    }
+    if(this.state.view == 9){
+      this.setState({
+        text: "You're about to drop a required class: SEG3125",
+        proceed: "Proceed",
+        nextState: 10
+      })
+      this.togglePopupInfo()
     }
     
-    this.togglePopupInfo()
+    
+  }
+
+  goToNextState = () =>{
+    if(this.state.view == 9){
+      this.setState(prevState =>({progressPhase: 2}))
+    }
+    this.toggle(this.state.nextState)
+
   }
 
   retProgressPhase(){
     if(this.state.view == 3){
       this.setState(prevState =>({progressPhase: 0}))
       this.toggle(2)
+    }
+    if(this.state.view == 9){
+      this.setState(prevState =>({progressPhase: 0}))
+      this.toggle(7)
     }
   }
 
@@ -227,7 +269,7 @@ class App extends Component {
             step={this.state.progressPhase}
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)
-        view.push(<Confirmation/>)
+        view.push(<Confirmation info = "Registered"/>)
         break
       case 5:
         view.push(<ScheduleView
@@ -248,6 +290,52 @@ class App extends Component {
           toggleSearchClassModal={this.toggleClassInfoModal} 
           drop={this.drop}/>)
         break
+      case 7:
+        view.push(<Progress
+          right = "Next"
+          disabled = {true}
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<DropScheduleView
+          viewTitle = "Click on Classes to Drop"
+          toggleSearchClassModal={this.toggleClassInfoModal} 
+          toggle={this.toggle}/>)
+        break
+      case 8:
+        view.push(<Progress
+          right = "Next"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<DropScheduleView
+          viewTitle = "Dropping Classes"
+          toggleSearchClassModal={this.toggleClassInfoModal} 
+          toggle={this.toggle}/>)
+        break 
+      case 9:
+        view.push(<Progress
+          left = "Back"
+          right = "Drop"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<ViewDroppedClasses/>)
+        break
+      case 10:
+        view.push(<Progress
+          right = "Home"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<Confirmation info = "Dropped"/>)
+        break
+      case 11:
+        view.push(<ScheduleView
+          viewTitle = "Class Schedule"
+          scheduleState="DROP_DONE"
+          toggleSearchClassModal={this.toggleClassInfoModal} />)
+        break
     }
 
     if (this.state.loginPage)
@@ -265,7 +353,9 @@ class App extends Component {
             toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
             togglePopup = {this.togglePopupInfo}
             text = {this.state.text}
+            proceed = {this.state.proceed}
             turnOffSidebar = {this.turnOffSidebar}
+            toggleNextState = {this.goToNextState}
           />
           <div className="web-navbar">
             <NavBar 

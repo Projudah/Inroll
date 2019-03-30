@@ -42,6 +42,16 @@ $light_maroon: #bb1a35;
   }
 }
 
+.popup{
+  .cancel{
+    float: left;
+  }
+
+  .proceed{
+    float: right;
+  }
+}
+
 .title-area {
   display: grid;
   grid-template-columns: 2fr 1fr;

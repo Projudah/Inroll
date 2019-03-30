@@ -79,6 +79,11 @@ class Sidebar extends React.Component {
       delete: !prevState.delete,
       swap: false,
     }))
+    if(!this.state.delete){
+      this.props.toggle(7)
+    }else{
+      this.props.toggle(0)
+    }
   }
 
   swapClicked() {
@@ -145,6 +150,9 @@ class Sidebar extends React.Component {
       if(!this.state.add){
         this.state.add=true;
       }
+    }
+    if([11].includes(this.props.view)){
+      this.state.delete = false;
     }
     // console.log("SIDE", this.state.add, this.props.view)
 
@@ -352,7 +360,7 @@ class Sidebar extends React.Component {
               <div
                 className={this.state.delete ? 'content-active' : 'content-hide'}
               >
-                <button className="cancel-button" onClick={this.deleteClicked}>Cancel</button>
+              {(this.props.view !== 10) ? <button className="cancel-button" onClick={this.deleteClicked}>Cancel</button> : null}
               </div>
             </div>
             <div className="swap-class">
