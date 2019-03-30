@@ -196,19 +196,6 @@ class App extends Component {
     else {
       return (
         <div>
-          <div className="container-sidebar">
-            {/* {this.state.sidebarMenu ?
-                <div className="sidebar-mobile">
-                  <Sidebar
-                    toggle={this.toggle}
-                    toggleSearchClassModal={this.toggleSearchClassModal}
-                    toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
-                    toggleLoginPage={this.toggleLoginPage}
-                    toggleSidebarMenu={this.toggleSidebarMenu}
-                  />
-                </div>
-              : null } */}
-          </div>
           {this.state.sidebarMenu ? <div className="overlay"></div> : null}
           <ModalConductor
           toggle = {this.toggle}
