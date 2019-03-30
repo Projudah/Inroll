@@ -3,7 +3,11 @@ $lighter_grey: #242424;
 $light_maroon: #bb1a35;
 $lightest_grey: #d8d8d8;
 
-.schedule{
+.schedule-mobile{
+  display: none;
+}
+
+.schedule-web{
 	// height: 700px;
 
   table {
@@ -51,9 +55,11 @@ $lightest_grey: #d8d8d8;
 }
 
 @media only screen and (max-width: 1050px) {
-  .sidebar-container{
-		height: 100vh;
-		margin: 0;
-		z-index: 101;
+  .schedule-web{
+    display: none;
+  }
+
+  .schedule-mobile{
+    display: block;
   }
 }

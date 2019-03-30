@@ -401,7 +401,19 @@ class ScheduleView extends Component {
         id: 4,
       }]
   }
-    return <div className="schedule">{this.generateTable()}</div>
+    return(
+      <div>
+        <div className="schedule-container">
+          <div className="schedule-web">{this.generateTable()}</div>
+          <div className="schedule-mobile">
+            THIS IS MOBILE
+          </div>
+        </div>
+        <div className="course-sequence">
+          <h1>Recommended Course Sequence</h1>
+        </div>
+      </div>
+    )
   }
 }
 

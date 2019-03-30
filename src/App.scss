@@ -1,3 +1,11 @@
+.mobile-show{
+  display: block;
+}
+
+.mobile-hide{
+  display: block;
+}
+
 .app {
   display: grid;
   grid-template-columns: 20em 2fr;
@@ -44,6 +52,14 @@
   .app{
     grid-template-columns: 1fr;
     width: 100%;
+  }
+
+  .mobile-show{
+    display: block;
+  }
+  
+  .mobile-hide{
+    display: none;
   }
   
   .web-navbar{

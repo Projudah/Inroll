@@ -17,31 +17,6 @@ import Progress from './components/Progress'
 import ViewSelectedClasses from './components/ViewSelectedClasses'
 import Confirmation from './components/Confirmation'
 
-
-const SidebarConductor = props => {
-  var view = props.view
-  var sidebarToggle = props.sidebarMenu
-  var toggle = props.toggle
-  var toggleSearchClassModal = props.toggleSearchClassModal
-  var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
-  var toggleLoginPage = props.toggleLoginPage
-  var toggleSidebarMenu = props.toggleSidebarMenu
-  switch (props.sidebarMenu){
-    case true:
-      console.log("cond",view)
-      return <Sidebar
-        toggle={toggle}
-        toggleSearchClassModal={toggleSearchClassModal}
-        toggleSearchDepartmentModal={toggleSearchDepartmentModal}
-        toggleLoginPage={toggleLoginPage}
-        toggleSidebarMenu={toggleSidebarMenu}
-        view = {view}
-      />
-    case false:
-      return null
-  }
-}
-
 const ModalConductor = props => {
   var toggle = props.toggle
   var handleModalUnmount = props.handleModalUnmount
@@ -222,17 +197,17 @@ class App extends Component {
       return (
         <div>
           <div className="container-sidebar">
-            <div className="sidebar-mobile">
-              <SidebarConductor
-                toggle={this.toggle}
-                toggleSearchClassModal={this.toggleSearchClassModal}
-                toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
-                toggleLoginPage={this.toggleLoginPage}
-                toggleSidebarMenu={this.toggleSidebarMenu}
-                sidebarMenu={this.state.sidebarMenu}
-                view = {this.state.view}
-              />
-            </div>
+            {/* {this.state.sidebarMenu ?
+                <div className="sidebar-mobile">
+                  <Sidebar
+                    toggle={this.toggle}
+                    toggleSearchClassModal={this.toggleSearchClassModal}
+                    toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+                    toggleLoginPage={this.toggleLoginPage}
+                    toggleSidebarMenu={this.toggleSidebarMenu}
+                  />
+                </div>
+              : null } */}
           </div>
           {this.state.sidebarMenu ? <div className="overlay"></div> : null}
           <ModalConductor
@@ -257,16 +232,15 @@ class App extends Component {
             />
           </div>
           <div className="app">
-            <div className="container-sidebar">
-              <div className="sidebar-web">
-                <Sidebar
-                  toggle={this.toggle}
-                  toggleSearchClassModal={this.toggleSearchClassModal}
-                  toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
-                  toggleLoginPage={this.toggleLoginPage}
-                  view = {this.state.view}
-                />
-              </div>
+            <div className={this.state.sidebarMenu ? "mobile-show" : "mobile-hide" }>
+              <Sidebar
+                toggle={this.toggle}
+                toggleSearchClassModal={this.toggleSearchClassModal}
+                toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+                toggleLoginPage={this.toggleLoginPage}
+                toggleSidebarMenu = {this.toggleSidebarMenu}
+                view = {this.state.view}
+              />
             </div>
             <div className="content">
               {view}
