@@ -24,7 +24,7 @@ class Progress extends Component {
 			<div className = "leftContain">
 				{left}
 			</div>
-
+			<div className="progress-bar">
 				<Stepper steps={ [{title: 'Select Classes'}, {title: 'View Selection'}, {title: 'Confirm'}] }
 				activeStep={this.props.step}
 				activeColor = "#bb1a35"
@@ -35,6 +35,7 @@ class Progress extends Component {
 				lineMarginOffset = {4}
 				defaultBorderWidth = {0}
 				/>
+			</div>
 			<div className = "rightContain">
 				<PointButton
 				name ={this.props.right}

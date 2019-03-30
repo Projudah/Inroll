@@ -41,3 +41,29 @@ $lightest_grey: #d8d8d8;
   	padding-right: 50px;
   }
 }
+
+@media only screen and (max-width: 1050px) {
+  .progress_div{
+    .buttons{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+
+    .progress-bar{
+      grid-row: 1;
+      grid-column: 1;
+      grid-column-start: span 2;
+    }
+
+    .leftContain{
+      grid-row: 2;
+      grid-column: 1;
+      align-content: right;
+    }
+
+    .rightContain{
+      grid-row: 2;
+      grid-column: 2;
+    }
+  }
+}
