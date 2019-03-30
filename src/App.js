@@ -22,6 +22,7 @@ const ModalConductor = props => {
   var handleModalUnmount = props.handleModalUnmount
   var toggleSearchClassModal2 = props.toggleSearchClassModal2
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
+  var turnOffSidebar = props.turnOffSidebar
   switch (props.currentModal) {
     case 'SEARCH_CLASS':
       return (
@@ -46,6 +47,7 @@ const ModalConductor = props => {
           toggle={toggle}
           handleModalUnmount={handleModalUnmount}
           toggleSearchDepartmentModal={toggleSearchDepartmentModal}
+          turnOffSidebar={turnOffSidebar}
         />
       )
     case 'CLASS_INFO':
@@ -206,6 +208,7 @@ class App extends Component {
             handleModalUnmount={this.handleModalUnmount}
             toggleSearchClassModal2={this.toggleSearchClassModal2}
             toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
+            turnOffSidebar = {this.turnOffSidebar}
           />
           <div className="web-navbar">
             <NavBar 
