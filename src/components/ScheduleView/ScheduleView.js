@@ -453,6 +453,17 @@ class ScheduleView extends Component {
         </div>
         <div className="course-sequence">
           <h1>Recommended Course Sequence</h1>
+          Click the course name to add course
+          <ul>
+            <div className="active-link">
+              <li onClick={this.props.toggleSearchClassModal}>SEG3125 - User Interface and User Analysis</li>
+              <li  onClick={this.props.toggleSearchClassModal}>FOO3456 - Eating cheese the expert way</li>
+            </div>
+            <li> Elective *</li>
+            <li> Elective *</li>
+            <li> Elective *</li>
+          </ul>
+          <i>* any class can be used. Add a class by clicking the "Add Class" in the sidebar</i>
         </div>
       </div>
     )

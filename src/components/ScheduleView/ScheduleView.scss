@@ -72,6 +72,17 @@ $lightest_grey: #d8d8d8;
   }
 }
 
+.course-sequence{
+  li{
+    margin-bottom: 1em;
+  }
+  .active-link{
+    li:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
 @media only screen and (max-width: 1050px) {
   .schedule-web{
     display: none;

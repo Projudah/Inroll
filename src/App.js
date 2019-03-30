@@ -68,14 +68,13 @@ class App extends Component {
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
     this.toggleHelpPage = this.toggleHelpPage.bind(this)
-    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(
-      this,
-    )
+    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(this)
     this.toggleSearchClassModal2 = this.toggleSearchClassModal2.bind(this)
     this.toggleLoginPage = this.toggleLoginPage.bind(this)
     this.toggleClassInfoModal = this.toggleClassInfoModal.bind(this)
     this.changeProgressPhase = this.changeProgressPhase.bind(this)
     this.toggleSidebarMenu = this.toggleSidebarMenu.bind(this)
+    this.turnOffSidebar = this.turnOffSidebar.bind(this)
     this.retProgressPhase = this.retProgressPhase.bind(this)
   }
 
@@ -138,6 +137,10 @@ class App extends Component {
 
   toggleSidebarMenu = () => {
     this.setState(prevState => ({ sidebarMenu: !prevState.sidebarMenu }))
+  }
+
+  turnOffSidebar = () => {
+    this.setState({ sidebarMenu: false })
   }
 
   render() {

@@ -187,6 +187,9 @@ class Sidebar extends React.Component {
             <h2>Search for classes</h2>
             <SearchBar toggleSearchClassModal={this.props.toggleSearchClassModal}/>
           </div>
+          <div className="mobile-title">
+            <h2>Edit your schedule</h2>
+          </div>
           <div className="menu">
             <div className="add-class">
               <button
