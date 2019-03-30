@@ -165,6 +165,11 @@ class App extends Component {
     }
   }
 
+  drop = () =>{
+    this.setState(prevState =>({progressPhase: 0}))
+    this.toggle(1)
+  }
+
   toggleSidebarMenu = () => {
     this.setState(prevState => ({ sidebarMenu: !prevState.sidebarMenu }))
   }
@@ -204,7 +209,8 @@ class App extends Component {
         view.push(<ScheduleView
           viewTitle = "Adding Classes"
           scheduleState="ADD_WORKS"
-          toggleSearchClassModal={this.toggleClassInfoModal} />)
+          toggleSearchClassModal={this.toggleClassInfoModal}
+          drop={this.drop} />)
         break
       case 3:
         view.push(<Progress
@@ -239,7 +245,8 @@ class App extends Component {
         view.push(<ScheduleView
           viewTitle = "Adding Classes"
           scheduleState="ADD_FAILS"
-          toggleSearchClassModal={this.toggleClassInfoModal} />)
+          toggleSearchClassModal={this.toggleClassInfoModal} 
+          drop={this.drop}/>)
         break
     }
 

@@ -106,7 +106,7 @@ class ScheduleView extends Component {
             if(classes[j].temp !== undefined){
               rows[classes[j].Day + offset] = (
               <td
-                onClick={this.props.toggleSearchClassModal}
+                onClick={this.props.drop}
                 rowSpan={classes[j].Length}
                 colSpan={spaned}
                 
