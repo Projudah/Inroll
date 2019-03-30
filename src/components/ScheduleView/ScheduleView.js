@@ -209,7 +209,7 @@ class ScheduleView extends Component {
       })
 
       var html = classList.map((field, index) => (
-        <div className="class" onClick={this.props.toggleSearchClassModal}>
+        <div className={field.temp ? "class-temp" : "class"} onClick={this.props.toggleSearchClassModal}>
           <div className="class-title">{field.Name}</div>
           <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
           <div className="location">{field.Location}</div>

@@ -8,6 +8,18 @@ $lightest_grey: #d8d8d8;
 
   .schedule-block{
     .class{
+      background-color: $lighter_grey;
+      color: white;
+      padding: 1em;
+      margin: 0.5em;
+
+      .class-title{
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
+
+    .class-temp{
       background-color: $lightest_grey;
       padding: 1em;
       margin: 0.5em;
@@ -18,7 +30,7 @@ $lightest_grey: #d8d8d8;
       }
     }
 
-    .class:hover{
+    .class:hover, .class-temp:hover{
       background-color: $light_maroon;
       color: white;
     }
