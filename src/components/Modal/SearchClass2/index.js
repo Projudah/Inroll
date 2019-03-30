@@ -14,6 +14,7 @@ export default class ModalWindow extends React.Component {
   addRight = () => {
     this.props.toggle(2)
     this.onCloseModal()
+    this.props.turnOffSidebar()
   }
   addFail = () =>{
     this.props.toggle(6)

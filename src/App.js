@@ -26,6 +26,7 @@ const ModalConductor = props => {
   var handleModalUnmount = props.handleModalUnmount
   var toggleSearchClassModal2 = props.toggleSearchClassModal2
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
+  var turnOffSidebar = props.turnOffSidebar
   switch (props.currentModal) {
     case 'SEARCH_CLASS':
       return (
@@ -51,6 +52,7 @@ const ModalConductor = props => {
           toggle={toggle}
           handleModalUnmount={handleModalUnmount}
           toggleSearchDepartmentModal={toggleSearchDepartmentModal}
+          turnOffSidebar={turnOffSidebar}
         />
       )
     case 'CLASS_INFO':
@@ -80,14 +82,13 @@ class App extends Component {
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
     this.toggleHelpPage = this.toggleHelpPage.bind(this)
-    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(
-      this,
-    )
+    this.toggleSearchDepartmentModal = this.toggleSearchDepartmentModal.bind(this)
     this.toggleSearchClassModal2 = this.toggleSearchClassModal2.bind(this)
     this.toggleLoginPage = this.toggleLoginPage.bind(this)
     this.toggleClassInfoModal = this.toggleClassInfoModal.bind(this)
     this.changeProgressPhase = this.changeProgressPhase.bind(this)
     this.toggleSidebarMenu = this.toggleSidebarMenu.bind(this)
+    this.turnOffSidebar = this.turnOffSidebar.bind(this)
     this.retProgressPhase = this.retProgressPhase.bind(this)
   }
 
@@ -168,9 +169,10 @@ class App extends Component {
     this.setState(prevState => ({ sidebarMenu: !prevState.sidebarMenu }))
   }
 
-  fail = () =>{
-
+  turnOffSidebar = () => {
+    this.setState({ sidebarMenu: false })
   }
+
   render() {
     //this variable should contatin the component
     var view = []
@@ -246,8 +248,7 @@ class App extends Component {
     else {
       return (
         <div>
-          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossOrigin="anonymous"/>
-          {this.state.sidebarMenu ? <div className="overlay"></div> : null}
+          {this.state.sidebarMenu ? <div className="mobile-navbar overlay" onClick={this.toggleSidebarMenu}></div> : null}
           <ModalConductor
           fail = {this.fail}
           toggle = {this.toggle}
@@ -257,6 +258,7 @@ class App extends Component {
             toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
             togglePopup = {this.togglePopupInfo}
             text = {this.state.text}
+            turnOffSidebar = {this.turnOffSidebar}
           />
           <div className="web-navbar">
             <NavBar 

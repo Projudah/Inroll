@@ -202,6 +202,34 @@ class ScheduleView extends Component {
     )
   }
 
+  generateDaySchedule = (day) =>{
+    var classList = []
+    for(var i=0; i < this.classes.length; i++){
+      if(this.classes[i].Day == day){
+        classList.push(this.classes[i])
+      }
+    }
+
+    if (classList.length != 0){
+      classList.sort(function(a,b){
+        return a.Time - b.Time
+      })
+
+      var html = classList.map((field, index) => (
+        <div className={field.temp ? "class-temp" : "class"} onClick={this.props.toggleSearchClassModal}>
+          <div className="class-title">{field.Name}</div>
+          <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
+          <div className="location">{field.Location}</div>
+          <div className="type">{field.Section}</div>
+        </div>
+      ))
+
+      return html
+    }else{
+      return <div className="class">No classes</div>
+    }
+  }
+
   render() {
 
     switch(this.props.scheduleState){
@@ -493,11 +521,36 @@ class ScheduleView extends Component {
         <div className="schedule-container">
           <div className="schedule-web">{this.generateTable()}</div>
           <div className="schedule-mobile">
-            THIS IS MOBILE
+            <h1>Class schedule</h1>
+            <h2>Monday</h2>
+            <div id="monday" className="schedule-block">{this.generateDaySchedule(0)}</div>
+            <h2>Tuesday</h2>
+            <div id="tuesday" className="schedule-block">{this.generateDaySchedule(1)}</div>
+            <h2>Wednesday</h2>
+            <div id="wednesday" className="schedule-block">{this.generateDaySchedule(2)}</div>
+            <h2>Thursday</h2>
+            <div id="thursday" className="schedule-block">{this.generateDaySchedule(3)}</div>
+            <h2>Friday</h2>
+            <div id="friday" className="schedule-block">{this.generateDaySchedule(4)}</div>
+            <h2>Saturday</h2>
+            <div id="saturday" className="schedule-block">{this.generateDaySchedule(5)}</div>
+            <h2>Sunday</h2>
+            <div id="sunday" className="schedule-block">{this.generateDaySchedule(6)}</div>
           </div>
         </div>
         <div className="course-sequence">
           <h1>Recommended Course Sequence</h1>
+          Click the course name to add course
+          <ul>
+            <div className="active-link">
+              <li onClick={this.props.toggleSearchClassModal}>SEG3125 - User Interface and User Analysis</li>
+              <li  onClick={this.props.toggleSearchClassModal}>FOO3456 - Eating cheese the expert way</li>
+            </div>
+            <li> Elective *</li>
+            <li> Elective *</li>
+            <li> Elective *</li>
+          </ul>
+          <i>* any class can be used. Add a class by clicking the "Add Class" in the sidebar</i>
         </div>
       </div>
     )

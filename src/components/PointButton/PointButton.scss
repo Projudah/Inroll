@@ -93,3 +93,9 @@ $lightest_grey: #d8d8d8;
 	top: 0;
 	right: 100%;
 }
+
+@media only screen and (max-width: 1050px) {
+	.right, .left{
+		width: 8em;
+	}
+}

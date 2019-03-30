@@ -6,6 +6,36 @@ $quite_light_gret: #777777;
 
 .schedule-mobile{
   display: none;
+
+  .schedule-block{
+    .class{
+      background-color: $lighter_grey;
+      color: white;
+      padding: 1em;
+      margin: 0.5em;
+
+      .class-title{
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
+
+    .class-temp{
+      background-color: $lightest_grey;
+      padding: 1em;
+      margin: 0.5em;
+
+      .class-title{
+        font-size: 1.2em;
+        font-weight: bold;
+      }
+    }
+
+    .class:hover, .class-temp:hover{
+      background-color: $light_maroon;
+      color: white;
+    }
+  }
 }
 
 .schedule-web{
@@ -78,6 +108,17 @@ $quite_light_gret: #777777;
   }
   tr:nth-child(odd) {
     background-color: $lightest_grey;
+  }
+}
+
+.course-sequence{
+  li{
+    margin-bottom: 1em;
+  }
+  .active-link{
+    li:hover{
+      text-decoration: underline;
+    }
   }
 }
 

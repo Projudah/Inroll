@@ -16,6 +16,10 @@ $light_maroon: #bb1a35;
   display: none;
 }
 
+.mobile-title{
+  display: none;
+}
+
 .user-info {
   background-color: $darker_grey;
   color: white;
@@ -260,6 +264,11 @@ $light_maroon: #bb1a35;
   .search-bar{
     display: block;
     padding: 1em;
+  }
+
+  .mobile-title{
+    display: block;
+    padding-left: 1em;
   }
 
   .sidebar{
