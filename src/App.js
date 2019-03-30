@@ -196,7 +196,7 @@ class App extends Component {
     else {
       return (
         <div>
-          {this.state.sidebarMenu ? <div className="overlay"></div> : null}
+          {this.state.sidebarMenu ? <div className="mobile-navbar overlay" onClick={this.toggleSidebarMenu}></div> : null}
           <ModalConductor
           toggle = {this.toggle}
             currentModal={this.state.currentModal}
