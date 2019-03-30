@@ -521,7 +521,6 @@ class ScheduleView extends Component {
         <div className="schedule-container">
           <div className="schedule-web">{this.generateTable()}</div>
           <div className="schedule-mobile">
-            <h1>Class schedule</h1>
             <h2>Monday</h2>
             <div id="monday" className="schedule-block">{this.generateDaySchedule(0)}</div>
             <h2>Tuesday</h2>
