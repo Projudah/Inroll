@@ -32,8 +32,10 @@ const ModalConductor = props => {
       return (
         <div>
           <SearchClassModal
-          toggle = {toggle}
-          handleModalUnmount={handleModalUnmount} />
+            toggle = {toggle}
+            handleModalUnmount={handleModalUnmount}
+            turnOffSidebar={turnOffSidebar}
+          />
         </div>
       )
     case 'HELP_PAGE':
