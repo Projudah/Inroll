@@ -62,7 +62,7 @@ class Sidebar extends React.Component {
 
   addClicked() {
     this.setState(prevState => ({
-      add: !prevState.add,
+      add: !this.state.add,
       delete: false,
       swap: false,
     }))
@@ -138,6 +138,21 @@ class Sidebar extends React.Component {
   }
 
   render() {
+    if(this.props.view === 5){
+      this.state = {
+      add: false,
+      delete: false,
+      swap: false,
+      search1: false,
+      search2: false,
+      search3: false,
+      swap1: false,
+      swap2: false,
+      swap3: false,
+    }
+    }
+    console.log("SIDE", this.state.add, this.props.view)
+
     return (
       <div className="side-container">
         <div className="close-sidebar">
@@ -324,7 +339,8 @@ class Sidebar extends React.Component {
                     </form>
                   </div>
                 </div>
-                <button className="cancel-button" onClick={this.addClicked}>Cancel</button>
+                {(this.props.view !== 4) ? <button className="cancel-button" onClick={this.addClicked}>Cancel</button> : null}
+                
               </div>
             </div>
             <div className="delete-class">

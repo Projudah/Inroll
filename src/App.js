@@ -14,8 +14,12 @@ import LoginPage from './components/LoginPage'
 import ClassInfo from './components/Modal/ClassInfo'
 
 import Progress from './components/Progress'
+import ViewSelectedClasses from './components/ViewSelectedClasses'
+import Confirmation from './components/Confirmation'
+
 
 const SidebarConductor = props => {
+  var view = props.view
   var sidebarToggle = props.sidebarMenu
   var toggle = props.toggle
   var toggleSearchClassModal = props.toggleSearchClassModal
@@ -24,12 +28,14 @@ const SidebarConductor = props => {
   var toggleSidebarMenu = props.toggleSidebarMenu
   switch (props.sidebarMenu){
     case true:
+      console.log("cond",view)
       return <Sidebar
         toggle={toggle}
         toggleSearchClassModal={toggleSearchClassModal}
         toggleSearchDepartmentModal={toggleSearchDepartmentModal}
         toggleLoginPage={toggleLoginPage}
         toggleSidebarMenu={toggleSidebarMenu}
+        view = {view}
       />
     case false:
       return null
@@ -77,7 +83,7 @@ const ModalConductor = props => {
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { //0: home, 1:add class select, 2: correctly add class
+    this.state = { //0: home, 1:add class select, 2: correctly add class 3: view selected classes, 4:add class confirmation
       view: 0,
       currentModal: null,
       loginPage: false,
@@ -95,6 +101,7 @@ class App extends Component {
     this.toggleClassInfoModal = this.toggleClassInfoModal.bind(this)
     this.changeProgressPhase = this.changeProgressPhase.bind(this)
     this.toggleSidebarMenu = this.toggleSidebarMenu.bind(this)
+    this.retProgressPhase = this.retProgressPhase.bind(this)
   }
 
   handleModalUnmount() {
@@ -102,7 +109,6 @@ class App extends Component {
   }
 
   toggle = (view) => {
-    console.log("view", view)
     this.setState({
       view: view,
     })
@@ -134,9 +140,25 @@ class App extends Component {
   }
 
   changeProgressPhase(){
-    this.setState(prevState =>{
-      return {progressPhase: prevState.progressPhase == '2' ? prevState.progressPhase -2 : prevState.progressPhase + 1}
-    })
+    if(this.state.view == 2){
+      this.setState(prevState =>({progressPhase: 1}))
+      this.toggle(3)
+    }
+    if(this.state.view == 3){
+      this.setState(prevState =>({progressPhase: 2}))
+      this.toggle(4)
+    }
+    if(this.state.view == 4){
+      this.setState(prevState =>({progressPhase: 0}))
+      this.toggle(5)
+    }
+  }
+
+  retProgressPhase(){
+    if(this.state.view == 3){
+      this.setState(prevState =>({progressPhase: 0}))
+      this.toggle(2)
+    }
   }
 
   toggleSidebarMenu = () => {
@@ -154,16 +176,42 @@ class App extends Component {
 
       case 1:
         view.push(<Progress
+          right = "Next"
             step={this.state.progressPhase}
-            next ={this.changeProgressPhase}/>)
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
         view.push(<ScheduleView toggleSearchClassModal={this.toggleClassInfoModal} />)
         break
       case 2:
         view.push(<Progress
+          right = "Next"
             step={this.state.progressPhase}
-            next ={this.changeProgressPhase}/>)
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
         view.push(<ScheduleView
           scheduleState="ADD_WORKS"
+          toggleSearchClassModal={this.toggleClassInfoModal} />)
+        break
+      case 3:
+        view.push(<Progress
+          left = "Back"
+          right = "Register"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<ViewSelectedClasses/>)
+        break
+      case 4:
+        view.push(<Progress
+          right = "Home"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<Confirmation/>)
+        break
+      case 5:
+        view.push(<ScheduleView
+          scheduleState="ADD_DONE"
           toggleSearchClassModal={this.toggleClassInfoModal} />)
         break
     }
@@ -182,6 +230,7 @@ class App extends Component {
                 toggleLoginPage={this.toggleLoginPage}
                 toggleSidebarMenu={this.toggleSidebarMenu}
                 sidebarMenu={this.state.sidebarMenu}
+                view = {this.state.view}
               />
             </div>
           </div>
@@ -215,6 +264,7 @@ class App extends Component {
                   toggleSearchClassModal={this.toggleSearchClassModal}
                   toggleSearchDepartmentModal={this.toggleSearchDepartmentModal}
                   toggleLoginPage={this.toggleLoginPage}
+                  view = {this.state.view}
                 />
               </div>
             </div>

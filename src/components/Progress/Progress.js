@@ -8,14 +8,21 @@ class Progress extends Component {
 		super(props)
 	}
 
+
 	render() {
+
+		var left = ' '
+
+		if(this.props.left !== undefined){
+			left = <PointButton
+				name ={this.props.left}
+				direction="left"
+				clicked={this.props.prev}/>
+		}
 		return <div className = "progress_div">
 			<div className = "buttons">
 			<div className = "leftContain">
-				<PointButton
-				name ="Cancel"
-				direction="left"
-				clicked={this.props.cancel}/>
+				{left}
 			</div>
 
 				<Stepper steps={ [{title: 'Select Classes'}, {title: 'View Selection'}, {title: 'Confirm'}] }
@@ -30,7 +37,7 @@ class Progress extends Component {
 				/>
 			<div className = "rightContain">
 				<PointButton
-				name ="Next"
+				name ={this.props.right}
 				direction="right"
 				clicked={this.props.next}/>
 			</div>

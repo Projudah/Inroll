@@ -277,6 +277,82 @@ class ScheduleView extends Component {
       }
       ]
       break
+    case "ADD_DONE":
+      this.classes = 
+      [{
+        Day: 0,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 9,
+        id: 0,
+      },
+      {
+        Day: 2,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lecture',
+        Time: 6,
+        id: 1,
+      },
+      {
+        Day: 4,
+        Length: 3,
+        Name: 'SEG3125',
+        Location: 'Mars',
+        Section: 'Lab',
+        Time: 0,
+        id: 2,
+      },
+      {
+        Day: 1,
+        Length: 6,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lecture',
+        Time: 21,
+        id: 3,
+      },
+      {
+        Day: 3,
+        Length: 3,
+        Name: 'FOO3456',
+        Location: 'Snip Center',
+        Section: 'Lab',
+        Time: 8,
+        id: 4,
+      },
+      {
+        Day: 4,
+        Length: 3,
+        Name: 'AIR6789',
+        Location: 'Cloud 9',
+        Section: 'Lecture',
+        Time: 6,
+        id: 5
+      },
+      {
+        Day: 3,
+        Length: 3,
+        Name: 'AIR6789',
+        Location: 'Cloud 9',
+        Section: 'Lecture',
+        Time: 11,
+        id: 6
+      },
+      {
+        Day: 0,
+        Length: 6,
+        Name: 'AIR6789',
+        Location: 'Cloud 9',
+        Section: 'Lab',
+        Time: 21,
+        id: 7
+      }
+      ]
+      break
     default:
       this.classes = 
       [{
