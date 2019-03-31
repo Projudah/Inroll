@@ -29,14 +29,16 @@ export default class PopupInfo extends React.Component {
           <p>
             {this.props.text}
           </p>
-          <div className = "cancel">
-            <PointButton
-                name ={this.props.left}
-                direction="left hover"
-                clicked={this.onCloseModal}/>
-          </div>
-          <div className = "proceed">
-          {proceed}
+          <div className="button">
+            <div className = "cancel">
+              <PointButton
+                  name ={this.props.left}
+                  direction="left hover"
+                  clicked={this.onCloseModal}/>
+            </div>
+            <div className = "proceed">
+            {proceed}
+            </div>
           </div>
         </div>
 

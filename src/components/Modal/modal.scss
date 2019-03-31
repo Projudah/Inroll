@@ -43,12 +43,23 @@ $light_maroon: #bb1a35;
 }
 
 .popup{
-  .cancel{
-    float: left;
-  }
+  .button{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
-  .proceed{
-    float: right;
+    .cancel{
+      grid-column: 1;
+      padding: 1em;
+      margin: 0 auto;
+      align-content: center;
+    }
+  
+    .proceed{
+      grid-column: 2;
+      padding: 1em;
+      margin: 0 auto;
+      align-content: center;
+    }
   }
 }
 
@@ -107,4 +118,18 @@ button:hover {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1050px) {
+  .popup{
+    .button{
+      .cancel{
+        padding: 0;
+      }
+    
+      .proceed{
+        padding: 0;
+      }
+    }
+  }
 }
