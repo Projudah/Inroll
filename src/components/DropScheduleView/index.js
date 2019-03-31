@@ -177,7 +177,7 @@ class DropScheduleView extends Component {
       ))
       return html
     }else{
-      return <div className="class-text">No classes</div>
+      return <div className="no-class">No classes</div>
     }
   }
 

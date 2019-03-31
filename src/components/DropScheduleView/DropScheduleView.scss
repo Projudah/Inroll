@@ -8,6 +8,13 @@ $quite_light_gret: #777777;
   display: none;
 
   .schedule-block{
+    .no-class{
+      background-color: black;
+      color: white;
+      padding: 1em;
+      margin: 0.5em;
+    }
+
     .classEntry{
       display: grid;
       grid-template-columns: 5fr 1fr;
