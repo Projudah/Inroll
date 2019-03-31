@@ -495,6 +495,7 @@ class App extends Component {
                 toggleLoginPage={this.toggleLoginPage}
                 toggleSidebarMenu = {this.toggleSidebarMenu}
                 view = {this.state.view}
+                turnOffSidebar = {this.turnOffSidebar}
               />
             </div>
             <div className="content">

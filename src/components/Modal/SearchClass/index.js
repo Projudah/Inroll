@@ -16,6 +16,7 @@ export default class ModalWindow extends React.Component {
   addFail = () =>{
     this.props.toggle(6)
     this.onCloseModal()
+    this.props.turnOffSidebar()
   }
 
   render() {

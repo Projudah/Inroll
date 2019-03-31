@@ -160,17 +160,24 @@ class DropScheduleView extends Component {
       })
 
       var html = classList.map((field, index) => (
-        <div className={field.temp ? "class-temp" : "class"} onClick={this.props.toggleSearchClassModal}>
-          <div className="class-title">{field.Name}</div>
-          <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
-          <div className="location">{field.Location}</div>
-          <div className="type">{field.Section}</div>
+        <div className={"classEntry " + field.Name}>
+          <div className="class-info" onClick={this.props.toggleSearchClassModal}>
+            <div className="class-text">
+              <div className="class-title">{field.Name}</div>
+              <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
+              <div className="location">{field.Location}</div>
+              <div className="type">{field.Section}</div>
+            </div>
+          </div>
+          <div className="class-delete" onClick={this.drop.bind(this, field.Name)}>
+            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-undo"></i>
+          </div>
         </div>
       ))
-
       return html
     }else{
-      return <div className="class">No classes</div>
+      return <div className="no-class">No classes</div>
     }
   }
 
@@ -464,8 +471,7 @@ class DropScheduleView extends Component {
       <div className = "Viewtitle">{this.props.viewTitle}</div>
         <div className="schedule-container">
           <div className="dropschedule-web">{this.generateTable()}</div>
-          <div className="schedule-mobile">
-            <h1>Class schedule</h1>
+          <div className="dropschedule-mobile">
             <h2>Monday</h2>
             <div id="monday" className="schedule-block">{this.generateDaySchedule(0)}</div>
             <h2>Tuesday</h2>
