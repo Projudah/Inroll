@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import './ScheduleView.scss'
+import './SwapScheduleView.scss'
 
-class ScheduleView extends Component {
+class SwapScheduleView extends Component {
   
   times = [
     '8:30',
@@ -33,6 +33,25 @@ class ScheduleView extends Component {
     '21:30',
     '22:00',
   ]
+
+  drop(elname){
+    var el = document.getElementsByClassName(elname)
+    for(var i=0; i<el.length; i++){
+      if(!el[i].className.includes('selected')){
+        el[i].className = 'selected '+elname
+      }else{
+        el[i].className = 'classEntry '+elname
+      }
+    }
+
+    var find = document.getElementsByClassName('selected')
+    if(find.length !== 0){
+      this.props.toggle(8)
+    }else{
+      this.props.toggle(7)
+    }
+    
+  }
 
   generateRow = (time, classes) => {
     var rows = []
@@ -106,7 +125,7 @@ class ScheduleView extends Component {
             if(classes[j].temp !== undefined){
               rows[classes[j].Day + offset] = (
               <td
-                onClick={this.props.drop}
+                onClick={this.props.drop2}
                 rowSpan={classes[j].Length}
                 colSpan={spaned}
                 
@@ -122,20 +141,44 @@ class ScheduleView extends Component {
                 </div>
               </div></td>
             )
-            }else{
+            }
+            else if(classes[j].diff !== undefined){
               rows[classes[j].Day + offset] = (
               <td
-                onClick={this.props.toggleSearchClassModal}
+                onClick={this.props.drop}
                 rowSpan={classes[j].Length}
                 colSpan={spaned}
-                className="classEntry"
-              >
+                
+              ><div className = "temp_div">
+              <div className="classEntry_seled">
+              <p>
                 {classes[j].Name}
                 <br />
                 {classes[j].Section}
                 <br />
                 {classes[j].Location}
-              </td>
+                </p>
+                </div>
+              </div></td>
+            )
+            }else{
+              rows[classes[j].Day + offset] = (
+              <td
+                onClick={this.props.proceed}
+                rowSpan={classes[j].Length}
+                colSpan={spaned}
+                
+              ><div className = "div">
+              <div className="classEntry">
+              <p>
+                {classes[j].Name}
+                <br />
+                {classes[j].Section}
+                <br />
+                {classes[j].Location}
+                </p>
+                </div>
+              </div></td>
             )
             }
             
@@ -216,16 +259,11 @@ class ScheduleView extends Component {
       })
 
       var html = classList.map((field, index) => (
-        <div className={field.collision ? "class-colli": (field.temp ? "class-temp" : "class")}>
-          <div className="class-info" onClick={this.props.toggleSearchClassModal}>
-            <div className="class-text">
-              <div className="class-title">{field.Name}</div>
-              <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
-              <div className="location">{field.Location}</div>
-              <div className="type">{field.Section}</div>
-            </div>
-          </div>
-          {field.temp ? <div className="class-delete" onClick={this.props.drop}><i class="fas fa-trash-alt"></i></div> : null}
+        <div className={field.temp ? "class-temp" : "class"} onClick={this.props.toggleSearchClassModal}>
+          <div className="class-title">{field.Name}</div>
+          <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
+          <div className="location">{field.Location}</div>
+          <div className="type">{field.Section}</div>
         </div>
       ))
 
@@ -238,163 +276,90 @@ class ScheduleView extends Component {
   render() {
 
     switch(this.props.scheduleState){
-    case "ADD_WORKS":
-      this.classes = 
-      [{
-        Day: 0,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lecture',
-        Time: 9,
-        id: 0,
-      },
-      {
-        Day: 2,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lecture',
-        Time: 6,
-        id: 1,
-      },
-      {
-        Day: 4,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lab',
-        Time: 0,
-        id: 2,
-      },
-      {
-        Day: 1,
-        Length: 6,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lecture',
-        Time: 21,
-        id: 3,
-      },
-      {
-        Day: 3,
-        Length: 3,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lab',
-        Time: 8,
-        id: 4,
-      },
-      {
-        Day: 4,
-        Length: 3,
-        Name: 'AIR6789',
-        Location: 'Cloud 9',
-        Section: 'Lecture',
-        Time: 6,
-        id: 5,
-        temp: true
-      },
-      {
-        Day: 3,
-        Length: 3,
-        Name: 'AIR6789',
-        Location: 'Cloud 9',
-        Section: 'Lecture',
-        Time: 11,
-        id: 6,
-        temp: true
-      },
-      {
-        Day: 0,
-        Length: 6,
-        Name: 'AIR6789',
-        Location: 'Cloud 9',
-        Section: 'Lab',
-        Time: 21,
-        id: 7,
-        temp: true
-      }
-      ]
-      break
-    case "ADD_DONE":
-      this.classes = 
-      [{
-        Day: 0,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lecture',
-        Time: 9,
-        id: 0,
-      },
-      {
-        Day: 2,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lecture',
-        Time: 6,
-        id: 1,
-      },
-      {
-        Day: 4,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lab',
-        Time: 0,
-        id: 2,
-      },
-      {
-        Day: 1,
-        Length: 6,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lecture',
-        Time: 21,
-        id: 3,
-      },
-      {
-        Day: 3,
-        Length: 3,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lab',
-        Time: 8,
-        id: 4,
-      },
-      {
-        Day: 4,
-        Length: 3,
-        Name: 'AIR6789',
-        Location: 'Cloud 9',
-        Section: 'Lecture',
-        Time: 6,
-        id: 5
-      },
-      {
-        Day: 3,
-        Length: 3,
-        Name: 'AIR6789',
-        Location: 'Cloud 9',
-        Section: 'Lecture',
-        Time: 11,
-        id: 6
-      },
-      {
-        Day: 0,
-        Length: 6,
-        Name: 'AIR6789',
-        Location: 'Cloud 9',
-        Section: 'Lab',
-        Time: 21,
-        id: 7
-      }
-      ]
-      break
-    case "ADD_FAILS":
-      this.classes = 
+      case "SWAP_FIN":
+        this.classes = 
+        [{
+          Day: 0,
+          Length: 3,
+          Name: 'SEG3125',
+          Location: 'Mars',
+          Section: 'Lecture',
+          Time: 9,
+          id: 0,
+          diff: true
+        },
+        {
+          Day: 2,
+          Length: 3,
+          Name: 'SEG3125',
+          Location: 'Mars',
+          Section: 'Lecture',
+          Time: 6,
+          id: 1,
+          diff: true
+        },
+        {
+          Day: 4,
+          Length: 3,
+          Name: 'SEG3125',
+          Location: 'Mars',
+          Section: 'Lab',
+          Time: 0,
+          id: 2,
+          diff: true
+        },
+        {
+          Day: 1,
+          Length: 6,
+          Name: 'FOO3456',
+          Location: 'Snip Center',
+          Section: 'Lecture',
+          Time: 21,
+          id: 3,
+        },
+        {
+          Day: 3,
+          Length: 3,
+          Name: 'FOO3456',
+          Location: 'Snip Center',
+          Section: 'Lab',
+          Time: 8,
+          id: 4,
+        },
+        {
+          Day: 0,
+          Length: 3,
+          Name: 'HOM1234',
+          Location: 'Snip Center',
+          Section: 'Lecture',
+          Time: 9,
+          id: 5,
+          temp: true
+        },
+        {
+          Day: 2,
+          Length: 3,
+          Name: 'HOM1234',
+          Location: 'Snip Center',
+          Section: 'Lecture',
+          Time: 12,
+          id: 6,
+          temp: true
+        },
+        {
+          Day: 2,
+          Length: 3,
+          Name: 'HOM1234',
+          Location: 'Snip Center',
+          Section: 'Lab',
+          Time: 15,
+          id: 7,
+          temp: true
+        }
+        ]
+        break
+      default:
+        this.classes = 
       [{
         Day: 0,
         Length: 3,
@@ -448,8 +413,7 @@ class ScheduleView extends Component {
         Section: 'Lecture',
         Time: 9,
         id: 5,
-        temp: true,
-        collision: true,
+        temp: true
       },
       {
         Day: 2,
@@ -472,131 +436,15 @@ class ScheduleView extends Component {
         temp: true
       }
       ]
-      break
-    case "DROP_DONE":
-      this.classes = 
-      [
-      {
-        Day: 1,
-        Length: 6,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lecture',
-        Time: 21,
-        id: 3,
-      },
-      {
-        Day: 3,
-        Length: 3,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lab',
-        Time: 8,
-        id: 4,
-      }]
-      break
-    case "SWAP_DONE":
-      this.classes = 
-      [{
-        Day: 0,
-        Length: 3,
-        Name: 'HOM1234',
-        Location: 'Snip Center',
-        Section: 'Lecture',
-        Time: 9,
-        id: 0,
-      },
-      {
-        Day: 2,
-        Length: 3,
-        Name: 'HOM1234',
-        Location: 'Snip Center',
-        Section: 'Lecture',
-        Time: 12,
-        id: 1,
-      },
-      {
-        Day: 2,
-        Length: 3,
-        Name: 'HOM1234',
-        Location: 'Snip Center',
-        Section: 'Lab',
-        Time: 15,
-        id: 2,
-      },
-      {
-        Day: 1,
-        Length: 6,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lecture',
-        Time: 21,
-        id: 3,
-      },
-      {
-        Day: 3,
-        Length: 3,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lab',
-        Time: 8,
-        id: 4,
-      }]
-      break
-    default:
-      this.classes = 
-      [{
-        Day: 0,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lecture',
-        Time: 9,
-        id: 0,
-      },
-      {
-        Day: 2,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lecture',
-        Time: 6,
-        id: 1,
-      },
-      {
-        Day: 4,
-        Length: 3,
-        Name: 'SEG3125',
-        Location: 'Mars',
-        Section: 'Lab',
-        Time: 0,
-        id: 2,
-      },
-      {
-        Day: 1,
-        Length: 6,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lecture',
-        Time: 21,
-        id: 3,
-      },
-      {
-        Day: 3,
-        Length: 3,
-        Name: 'FOO3456',
-        Location: 'Snip Center',
-        Section: 'Lab',
-        Time: 8,
-        id: 4,
-      }]
   }
+
     return(
       <div>
       <div className = "Viewtitle">{this.props.viewTitle}</div>
         <div className="schedule-container">
-          <div className="schedule-web">{this.generateTable()}</div>
+          <div className="swapschedule-web">{this.generateTable()}</div>
           <div className="schedule-mobile">
+            <h1>Class schedule</h1>
             <h2>Monday</h2>
             <div id="monday" className="schedule-block">{this.generateDaySchedule(0)}</div>
             <h2>Tuesday</h2>
@@ -632,4 +480,4 @@ class ScheduleView extends Component {
   }
 }
 
-export default ScheduleView
+export default SwapScheduleView

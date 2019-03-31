@@ -1,0 +1,14 @@
+.ViewSwa{
+	th {
+		text-align: left;
+	}
+
+	td {
+		padding: 1em;
+		border: 1px black solid;
+	}
+
+	tr:nth-child(even) {
+		background-color: rgb(223, 221, 221);
+	}
+}

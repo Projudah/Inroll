@@ -92,6 +92,11 @@ class Sidebar extends React.Component {
       delete: false,
       swap: !prevState.swap,
     }))
+    if(!this.state.swap){
+      this.props.toggle(12)
+    }else{
+      this.props.toggle(0)
+    }
   }
 
   searchClicked1() {
@@ -153,6 +158,9 @@ class Sidebar extends React.Component {
     }
     if([11].includes(this.props.view)){
       this.state.delete = false;
+    }
+    if([17].includes(this.props.view)){
+      this.state.swap = false;
     }
     // console.log("SIDE", this.state.add, this.props.view)
 
@@ -514,7 +522,7 @@ class Sidebar extends React.Component {
                     </form>
                   </div>
                 </div>
-                <button className="cancel-button" onClick={this.swapClicked}>Cancel</button>
+                  {(this.props.view !== 16) ? <button className="cancel-button" onClick={this.swapClicked}>Cancel</button> : null}
               </div>
             </div>
           </div>

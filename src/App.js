@@ -19,6 +19,8 @@ import ViewSelectedClasses from './components/ViewSelectedClasses'
 import Confirmation from './components/Confirmation'
 import DropScheduleView from './components/DropScheduleView'
 import ViewDroppedClasses from './components/ViewDroppedClasses'
+import SwapScheduleView from './components/SwapScheduleView'
+import ViewSwappedClasses from './components/ViewSwappedClasses'
 
 const ModalConductor = props => {
   var fail = props.fail
@@ -108,9 +110,29 @@ class App extends Component {
   }
 
   toggle = (view) => {
-    this.setState({
-      view: view,
-    })
+    if(view === 2 && this.state.view === 1){
+      this.setState({
+        view: view,
+      })
+    }
+    else if(view === 6 && this.state.view === 5){
+      this.setState({
+        view: view,
+      })
+    }
+    else if(view === 2 && this.state.view === 12){
+      this.setState({
+        view: 13,
+      })
+    }else if(view === 6 && this.state.view === 12){
+      this.setState({
+        view: 13,
+      })
+    }else{
+      this.setState({
+        view: view,
+      })
+    }
   }
 
   toggleSearchClassModal = () => {
@@ -168,6 +190,18 @@ class App extends Component {
       this.setState(prevState =>({progressPhase: 0}))
       this.toggle(11)
     }
+    if(this.state.view == 14){
+      this.setState(prevState =>({progressPhase: 1}))
+      this.toggle(15)
+    }
+    if(this.state.view == 15){
+      this.setState(prevState =>({progressPhase: 2}))
+      this.toggle(16)
+    }
+    if(this.state.view == 16){
+      this.setState(prevState =>({progressPhase: 0}))
+      this.toggle(17)
+    }
   }
 
   setText = () =>{
@@ -207,11 +241,26 @@ class App extends Component {
       this.setState(prevState =>({progressPhase: 0}))
       this.toggle(7)
     }
+    if(this.state.view == 15){
+      this.setState(prevState =>({progressPhase: 0}))
+      this.toggle(14)
+    }
   }
 
   drop = () =>{
     this.setState(prevState =>({progressPhase: 0}))
     this.toggle(1)
+  }
+  dropSwap = () =>{
+    this.toggle(13)
+  }
+  dropSwap2 = () =>{
+    this.toggle(12)      
+  }
+
+  proceedSwap = () =>{
+    this.setState(prevState =>({progressPhase: 0}))
+    this.toggle(14)
   }
 
   toggleSidebarMenu = () => {
@@ -336,6 +385,70 @@ class App extends Component {
         view.push(<ScheduleView
           viewTitle = "Class Schedule"
           scheduleState="DROP_DONE"
+          toggleSearchClassModal={this.toggleClassInfoModal} />)
+        break
+      case 12:
+        view.push(<Progress
+          right = "Next"
+          disabled = {true}
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<ScheduleView
+          viewTitle = "Select New Class to Swap"
+          toggleSearchClassModal={this.toggleClassInfoModal} 
+          toggle={this.toggle}/>)
+        break
+      case 13:
+        view.push(<Progress
+          right = "Next"
+          disabled = {true}
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<SwapScheduleView
+          viewTitle = "Select Class To Drop"
+          toggleSearchClassModal={this.toggleClassInfoModal} 
+          toggle={this.toggle}
+          drop2 = {this.dropSwap2}
+          proceed = {this.proceedSwap}/>)
+        break
+      case 14:
+        view.push(<Progress
+          right = "Next"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<SwapScheduleView
+          viewTitle = "Select Class To Drop"
+          toggleSearchClassModal={this.toggleClassInfoModal} 
+          toggle={this.toggle}
+          drop = {this.dropSwap}
+          drop2 = {this.dropSwap2}
+          proceed = {this.proceedSwap}
+          scheduleState = "SWAP_FIN"/>)
+        break
+      case 15:
+        view.push(<Progress
+          left = "Back"
+          right = "Drop"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<ViewSwappedClasses/>)
+        break
+      case 16:
+        view.push(<Progress
+          right = "Home"
+            step={this.state.progressPhase}
+            next ={this.changeProgressPhase}
+            prev={this.retProgressPhase}/>)
+        view.push(<Confirmation info = "Swapped"/>)
+        break
+      case 17:
+        view.push(<ScheduleView
+          viewTitle = "Class Schedule"
+          scheduleState="SWAP_DONE"
           toggleSearchClassModal={this.toggleClassInfoModal} />)
         break
     }
