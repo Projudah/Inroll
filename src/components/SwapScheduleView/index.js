@@ -259,11 +259,25 @@ class SwapScheduleView extends Component {
       })
 
       var html = classList.map((field, index) => (
-        <div className={field.temp ? "class-temp" : "class"} onClick={this.props.toggleSearchClassModal}>
-          <div className="class-title">{field.Name}</div>
-          <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
-          <div className="location">{field.Location}</div>
-          <div className="type">{field.Section}</div>
+        <div
+          className={field.diff ? "class-diff" : (field.temp ? "class-temp" : "class")}
+          onClick={this.props.proceed}
+        >
+          <div className="class-info" onClick={this.props.toggleSearchClassModal}>
+            <div className="class-text">
+              <div className="class-title">{field.Name}</div>
+              <div className="time">{this.times[field.Time]} - {this.times[field.Time + field.Length]}</div>
+              <div className="location">{field.Location}</div>
+              <div className="type">{field.Section}</div>
+            </div>
+          </div>
+          {field.temp ?
+            <div className="class-delete" onClick={this.props.drop2}><i className="fas fa-trash-alt"></i></div> :
+            (field.diff ?
+              <div className="class-selected"><i class="far fa-check-square"></i></div> : 
+              <div className="class-select"><i className="far fa-square"></i></div>
+            )
+          }
         </div>
       ))
 
@@ -442,9 +456,8 @@ class SwapScheduleView extends Component {
       <div>
       <div className = "Viewtitle">{this.props.viewTitle}</div>
         <div className="schedule-container">
-          <div className="swapschedule-web">{this.generateTable()}</div>
-          <div className="schedule-mobile">
-            <h1>Class schedule</h1>
+          <div className="swap-schedule-web">{this.generateTable()}</div>
+          <div className="swap-schedule-mobile">
             <h2>Monday</h2>
             <div id="monday" className="schedule-block">{this.generateDaySchedule(0)}</div>
             <h2>Tuesday</h2>

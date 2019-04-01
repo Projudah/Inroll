@@ -5,19 +5,73 @@ $lightest_grey: #d8d8d8;
 $quite_light_gret: #777777;
 $green: #22704e;
 
-.schedule-mobile{
+.swap-schedule-mobile{
   display: none;
 
   .schedule-block{
     .class{
-      background-color: $lighter_grey;
-      color: white;
-      padding: 1em;
+      display: grid;
+      grid-template-columns: 5fr 1fr;
       margin: 0.5em;
 
-      .class-title{
-        font-size: 1.2em;
-        font-weight: bold;
+      .class-info{
+        background-color: $lighter_grey;
+        width: 100%;
+        padding: 1em;
+        color: white;
+        .class-title{
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+      }
+
+      .class-info:hover{
+        background-color: $maroon;
+      }
+
+      .class-select{
+        background-color: $maroon;
+        color: white;
+        text-align: center;
+        
+        .fa-square{
+          font-size: 2em;
+          position: relative;
+          top: 30%;
+        }
+      }
+    }
+
+    .class-diff{
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      margin: 0.5em;
+
+      .class-info{
+        background-color: $quite_light_gret;
+        width: 100%;
+        padding: 1em;
+        color: white;
+        .class-title{
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+      }
+
+      .class-info:hover{
+        background-color: $maroon;
+      }
+
+      .class-selected{
+        background-color: $lighter_grey;
+        color: white;
+        text-align: center;
+        
+        .fa-check-square{
+          font-size: 2em;
+          position: relative;
+          top: 30%;
+        }
       }
     }
 
@@ -30,88 +84,33 @@ $green: #22704e;
         background-color: $lightest_grey;
         width: 100%;
         padding: 1em;
-
-        .class-text{
-          .class-title{
-            font-size: 1.2em;
-            font-weight: bold;
-          }
+        color: black;
+        .class-title{
+          font-size: 1.2em;
+          font-weight: bold;
         }
       }
 
       .class-info:hover{
-        background-color: $light_maroon;
-        color: white;
-      }
-
-      .class-delete{
-        background-color: $lighter_grey;
-        color: white;
-        text-align: center;
-
-        .fa-trash-alt{
-          font-size: 2em;
-          position: relative;
-          top: 30%;
-        }
-      }
-
-      .class-delete:hover{
-        background-color: $light_maroon;
-        color: white;
-      }
-    }
-
-    .class-colli{
-      display: grid;
-      grid-template-columns: 5fr 1fr;
-      margin: 0.5em;
-
-      .class-info{
         background-color: $maroon;
-        color: white;
-        width: 100%;
-        padding: 1em;
-
-        .class-text{
-          .class-title{
-            font-size: 1.2em;
-            font-weight: bold;
-          }
-        }
-      }
-
-      .class-info:hover{
-        background-color: $light_maroon;
-        color: white;
       }
 
       .class-delete{
         background-color: $lighter_grey;
         color: white;
         text-align: center;
-
+        
         .fa-trash-alt{
           font-size: 2em;
           position: relative;
           top: 30%;
         }
       }
-
-      .class-delete:hover{
-        background-color: $light_maroon;
-        color: white;
-      }
-    }
-
-    .class:hover, .class-colli:hover{
-      background-color: $light_maroon;
-      color: white;
     }
   }
 }
 
-.swapschedule-web{
+.swap-schedule-web{
   // height: 700px;
 
   table {
@@ -238,11 +237,11 @@ $green: #22704e;
 }
 
 @media only screen and (max-width: 1050px) {
-  .schedule-web{
+  .swap-schedule-web{
     display: none;
   }
 
-  .schedule-mobile{
+  .swap-schedule-mobile{
     display: block;
   }
 }
