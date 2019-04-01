@@ -33,7 +33,6 @@ export default class ModalWindow extends React.Component {
           </p>
           <h2>How do I swap classes?</h2>
           <p>
-          <p>
             <ol>
               <li>Click "Swap Class" in the sidebar</li>
               <li>Search for class using one of the three methods provided</li>
@@ -41,7 +40,6 @@ export default class ModalWindow extends React.Component {
               <li>Click the class you want to drop in the class</li>
               <li>Confirm changes</li>
             </ol>
-          </p>
           </p>
         </Modal>
       </div>
