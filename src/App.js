@@ -133,10 +133,12 @@ class App extends Component {
       this.setState({
         view: 13,
       })
+      this.setState(prevState =>({progressPhase: 1}))
     }else if(view === 6 && this.state.view === 12){
       this.setState({
         view: 13,
       })
+      this.setState(prevState =>({progressPhase: 1}))
     }else{
       this.setState({
         view: view,
@@ -215,7 +217,7 @@ class App extends Component {
       this.toggle(11)
     }
     if(this.state.view == 14){
-      this.setState(prevState =>({progressPhase: 1}))
+      this.setState(prevState =>({progressPhase: 2}))
       this.toggle(15)
     }
     if(this.state.view == 15){
@@ -252,7 +254,7 @@ class App extends Component {
     if(this.state.view == 9){
       this.setState(prevState =>({progressPhase: 2}))
     }
-    console.log("toggling", this.state.nextState)
+    // console.log("toggling", this.state.nextState)
     this.toggle(this.state.nextState)
 
   }
@@ -267,7 +269,7 @@ class App extends Component {
       this.toggle(7)
     }
     if(this.state.view == 15){
-      this.setState(prevState =>({progressPhase: 0}))
+      this.setState(prevState =>({progressPhase: 1}))
       this.toggle(14)
     }
   }
@@ -277,14 +279,16 @@ class App extends Component {
     this.toggle(1)
   }
   dropSwap = () =>{
+    this.setState(prevState =>({progressPhase: 1}))
     this.toggle(13)
   }
   dropSwap2 = () =>{
+    this.setState(prevState =>({progressPhase: 0}))
     this.toggle(12)      
   }
 
   proceedSwap = () =>{
-    this.setState(prevState =>({progressPhase: 0}))
+    this.setState(prevState =>({progressPhase: 1}))
     this.toggle(14)
   }
 
@@ -418,6 +422,7 @@ class App extends Component {
         view.push(<Progress
           right = "Next"
           disabled = {true}
+          four = {true}
             step={this.state.progressPhase}
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)
@@ -430,6 +435,7 @@ class App extends Component {
         view.push(<Progress
           right = "Next"
           disabled = {true}
+          four = {true}
             step={this.state.progressPhase}
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)
@@ -443,6 +449,7 @@ class App extends Component {
       case 14:
         view.push(<Progress
           right = "Next"
+          four = {true}
             step={this.state.progressPhase}
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)
@@ -459,6 +466,7 @@ class App extends Component {
         view.push(<Progress
           left = "Back"
           right = "Drop"
+          four = {true}
             step={this.state.progressPhase}
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)
@@ -467,6 +475,7 @@ class App extends Component {
       case 16:
         view.push(<Progress
           right = "Home"
+          four = {true}
             step={this.state.progressPhase}
             next ={this.changeProgressPhase}
             prev={this.retProgressPhase}/>)

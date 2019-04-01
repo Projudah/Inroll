@@ -25,7 +25,8 @@ class Progress extends Component {
 				{left}
 			</div>
 			<div className="progress-bar">
-				<Stepper steps={ [{title: 'Select Classes'}, {title: 'View Selection'}, {title: 'Confirm'}] }
+				<Stepper steps={ (this.props.four === undefined) ? [{title: 'Select Classes'}, {title: 'View Selection'}, {title: 'Confirm'}] :
+				 [{title: 'Add New Class'},{title: 'Drop Old Class'}, {title: 'View Selection'}, {title: 'Confirm'}] }
 				activeStep={this.props.step}
 				activeColor = "#bb1a35"
 				completeColor = "#242424"
