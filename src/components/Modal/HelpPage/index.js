@@ -12,38 +12,36 @@ export default class ModalWindow extends React.Component {
       <div>
         <Modal open={true} onClose={this.onCloseModal} center>
           <h1>Help Page</h1>
-          <h2>How to Add Classes</h2>
+          <h2>How do I add classes?</h2>
           <p>
-            Duis est massa, congue non malesuada et, interdum at diam.
-            Vestibulum ac nunc venenatis, maximus neque in, porta metus. Aliquam
-            in erat posuere, sagittis mauris eget, efficitur sapien. Nulla ac
-            convallis eros. Mauris sit amet nibh elit. Class aptent taciti
-            sociosqu ad litora torquent per conubia nostra, per inceptos
-            himenaeos. Nunc vitae justo in lacus imperdiet dictum non rhoncus
-            diam. Nunc quis risus a neque pharetra tincidunt. Sed a consectetur
-            lectus. Proin lobortis sed purus sed tincidunt.
+            <ol>
+              <li>Click "Add Class" in the sidebar</li>
+              <li>Search for class using one of the three methods provided</li>
+              <li>Click "Add Class" when desired class and section is found</li>
+              <li>Click the "Next" button</li>
+              <li>Confirm changes</li>
+            </ol>
           </p>
-          <h2>How to Drop Classes</h2>
+          <h2>How do I drop classes?</h2>
           <p>
-            Duis est massa, congue non malesuada et, interdum at diam.
-            Vestibulum ac nunc venenatis, maximus neque in, porta metus. Aliquam
-            in erat posuere, sagittis mauris eget, efficitur sapien. Nulla ac
-            convallis eros. Mauris sit amet nibh elit. Class aptent taciti
-            sociosqu ad litora torquent per conubia nostra, per inceptos
-            himenaeos. Nunc vitae justo in lacus imperdiet dictum non rhoncus
-            diam. Nunc quis risus a neque pharetra tincidunt. Sed a consectetur
-            lectus. Proin lobortis sed purus sed tincidunt.
+            <ol>
+              <li>Click "Drop Class" in the sidebar</li>
+              <li>Click the class(es) you want to drop in the class </li>
+              <li>Click the "Next" button</li>
+              <li>Confirm changes</li>
+            </ol>
           </p>
-          <h2>How to Swap Classes</h2>
+          <h2>How do I swap classes?</h2>
           <p>
-            Duis est massa, congue non malesuada et, interdum at diam.
-            Vestibulum ac nunc venenatis, maximus neque in, porta metus. Aliquam
-            in erat posuere, sagittis mauris eget, efficitur sapien. Nulla ac
-            convallis eros. Mauris sit amet nibh elit. Class aptent taciti
-            sociosqu ad litora torquent per conubia nostra, per inceptos
-            himenaeos. Nunc vitae justo in lacus imperdiet dictum non rhoncus
-            diam. Nunc quis risus a neque pharetra tincidunt. Sed a consectetur
-            lectus. Proin lobortis sed purus sed tincidunt.
+          <p>
+            <ol>
+              <li>Click "Swap Class" in the sidebar</li>
+              <li>Search for class using one of the three methods provided</li>
+              <li>Click "Add Class" when desired class and section is found</li>
+              <li>Click the class you want to drop in the class</li>
+              <li>Confirm changes</li>
+            </ol>
+          </p>
           </p>
         </Modal>
       </div>
