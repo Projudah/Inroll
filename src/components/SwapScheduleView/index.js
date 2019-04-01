@@ -261,7 +261,6 @@ class SwapScheduleView extends Component {
       var html = classList.map((field, index) => (
         <div
           className={field.diff ? "class-diff" : (field.temp ? "class-temp" : "class")}
-          onClick={this.props.proceed}
         >
           <div className="class-info" onClick={this.props.toggleSearchClassModal}>
             <div className="class-text">
@@ -274,8 +273,8 @@ class SwapScheduleView extends Component {
           {field.temp ?
             <div className="class-delete" onClick={this.props.drop2}><i className="fas fa-trash-alt"></i></div> :
             (field.diff ?
-              <div className="class-selected"><i class="far fa-check-square"></i></div> : 
-              <div className="class-select"><i className="far fa-square"></i></div>
+              <div className="class-selected" onClick={this.props.drop}><i class="far fa-check-square"></i></div> : 
+              <div className="class-select" onClick={this.props.proceed}><i className="far fa-square"></i></div>
             )
           }
         </div>
