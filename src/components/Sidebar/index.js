@@ -73,7 +73,7 @@ class Sidebar extends React.Component {
     }
   }
 
-  deleteClicked() {
+  deleteClicked(closeSidebar) {
     this.setState(prevState => ({
       add: false,
       delete: !prevState.delete,
@@ -84,7 +84,6 @@ class Sidebar extends React.Component {
     }else{
       this.props.toggle(0)
     }
-    this.props.turnOffSidebar()
   }
 
   swapClicked() {

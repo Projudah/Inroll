@@ -8,25 +8,21 @@ $quite_light_gret: #777777;
   display: none;
 
   .schedule-block{
-    .class{
-      background-color: $lighter_grey;
+    .no-class{
+      background-color: black;
       color: white;
       padding: 1em;
       margin: 0.5em;
-
-      .class-title{
-        font-size: 1.2em;
-        font-weight: bold;
-      }
     }
 
-    .class-temp{
+    .classEntry{
       display: grid;
       grid-template-columns: 5fr 1fr;
       margin: 0.5em;
 
       .class-info{
-        background-color: $lightest_grey;
+        background-color: black;
+        color: white;
         width: 100%;
         padding: 1em;
 
@@ -37,7 +33,6 @@ $quite_light_gret: #777777;
           }
         }
       }
-
       .class-info:hover{
         background-color: $light_maroon;
         color: white;
@@ -53,13 +48,57 @@ $quite_light_gret: #777777;
           position: relative;
           top: 30%;
         }
-      }
 
-      .class-delete:hover{
+        .fa-undo{
+          display: none;
+        }
+      }
+    }
+
+    .classEntry:hover, .selected:hover{
+      background-color: $light_maroon;
+      color: white;
+    }
+
+    .selected{
+      display: grid;
+      grid-template-columns: 5fr 1fr;
+      margin: 0.5em;
+
+      .class-info{
+        background-color: $lightest_grey;
+        color: black;
+        width: 100%;
+        padding: 1em;
+
+        .class-text{
+          .class-title{
+            font-size: 1.2em;
+            font-weight: bold;
+          }
+        }
+      }
+      .class-info:hover{
         background-color: $light_maroon;
         color: white;
       }
-    }  
+
+      .class-delete{
+        background-color: black;
+        color: white;
+        text-align: center;
+
+        .fa-trash-alt{
+          display: none;
+        }
+
+        .fa-undo{
+          font-size: 2em;
+          position: relative;
+          top: 30%;
+        }
+      }
+    }
   }
 }
 
@@ -154,9 +193,6 @@ $quite_light_gret: #777777;
 }
 
 .course-sequence{
-  h1{
-    text-align: center;
-  }
   li{
     margin-bottom: 1em;
   }
