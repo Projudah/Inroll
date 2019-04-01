@@ -3,7 +3,8 @@ $lighter_grey: #242424;
 $light_maroon: #bb1a35;
 $lightest_grey: #d8d8d8;
 $quite_light_gret: #777777;
-$green: #22704e;
+$green: #49c18d;
+$lightest_maroon: #b2747e;
 
 .swap-schedule-mobile{
   display: none;
@@ -155,6 +156,7 @@ $green: #22704e;
     width: 100%;
     height: 100%;
     display: grid;
+    align-content: center;
   }
   .classEntry_temp:hover{
     cursor: pointer;
@@ -169,19 +171,21 @@ $green: #22704e;
     left: 100%;
     z-index: 1;
     opacity: 0.7;
+    color: white;
   }
   .classEntry_seled{
-    background: $quite_light_gret;
+    background: $maroon;
     color: white;
     text-align: center;
     margin: 0px;
     width: 100%;
     height: 100%;
     display: grid;
+    align-content: center;
   }
   .classEntry_seled:hover{
     cursor: pointer;
-    background: $lightest_grey;
+    background: $quite_light_gret;
   }
   .classEntry_seled:hover:after{
     content: 'Click to Remove Selected Class';
@@ -190,8 +194,9 @@ $green: #22704e;
     padding: 10px;
     width: 150px;
     left: 100%;
-    z-index: 1;
+    z-index: 2;
     opacity: 0.7;
+    color: white;
   }
   .classEntry {
     background: $lighter_grey;
