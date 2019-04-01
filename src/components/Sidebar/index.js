@@ -60,43 +60,83 @@ class Sidebar extends React.Component {
     e.preventDefault()
   }
 
+  close = () =>{
+    if([1,7,12,4,10,16].includes(this.props.view)){
+      this.props.toggle(0)
+    }else{
+      this.props.toggleAreyousure()
+    }
+  }
+
   addClicked() {
-    this.setState(prevState => ({
-      add: !this.state.add,
+
+    if([7,12,0].includes(this.props.view)){
+      this.setState(prevState => ({
+      add: true,
       delete: false,
       swap: false,
     }))
-    if(!this.state.add){
       this.props.toggle(1)
     }else{
-      this.props.toggle(0)
+      this.close()
     }
+    
+    // if(!this.state.add){
+    //   this.props.toggle(1)
+    // }else{
+    //   if(this.props.view !== 1){
+    //     this.props.toggleAreyousure()
+    //   }else{
+    //     this.props.toggle(0)  
+    //   }
+      
+    // }
   }
 
   deleteClicked(closeSidebar) {
-    this.setState(prevState => ({
+    if([1,12,0].includes(this.props.view)){
+      this.setState(prevState => ({
       add: false,
-      delete: !prevState.delete,
+      delete: true,
       swap: false,
     }))
-    if(!this.state.delete){
       this.props.toggle(7)
     }else{
-      this.props.toggle(0)
+      this.close()
     }
+    // this.setState(prevState => ({
+    //   add: false,
+    //   delete: !prevState.delete,
+    //   swap: false,
+    // }))
+    // if(!this.state.delete){
+    //   this.props.toggle(7)
+    // }else{
+    //   this.props.toggle(0)
+    // }
   }
 
   swapClicked() {
-    this.setState(prevState => ({
+    if([1,7,0].includes(this.props.view)){
+      this.setState(prevState => ({
       add: false,
       delete: false,
-      swap: !prevState.swap,
+      swap: true,
     }))
-    if(!this.state.swap){
       this.props.toggle(12)
     }else{
-      this.props.toggle(0)
+      this.close()
     }
+    // this.setState(prevState => ({
+    //   add: false,
+    //   delete: false,
+    //   swap: !prevState.swap,
+    // }))
+    // if(!this.state.swap){
+    //   this.props.toggle(12)
+    // }else{
+    //   this.props.toggle(0)
+    // }
   }
 
   searchClicked1() {
@@ -161,6 +201,19 @@ class Sidebar extends React.Component {
     }
     if([17].includes(this.props.view)){
       this.state.swap = false;
+    }
+    if(this.props.view === 0){
+      this.state = {
+        add: false,
+        delete: false,
+        swap: false,
+        search1: false,
+        search2: false,
+        search3: false,
+        swap1: false,
+        swap2: false,
+        swap3: false,
+      }
     }
     // console.log("SIDE", this.state.add, this.props.view)
 

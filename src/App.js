@@ -71,6 +71,15 @@ const ModalConductor = props => {
       text = {text}
       right = {proceed}
       left = "Cancel"
+      title = "Conflict"
+      next = {toggleNextState}
+      handleModalUnmount={handleModalUnmount}/>
+    case 'SURE':
+      return <PopupInfo
+      text = {text}
+      right = {proceed}
+      left = "No"
+      title = "Cancel"
       next = {toggleNextState}
       handleModalUnmount={handleModalUnmount}/>
     default:
@@ -133,6 +142,10 @@ class App extends Component {
         view: view,
       })
     }
+
+    if(this.state.view == 0){
+      this.setState(prevState =>({progressPhase: 0}))
+    }
   }
 
   toggleSearchClassModal = () => {
@@ -163,6 +176,17 @@ class App extends Component {
   togglePopupInfo = () =>{
     this.setState({
       currentModal: 'POPUP_INFO'
+    })
+  }
+
+  toggleAreyousure = () =>{
+    this.setState({
+        text: "Are you sure you want to Cancel?",
+        proceed: "Yes",
+        nextState: 0
+      })
+    this.setState({
+      currentModal: 'SURE'
     })
   }
 
@@ -228,6 +252,7 @@ class App extends Component {
     if(this.state.view == 9){
       this.setState(prevState =>({progressPhase: 2}))
     }
+    console.log("toggling", this.state.nextState)
     this.toggle(this.state.nextState)
 
   }
@@ -270,6 +295,8 @@ class App extends Component {
   turnOffSidebar = () => {
     this.setState({ sidebarMenu: false })
   }
+
+
 
   render() {
     //this variable should contatin the component
@@ -496,6 +523,7 @@ class App extends Component {
                 toggleSidebarMenu = {this.toggleSidebarMenu}
                 view = {this.state.view}
                 turnOffSidebar = {this.turnOffSidebar}
+                toggleAreyousure = {this.toggleAreyousure}
               />
             </div>
             <div className="content">

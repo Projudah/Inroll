@@ -25,7 +25,7 @@ export default class PopupInfo extends React.Component {
       <div>
         <Modal open={true} onClose={this.onCloseModal} center>
         <div className = "popup">
-          <h1>Conflict</h1>
+          <h1>{this.props.title}</h1>
           <p>
             {this.props.text}
           </p>
