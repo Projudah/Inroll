@@ -95,7 +95,7 @@ class App extends Component {
       //4:add class confirmation 5: new class added, 6: collision class view add
       view: 0,
       currentModal: null,
-      loginPage: false,
+      loginPage: true,
       progressPhase:0,
       sidebarMenu: false,
       text: 'Intern Season',
