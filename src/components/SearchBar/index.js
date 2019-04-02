@@ -40,7 +40,7 @@ class SearchBar extends React.Component {
         value={selectedOption}
         onChange={this.handleChange}
         options={options}
-        placeholder="Course code, course name, department"
+        placeholder="Course code, course name"
         styles={customStyles}
       />
     )
