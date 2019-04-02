@@ -12,13 +12,13 @@ export default class ModalWindow extends React.Component {
     this.props.toggleSearchDepartmentModal()
   }
   addRight = () => {
-    this.props.toggle(2)
     this.onCloseModal()
+    this.props.toggle(2,false,true)
     this.props.turnOffSidebar()
   }
   addFail = () =>{
-    this.props.toggle(6)
     this.onCloseModal()
+    this.props.toggle(6,false,true)
     this.props.turnOffSidebar()
   }
 

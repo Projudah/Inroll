@@ -33,6 +33,7 @@ const ModalConductor = props => {
   var toggleSearchDepartmentModal = props.toggleSearchDepartmentModal
   var turnOffSidebar = props.turnOffSidebar
   var toggleNextState = props.toggleNextState
+  var title = props.title
   switch (props.currentModal) {
     case 'SEARCH_CLASS':
       return (
@@ -71,7 +72,7 @@ const ModalConductor = props => {
       text = {text}
       right = {proceed}
       left = "Cancel"
-      title = "Conflict"
+      title = {title}
       next = {toggleNextState}
       handleModalUnmount={handleModalUnmount}/>
     case 'SURE':
@@ -79,7 +80,7 @@ const ModalConductor = props => {
       text = {text}
       right = {proceed}
       left = "No"
-      title = "Cancel"
+      title = {title}
       next = {toggleNextState}
       handleModalUnmount={handleModalUnmount}/>
     default:
@@ -99,7 +100,8 @@ class App extends Component {
       sidebarMenu: false,
       text: 'Intern Season',
       proceed: undefined,
-      nextState: 0
+      nextState: 0,
+      title: "Notice"
     }
     this.toggleSearchClassModal = this.toggleSearchClassModal.bind(this)
     this.handleModalUnmount = this.handleModalUnmount.bind(this)
@@ -118,31 +120,41 @@ class App extends Component {
     this.setState({currentModal: null})
   }
 
-  toggle = (view) => {
+  toggle = (view, bypass=false, sidebar = false) => {
     if(view === 2 && this.state.view === 1){
       this.setState({
         view: view,
       })
+      this.setState(prevState =>({progressPhase: 0}))
     }
     else if(view === 6 && this.state.view === 5){
       this.setState({
         view: view,
       })
+      this.setState(prevState =>({progressPhase: 0}))
     }
-    else if(view === 2 && this.state.view === 12){
+    else if(view === 2 && this.state.view === 12 && sidebar){
       this.setState({
         view: 13,
       })
       this.setState(prevState =>({progressPhase: 1}))
-    }else if(view === 6 && this.state.view === 12){
+    }else if(view === 6 && this.state.view === 12 && sidebar){
       this.setState({
         view: 13,
       })
       this.setState(prevState =>({progressPhase: 1}))
     }else{
-      this.setState({
-        view: view,
-      })
+      // console.log("ELSE???", this.state.view, view, !([0,5,11,17,1,7,12,4,10,16].includes(this.state.view)))
+      if(!([0,5,11,17,1,7,12,4,10,16,3].includes(this.state.view)) && (view === 2 || view === 6) && !(bypass || sidebar)){
+        this.toggleAreyousure(view)
+      }else{
+        if(bypass){
+          this.setState(prevState =>({progressPhase: 0}))
+        }
+        this.setState({
+          view: view,
+        })
+      }
     }
 
     if(this.state.view == 0){
@@ -181,11 +193,12 @@ class App extends Component {
     })
   }
 
-  toggleAreyousure = () =>{
+  toggleAreyousure = (next) =>{
     this.setState({
         text: "Are you sure you want to Cancel?",
         proceed: "Yes",
-        nextState: 0
+        nextState: next,
+        title: "Cancel"
       })
     this.setState({
       currentModal: 'SURE'
@@ -234,7 +247,8 @@ class App extends Component {
     if(this.state.view == 6){
       this.setState({
         text: "Classes SEG3125 and HOM1234 are Conflicting on Monday",
-        proceed: undefined
+        proceed: undefined,
+        title: "Conflict"
       })
       this.togglePopupInfo()
     }
@@ -242,7 +256,8 @@ class App extends Component {
       this.setState({
         text: "You're about to drop a required class: SEG3125",
         proceed: "Proceed",
-        nextState: 10
+        nextState: 10,
+        title: "Notice"
       })
       this.togglePopupInfo()
     }
@@ -255,7 +270,7 @@ class App extends Component {
       this.setState(prevState =>({progressPhase: 2}))
     }
     // console.log("toggling", this.state.nextState)
-    this.toggle(this.state.nextState)
+    this.toggle(this.state.nextState, true)
 
   }
 
@@ -507,6 +522,7 @@ class App extends Component {
             proceed = {this.state.proceed}
             turnOffSidebar = {this.turnOffSidebar}
             toggleNextState = {this.goToNextState}
+            title = {this.state.title}
           />
           <div className="web-navbar">
             <NavBar 

@@ -60,17 +60,17 @@ class Sidebar extends React.Component {
     e.preventDefault()
   }
 
-  close = () =>{
+  close = (next) =>{
     if([1,7,12,4,10,16].includes(this.props.view)){
       this.props.toggle(0)
     }else{
-      this.props.toggleAreyousure()
+      this.props.toggleAreyousure(next)
     }
   }
 
   addClicked() {
-
-    if([7,12,0].includes(this.props.view)){
+    console.log(this.props.view)
+    if([7,12,0,5,11,17,4,10,16].includes(this.props.view)){
       this.setState(prevState => ({
       add: true,
       delete: false,
@@ -78,7 +78,9 @@ class Sidebar extends React.Component {
     }))
       this.props.toggle(1)
     }else{
-      this.close()
+      var next = ([1,2,3,4,6].includes(this.props.view))? 0 : 1
+
+      this.close(next)
     }
     
     // if(!this.state.add){
@@ -94,7 +96,7 @@ class Sidebar extends React.Component {
   }
 
   deleteClicked(closeSidebar) {
-    if([1,12,0].includes(this.props.view)){
+    if([1,12,0,5,11,17,4,10,16].includes(this.props.view)){
       this.setState(prevState => ({
       add: false,
       delete: true,
@@ -102,7 +104,8 @@ class Sidebar extends React.Component {
     }))
       this.props.toggle(7)
     }else{
-      this.close()
+      var next = ([7,8,9,10].includes(this.props.view))? 0 : 7
+      this.close(next)
     }
     // this.setState(prevState => ({
     //   add: false,
@@ -117,7 +120,7 @@ class Sidebar extends React.Component {
   }
 
   swapClicked() {
-    if([1,7,0].includes(this.props.view)){
+    if([1,7,0,5,11,17,4,10,16].includes(this.props.view)){
       this.setState(prevState => ({
       add: false,
       delete: false,
@@ -125,7 +128,8 @@ class Sidebar extends React.Component {
     }))
       this.props.toggle(12)
     }else{
-      this.close()
+      var next = ([12,13,14,15,16].includes(this.props.view))? 0 : 12
+      this.close(next)
     }
     // this.setState(prevState => ({
     //   add: false,
@@ -187,34 +191,73 @@ class Sidebar extends React.Component {
     }))
   }
 
-  render() {
+  updateState = () =>{
     if([5].includes(this.props.view)){
       this.state.add = false;
     }
-    if([2,6].includes(this.props.view)){
-      if(!this.state.add){
-        this.state.add=true;
-      }
-    }
-    if([11].includes(this.props.view)){
+    else if([11].includes(this.props.view)){
       this.state.delete = false;
     }
-    if([17].includes(this.props.view)){
+    else if([17].includes(this.props.view)){
       this.state.swap = false;
     }
+
     if(this.props.view === 0){
-      this.state = {
-        add: false,
-        delete: false,
-        swap: false,
-        search1: false,
-        search2: false,
-        search3: false,
-        swap1: false,
-        swap2: false,
-        swap3: false,
+      if(this.state.add || this.state.delete || this.state.swap){
+        this.setState({
+          add: false,
+          delete: false,
+          swap: false
+        })
+      }
+    }else if(this.props.view === 1){
+      if(!this.state.add){
+        this.setState({
+          add: true,
+          delete: false,
+          swap: false
+        })
       }
     }
+    else if(this.props.view === 2){
+      if(!this.state.add){
+        this.setState({
+          add: true,
+          delete: false,
+          swap: false
+        })
+      }
+    }else if(this.props.view === 6){
+      if(!this.state.add){
+        this.setState({
+          add: true,
+          delete: false,
+          swap: false
+        })
+      }
+    }else if(this.props.view === 7){
+      if(!this.state.delete){
+        this.setState({
+          add: false,
+          delete: true,
+          swap: false
+        })
+      }
+    }else if(this.props.view === 12){
+      if(!this.state.swap){
+        this.setState({
+          add: false,
+          delete: false,
+          swap: true
+        })
+      }
+    }
+  }
+
+  render() {
+
+    this.updateState()
+    
     // console.log("SIDE", this.state.add, this.props.view)
 
     return (
