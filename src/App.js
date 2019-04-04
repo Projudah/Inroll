@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import './App.scss'
-
 import NavBar from './components/NavBar'
 import NavBarMobile from './components/NavBarMobile'
 import Sidebar from './components/Sidebar'
 import ScheduleView from './components/ScheduleView'
-
 import SearchClassModal from './components/Modal/SearchClass'
 import HelpPage from './components/Modal/HelpPage'
 import SearchDepartment from './components/Modal/SearchDepartment'
@@ -13,7 +11,6 @@ import SearchClassModal2 from './components/Modal/SearchClass2'
 import LoginPage from './components/LoginPage'
 import ClassInfo from './components/Modal/ClassInfo'
 import PopupInfo from './components/Modal/PopupInfo'
-
 import Progress from './components/Progress'
 import ViewSelectedClasses from './components/ViewSelectedClasses'
 import Confirmation from './components/Confirmation'
@@ -234,7 +231,7 @@ class App extends Component {
       this.toggle(15)
     }
     if(this.state.view == 15){
-      this.setState(prevState =>({progressPhase: 2}))
+      this.setState(prevState =>({progressPhase: 3}))
       this.toggle(16)
     }
     if(this.state.view == 16){
@@ -266,11 +263,14 @@ class App extends Component {
   }
 
   goToNextState = () =>{
+    var temp = true
     if(this.state.view == 9){
       this.setState(prevState =>({progressPhase: 2}))
+      // console.log(this.state.progressPhase)
+      temp = false
     }
     // console.log("toggling", this.state.nextState)
-    this.toggle(this.state.nextState, true)
+    this.toggle(this.state.nextState, temp)
 
   }
 

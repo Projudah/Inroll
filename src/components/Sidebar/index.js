@@ -69,7 +69,7 @@ class Sidebar extends React.Component {
   }
 
   addClicked() {
-    console.log(this.props.view)
+    //(this.props.view)
     if([7,12,0,5,11,17,4,10,16].includes(this.props.view)){
       this.setState(prevState => ({
       add: true,
